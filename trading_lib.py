@@ -49,13 +49,18 @@ def str_list_to_date(file: pd.DataFrame):
 
 # Округление числа и конвертация его во float
 def number_to_float(n) -> float:
-    return round(float(n), 2)
+    if empty_check(n):
+        return round(float(n), 2)
+    else:
+        return n
 
 
 # Округление числа и конвертация его в int
 def number_to_int(n) -> int:
-    return int(round(float(n), 0))
-
+    if empty_check(n):
+        return int(round(float(n), 0))
+    else:
+        return n
 
 # Не пустой ли объект?
 def empty_check(n) -> bool:
@@ -101,7 +106,7 @@ def download_alpha(ticker: str, base_dir: str = default_data_dir) -> pd.DataFram
 def download_yahoo(ticker: str, base_dir: str = default_data_dir) -> pd.DataFrame:
     try:
         yf = YahooFinancials(ticker)
-        data = yf.get_historical_stock_data(dt_to_str(start_date), dt_to_str(end_date), 'daily')
+        data = yf.get_historical_price_data(dt_to_str(start_date), dt_to_str(end_date), 'daily')
     except Exception as err:
         print(f'Unable to read data for {ticker}: {err}')
         return pd.DataFrame({})
