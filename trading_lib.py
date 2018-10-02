@@ -21,7 +21,7 @@ ALPHA_KEY = 'FE8STYV4I7XHRIAI'
 
 # Variables
 default_data_dir = 'exportTables'  # Директория
-start_date = datetime(1990, 1, 1)  # Для yahoo, alpha выкачает всю доступную историю
+start_date = datetime(2008, 1, 1)  # Для yahoo, alpha выкачает всю доступную историю
 end_date = datetime.now()
 
 # Globals
