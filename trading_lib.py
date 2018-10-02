@@ -6,6 +6,9 @@ import time
 import cmath
 import os
 import matplotlib.pyplot as plt
+import sys
+
+# sys.path.insert(0, 'C:/Users/Tom/PycharmProjects/Start/GibHub/My_Libs')
 
 from alpha_vantage.timeseries import TimeSeries
 from yahoofinancials import YahooFinancials
