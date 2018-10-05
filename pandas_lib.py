@@ -1,5 +1,5 @@
 import pandas as pd
-import time
+import sqlite3
 
 from pprint import pprint as pp
 
@@ -34,3 +34,14 @@ def group_and_average(file: pd.DataFrame, column:str):
 # Сгруппировать данные, если их индекс - дата. Например группировка по месяцу, или неделям
 def group_by_indexdate(column: pd.Series, type: str):
     return column.resample(type)
+
+
+# Редактирование элементов pd.Series
+def change_by_symbol(columns: pd.Series, symbol: str, change:str):
+    return columns.str.contains(symbol).fillna(change)
+
+
+# Коннект к MySQL, SQLite, PostgreSQL или иным SQL базам
+def sql_connect(directory: str, file_name: str, file_type: str, index_column: str):
+    connect = sqlite3.connect(directory + '/' + file_name + file_type)
+    return pd.read_sql('SELECT * from ' + file_name + ' LIMIT 3', connect, index_col=index_column)
