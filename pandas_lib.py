@@ -1,9 +1,11 @@
 import pandas as pd
 import sqlite3
+import numpy as np
 
 from pprint import pprint as pp
 
 pd.options.display.max_rows = 7  # Отображение количества строк
+pd.set_option('display.max_columns', 100)  # Второй вариант настройки. Количесвто столбцов
 
 
 # Посчитать количество повторений в столбце
@@ -28,7 +30,7 @@ def get_any_from_date(column: pd.Series):
 
 # Сгруппировать данные по значениям определённой колонки и вывести среднюю
 def group_and_average(file: pd.DataFrame, column:str):
-    return file.groupby(column).mean()
+    return file.groupby(column).agg([np.mean])
 
 
 # Сгруппировать данные, если их индекс - дата. Например группировка по месяцу, или неделям
@@ -45,3 +47,29 @@ def change_by_symbol(columns: pd.Series, symbol: str, change:str):
 def sql_connect(directory: str, file_name: str, file_type: str, index_column: str):
     connect = sqlite3.connect(directory + '/' + file_name + file_type)
     return pd.read_sql('SELECT * from ' + file_name + ' LIMIT 3', connect, index_col=index_column)
+
+
+# Просмотр общей информации по фрейму
+def show_info(file: pd.DataFrame):
+    return file.info()
+
+
+# Содержание колонок
+def all_column_info(file: pd.DataFrame):
+    return file.describe()
+
+
+# Применение функции к каждому столбцу (или строке, если указать axis=1)
+def make_for_all(file: pd.DataFrame, func_name: str):
+    return file.apply(func_name)
+
+
+# Таблица сопряжённости, для поиска взаимосвязей
+def conjugation_table(column1: pd.Series, column2:pd.Series):
+    return pd.crosstab(column1, column2, normalize=True, margins=True)
+
+
+# Сводная таблица
+def piv_table(file: pd.DataFrame, columns_name: list, index: list, func: str):
+    return file.pivot_table(columns_name, index, aggfunc=func)
+
