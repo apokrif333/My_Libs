@@ -73,3 +73,8 @@ def conjugation_table(column1: pd.Series, column2:pd.Series):
 def piv_table(file: pd.DataFrame, columns_name: list, index: list, func: str):
     return file.pivot_table(columns_name, index, aggfunc=func)
 
+
+# Разбивка на подходящие группы
+def to_groups(column: pd.Series, groups: tuple):
+    return pd.cut(column, groups, include_lowest=True, right=False)
+
