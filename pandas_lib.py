@@ -28,9 +28,10 @@ def get_any_from_date(column: pd.Series):
     return column.index.day  # Где day можно заменить на вариации
 
 
-# Сгруппировать данные по значениям определённой колонки и вывести среднюю
-def group_and_average(file: pd.DataFrame, column:str):
-    return file.groupby(column).agg([np.mean])
+# Сгруппировать данные по значениям определённой колонки, а для иных колонок провести расчёты
+# самые популярные фукнции ['first', 'last', 'min', 'max', 'median', 'std', 'count', 'sum']
+def group_and_calc(df: pd.DataFrame, column_grp: str, columns_nums: list, columns_str: list, funcs_nums: list, funcs_str: list):
+    return df.groupby(column_grp)[columns_nums].agg(funcs_nums).join(df.groupby(column_grp)[columns_str].agg(funcs_str))
 
 
 # Сгруппировать данные, если их индекс - дата. Например группировка по месяцу, или неделям
