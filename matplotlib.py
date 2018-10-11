@@ -15,13 +15,20 @@ init_notebook_mode(connected=True)
 # ----------------------------------------------------------------------------------------------------------------------
 # Matplotlib
 # Вывести график
-def chart_matplot(x, y):
-    plt.plot(x, y, )
+def chart_matplot(x: pd.Series, y:pd.Series, title: str):
+    plt.plot(x, y)
+    plt.legend()
+    plt.title(title)
 
 
 # Вывести два графика на основе данных, в которых два столбца и единый индекс
-def two_charts(data, kind: str):
-    data.plot(kind=kind, rot=45, subplots=True, figsize=(15, 10))
+def two_charts(df: pd.DataFrame, kind: str):
+    df.plot(kind=kind, rot=45, subplots=True, figsize=(15, 10))
+
+
+# Вывести децильные гистограммы по каждому массиву данных
+def decile_for_each(df: pd.DataFrame, columns_for_show: list):
+    df[columns_for_show].hist()
 
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -46,6 +53,20 @@ def decile_interchange(column1: pd.Series, column2: pd.Series):
 # 75%-99,65%, выборсы)
 def box_plot(x: str, y: str, data: pd.DataFrame, orient):
     sns.boxplot(x=x, y=y, data=data, orient=orient)
+
+
+# Создаём множество субграфиков, как пример, графики с усами
+def sns_many_charts(nrows: int, ncols: int, column_anls: list, x: str, df: pd.DataFrame):
+    fig, axes = plt.subplot(nrows=nrows, ncols=ncols, figsize=(18, 12))
+
+    for idx, column in enumerate(column_anls):
+        row = int(idx / ncols)
+        column = int(idx % ncols)
+
+        sns.boxplot(x=x, y=column, data=df, ax=axes[row, column])
+        axes[row, column].legend()
+        axes[row, column].set_xlabel(x)
+        axes[row, column].set_ylabel(column)
 
 
 # Тепловая карта для сводной таблицы
