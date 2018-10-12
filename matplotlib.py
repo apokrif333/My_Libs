@@ -21,6 +21,11 @@ def chart_matplot(x: pd.Series, y:pd.Series, title: str):
     plt.title(title)
 
 
+# Точечный график
+def scatter_plot(x, y):
+    plt.scatter(x, y)
+
+
 # Вывести два графика на основе данных, в которых два столбца и единый индекс
 def two_charts(df: pd.DataFrame, kind: str):
     df.plot(kind=kind, rot=45, subplots=True, figsize=(15, 10))
@@ -39,6 +44,11 @@ def charts_matrix_save(file: pd.DataFrame, path: str, name: str):
     sns.pairplot(file).savefig(path + '/' + name + '.png')
 
 
+# Диаграмма
+def diargam_sns(x: str, y: str, df:pd.DataFrame):
+    sns.countplot(x=x, hue=y, data=df)
+
+
 # Децильное рапределение набора данных
 def decile_data(column: pd.Series):
     sns.distplot(column)
@@ -51,8 +61,15 @@ def decile_interchange(column1: pd.Series, column2: pd.Series):
 
 # Ящик с усами (выбросы, условные 0,35%-25%, конец первого квартиля, медиана, конец третьего квартиля, условные
 # 75%-99,65%, выборсы)
-def box_plot(x: str, y: str, data: pd.DataFrame, orient):
-    sns.boxplot(x=x, y=y, data=data, orient=orient)
+def box_plot(x: str, y: str, df: pd.DataFrame, orient):
+    sns.boxplot(x=x, y=y, data=df, orient=orient)
+
+
+# Скрипка-график и ящик с усами в одном пространстве
+def violin_box_plot(x: str, y: str, df: pd.DataFrame, orient):
+    _, axes = plt.subplots(nrows=1, ncols=2, sharey=True, figsize=(16, 6))
+    sns.boxplot(x=x, y=y, data=df, ax=axes[0])
+    sns.violinplot(x=x, y=y, data=df, ax=axes[1])
 
 
 # Создаём множество субграфиков, как пример, графики с усами

@@ -83,3 +83,8 @@ def to_groups(column: pd.Series, groups: tuple):
 # Таблица корреляции
 def correlation(df: pd.DataFrame):
     return df.corr()
+
+
+# Конвертирование бинарных строк в цифру. Можно взять совпадения, а можно изменённые данные
+def bool_to_int(column: pd.Series):
+    return pd.factorize(column)[0]
