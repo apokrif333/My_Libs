@@ -30,7 +30,7 @@ def get_any_from_date(column: pd.Series):
 
 # Сгруппировать данные по значениям определённой колонки, а для иных колонок провести расчёты
 # самые популярные фукнции ['first', 'last', 'min', 'max', 'median', 'std', 'count', 'sum']
-def group_and_calc(df: pd.DataFrame, column_grp: str, columns_nums: list, columns_str: list, funcs_nums: list, funcs_str: list):
+def group_and_calc(df: pd.DataFrame, column_grp: list, columns_nums: list, columns_str: list, funcs_nums: list, funcs_str: list):
     return df.groupby(column_grp)[columns_nums].agg(funcs_nums).join(df.groupby(column_grp)[columns_str].agg(funcs_str))
 
 
@@ -88,3 +88,13 @@ def correlation(df: pd.DataFrame):
 # Конвертирование бинарных строк в цифру. Можно взять совпадения, а можно изменённые данные
 def bool_to_int(column: pd.Series):
     return pd.factorize(column)[0]
+
+
+# В скольких строках встречается данный объект
+def count_by_row(df: pd.DataFrame):
+    return df.size()
+
+
+# Скользящее окно
+def rolling_pd(column, window: int):
+    return column.rolling(window=window)

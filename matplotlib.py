@@ -15,7 +15,7 @@ init_notebook_mode(connected=True)
 # ----------------------------------------------------------------------------------------------------------------------
 # Matplotlib
 # Вывести график
-def chart_matplot(x: pd.Series, y:pd.Series, title: str):
+def chart_matplot(x: pd.Series, y: pd.Series, title: str):
     plt.plot(x, y)
     plt.legend()
     plt.title(title)
@@ -32,8 +32,13 @@ def two_charts(df: pd.DataFrame, kind: str):
 
 
 # Вывести децильные гистограммы по каждому массиву данных
-def decile_for_each(df: pd.DataFrame, columns_for_show: list):
-    df[columns_for_show].hist()
+def decile_for_each(df: pd.DataFrame, columns_for_show: list, decile: int):
+    df.hist(column=columns_for_show, bins=decile)
+
+
+# Тепловая карта
+def heatmap_plt(pivot_table):
+    plt.imshow(pivot_table, cmap='seismic', interpolation='none')
 
 
 # ----------------------------------------------------------------------------------------------------------------------
