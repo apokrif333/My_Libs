@@ -63,6 +63,7 @@ def all_column_info(file: pd.DataFrame):
 # Применение функции к каждому столбцу (или строке, если указать axis=1)
 def make_for_all(file: pd.DataFrame, func_name: str):
     return file.apply(func_name)
+    # column.apply(lambda x: x / sum(column)) Расчёт доли для каждого элемента в столбце
 
 
 # Таблица сопряжённости, для поиска взаимосвязей
@@ -71,8 +72,8 @@ def conjugation_table(column1: pd.Series, column2:pd.Series):
 
 
 # Сводная таблица
-def piv_table(file: pd.DataFrame, columns_name: list, index: list, func: str):
-    return file.pivot_table(columns_name, index, aggfunc=func)
+def piv_table(file: pd.DataFrame, index: list, columns_name: list, column_val: str, func: str):
+    return file.pivot_table(index=index, columns=columns_name, values=column_val, aggfunc=func)
 
 
 # Разбивка на подходящие числовые группы
@@ -98,3 +99,8 @@ def count_by_row(df: pd.DataFrame):
 # Скользящее окно
 def rolling_pd(column, window: int):
     return column.rolling(window=window)
+
+
+# Убрать данные, не проходящие по процентилю
+def filter_by_percentile(df: pd.DataFrame, column: str, quant: float):
+    return df[df[column] < df[column].quantile(quant)]

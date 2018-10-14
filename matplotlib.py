@@ -118,7 +118,7 @@ def chart_plotly_bar(x: pd.Series, y1: pd.Series, y2: pd.Series, name1: str, nam
 def chart_plotly_box(df: pd.DataFrame, column_x: str, values_column: str):
     data = []
     for x in df[column_x].unique():
-        data.append(go.Box(name=x, y=df[df[column_x] == x][values_column]))
+        data.append(go.Box(name=x, y=df[df[column_x] == x].values_column))
     iplot(data, show_link=False)
 
 
