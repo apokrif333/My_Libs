@@ -8,6 +8,11 @@ pd.options.display.max_rows = 7  # Отображение количества �
 pd.set_option('display.max_columns', 100)  # Второй вариант настройки. Количесвто столбцов
 
 
+# Работа с .loc
+def work_loc(df: pd.DataFrame, column_for_row_check: str, any, column_for_show: str, func: function):
+    return df.loc[(df[column_for_row_check] == any), column_for_show].apply(func)
+
+
 # Посчитать количество повторений в столбце
 def v_counts(column: pd.Series):
     return column.value_counts()
@@ -32,6 +37,8 @@ def get_any_from_date(column: pd.Series):
 # самые популярные фукнции ['first', 'last', 'min', 'max', 'median', 'std', 'count', 'sum']
 def group_and_calc(df: pd.DataFrame, column_grp: list, columns_nums: list, columns_str: list, funcs_nums: list, funcs_str: list):
     return df.groupby(column_grp)[columns_nums].agg(funcs_nums).join(df.groupby(column_grp)[columns_str].agg(funcs_str))
+    # df[df.Year == 1996].groupby('Sex').agg('min')[Age]
+    # df.groupby(['Medal', 'Sport']).get_group(('Silver', 'Tennis)).shape[0]
 
 
 # Сгруппировать данные, если их индекс - дата. Например группировка по месяцу, или неделям
@@ -55,14 +62,15 @@ def show_info(file: pd.DataFrame):
     return file.info()
 
 
-# Содержание колонок
-def all_column_info(file: pd.DataFrame):
-    return file.describe()
+# Содержание колонок или колонки
+def all_column_info(df: pd.DataFrame):
+    return df.describe()
+    # df.describe().column_name
 
 
 # Применение функции к каждому столбцу (или строке, если указать axis=1)
-def make_for_all(file: pd.DataFrame, func_name: str):
-    return file.apply(func_name)
+def make_for_all(df: pd.DataFrame, func_name: function):
+    return df.apply(func_name)
     # column.apply(lambda x: x / sum(column)) Расчёт доли для каждого элемента в столбце
 
 
@@ -104,3 +112,13 @@ def rolling_pd(column, window: int):
 # Убрать данные, не проходящие по процентилю
 def filter_by_percentile(df: pd.DataFrame, column: str, quant: float):
     return df[df[column] < df[column].quantile(quant)]
+
+
+# Удалить дубликаты
+def del_duplic(df: pd.DataFrame, columns: list):
+    return df.drop_duplicates(subset=columns)
+
+
+# Вернуть индекс максимаьного значения колонки
+def max_index(df: pd.DataFrame, column: str):
+    return df[column].idxmax()
