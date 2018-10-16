@@ -8,7 +8,7 @@ import os
 import matplotlib.pyplot as plt
 import sys
 
-# sys.path.insert(0, 'C:/Users/Tom/PycharmProjects/Start/GibHub/My_Libs')
+# sys.path.append(os.path.abspath('C:/Users/Lex/PycharmProjects/Start/GitHub/My_Libs'))
 
 from alpha_vantage.timeseries import TimeSeries
 from yahoofinancials import YahooFinancials
@@ -21,7 +21,7 @@ ALPHA_KEY = 'FE8STYV4I7XHRIAI'
 
 # Variables
 default_data_dir = 'exportTables'  # Директория
-start_date = datetime(2008, 1, 1)  # Для yahoo, alpha выкачает всю доступную историю
+start_date = datetime(2004, 1, 1)  # Для yahoo, alpha выкачает всю доступную историю
 end_date = datetime.now()
 
 # Globals
@@ -103,7 +103,7 @@ def download_alpha(ticker: str, base_dir: str = default_data_dir) -> pd.DataFram
 
 
 # Скачиваем тикеры из яху (цены и дивиденды)
-def download_yahoo(ticker: str, base_dir: str = default_data_dir) -> pd.DataFrame:
+def download_yahoo(ticker: str, base_dir: str = default_data_dir):
     try:
         yf = YahooFinancials(ticker)
         data = yf.get_historical_price_data(dt_to_str(start_date), dt_to_str(end_date), 'daily')
@@ -119,12 +119,17 @@ def download_yahoo(ticker: str, base_dir: str = default_data_dir) -> pd.DataFram
     prices = {}
     for rec in sorted(data[ticker]['prices'], key=lambda r: r['date']):
         date = datetime.strptime(rec['formatted_date'], '%Y-%m-%d')
-        if rec.get('type') is None:
-            dic_with_prices(prices, ticker, date, rec['open'], rec['high'], rec['low'], rec['close'], rec['volume'])
-        elif rec['type'] == 'DIVIDEND':
+        dic_with_prices(prices, ticker, date, rec['open'], rec['high'], rec['low'], rec['close'], rec['volume'])
+
+    if 'dividends' in data[ticker]['eventsData']:
+        for date, rec in sorted(data[ticker]['eventsData']['dividends'].items(), key=lambda r: r[0]):
+            date = datetime.strptime(date, '%Y-%m-%d')
             dic_with_div(prices, ticker, date, rec['amount'])
-        elif rec['type'] == 'SPLIT':
-            print(f"{ticker} has split {rec['splitRatio']} for {rec['formatted_date']}")
+
+    if 'splits' in data[ticker]['eventsData']:
+        for date, rec in sorted(data[ticker]['eventsData']['splits'].items(), key=lambda r: r[0]):
+            date = datetime.strptime(date, '%Y-%m-%d')
+            print(f"{ticker} has split {rec['splitRatio']} for {date}")
 
     frame = pd.DataFrame.from_dict(prices, orient='index',
                                    columns=['Open', 'High', 'Low', 'Close', 'Volume', 'Dividend'])
@@ -180,10 +185,10 @@ def save_csv(base_dir: str, file_name: str, data: pd.DataFrame, source: str = 'n
         os.makedirs(path)
 
     if source == 'alpha':
-        print(f'{file_name} работает с альфой')
+        print(f'{file_name} отработал через альфу')
         path = os.path.join(path, file_name + ' NonSplit' + '.csv')
     elif source == 'yahoo':
-        print(f'{file_name} работает с яху')
+        print(f'{file_name} отработал через яху')
         path = os.path.join(path, file_name + '.csv')
         path = path.replace('^', '')
     elif source == 'new_file':
