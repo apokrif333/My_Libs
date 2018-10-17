@@ -23,7 +23,7 @@ def chart_matplot(x: pd.Series, y: pd.Series, title: str):
 
 # Точечный график
 def scatter_plot(x, y):
-    plt.scatter(x, y)
+    plt.scatter(x, y, s=50, cmap='autumn', edgecolors='black', linewidths=1.5)
 
 
 # Вывести два графика на основе данных, в которых два столбца и единый индекс

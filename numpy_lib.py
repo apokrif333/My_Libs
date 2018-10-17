@@ -4,10 +4,37 @@ import time
 from numpy import linalg
 from pprint import pprint as pp
 
+np.seed = 7  # Теперь будет генерация одних и тех же случайных чисел при запуске
+
 
 # Массив от и до, с равным шагом
 def np_linspace(start: int, end: int, steps: int) -> np.array:
     return np.linspace(start, end, steps)
+
+
+# Массив со случаными данными, но распределённые по Гауссу
+def gaussian_massive(rows: int, columns: int, centre: int):
+    return np.random.normal(size=(rows, columns), loc=centre)
+
+
+# Собрать разные листы или их срезы в один лист
+def one_list_for_many_lists(*list_: list):
+    return np.r_[list_]
+
+
+# Собрать лист с листами в один лист
+def one_list_for_list(list_: list):
+    return list.ravel()
+
+
+# Транспонировать входящие массивы
+def trans_lists(*list_: list):
+    return np.c_[list_]
+
+
+# Получение двух массивов x и y, и создание матрицы их положения, в стиле x[0, 20]=0, y[0, 20]=20
+def x_y_matrix(x: list, y:list):
+    return np.meshgrid(x, y)
 
 
 def random_txt_file():
