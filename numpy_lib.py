@@ -5,6 +5,11 @@ from numpy import linalg
 from pprint import pprint as pp
 
 
+# Массив от и до, с равным шагом
+def np_linspace(start: int, end: int, steps: int) -> np.array:
+    return np.linspace(start, end, steps)
+
+
 def random_txt_file():
     t1 = time.time()
     with open('Temp.txt', 'w') as f:
