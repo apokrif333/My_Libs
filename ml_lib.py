@@ -10,11 +10,9 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import warnings
-
 import os
+
 os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin'
-
-
 warnings.filterwarnings('ignore')
 plt.rcParams['figure.figsize'] = (10, 8)
 
@@ -39,6 +37,15 @@ def t_SNE(df: pd.DataFrame, random: int, bool_column: pd.Series):
 '''Деревья решений
 Разбиваем данные по принципу жадного прироста информации (уменьшения энтропии). Указываем сколько может быть минимум
 значений в системе после разбиения, указываем количество разбиений и т.д.
+При множестве количественных признаков, на каждом шаге будует прогоняться каждый признак по наибольшему приросту 
+информации, и будет выбираться тот признак, который на данном разбиении системы обеспечит самый жадный прирост.
+Случайный лес - строятся композиции дерерьев и устредняются ответы, подобно кросс-валидации.
+Pruning (стржка) - строится дерево до максимальной глубины и потом, снизу-вверх, срезается, сравнивая разницу качества. 
+
+DecisionTreeClassifier: 
+max_depth – максимальная глубина дерева
+max_features — максимальное число признаков, по которым ищется лучшее разбиение в дереве (проклятие масштабирования)
+min_samples_leaf - указывает, при каком минимальном количестве элементов система будет дальше разделяться
 '''
 
 
@@ -49,8 +56,14 @@ def get_grid(data):
     return np.meshgrid(np.arange(x_min, x_max, 0.01), np.arange(y_min, y_max, 0.01))
 
 
-# Применяем дерево решений на синтетических данных. Один массив Гауссово раскручивается вокруг 0, другой вокруг 2.
-def test_des_tree():
+# Конвертируем dot в png
+def dot_to_png(name: str):
+    path = 'C:/Users/Tom/PycharmProjects/Start/GibHub/My_Libs/img/' + name + '.dot'
+    render('dot', 'png', path)
+
+
+# Применяем дерево решений на синтетических данных. Один Гауссов массив раскручивается вокруг 0, другой вокруг 2.
+def test_des_tree_1():
     np.seed = 7
     train_data = np.random.normal(size=(100, 2))
     train_labels = np.zeros(100)
@@ -60,7 +73,7 @@ def test_des_tree():
     #             linewidths=1.5)
     # plt.plot(range(-2, 5), range(4, -3, -1))
 
-    # Параметры дерева. Min_samples_leaf указывает, при каком минимальном количестве элементов будет дальше разделяться
+    # Параметры дерева.
     clf_tree = DecisionTreeClassifier(criterion='entropy', max_depth=3, random_state=17)
     # Обучаем дерево
     clf_tree.fit(train_data, train_labels)
@@ -70,10 +83,28 @@ def test_des_tree():
     plt.pcolormesh(xx, yy, predicted, cmap='autumn')
     plt.scatter(train_data[:, 0], train_data[:, 1], c=train_labels, s=100, cmap='autumn', edgecolors='black',
                    linewidth=1.5)
-    # Отображаем само дерево
+    # Отображаем само дерево. Каждый класс имеет свой цвет в png дерева.
     export_graphviz(clf_tree, feature_names=['x1', 'x2'], out_file='my_first_DT.dot', filled=True)
-    path = 'C:/Users/Lex/PycharmProjects/Start/GitHub/My_Libs/my_first_DT.dot'
-    render('dot', 'png', path)
+    dot_to_png('my_first_DT')
+
+
+# Применяем дерево решений на синтетических данных. Создадим, таблицу с возрастом и невозвратом кредита.
+def test_des_tree_2():
+    data = pd.DataFrame({
+        'Возраст': [17, 18, 20, 25, 29, 31, 33, 38, 49, 55, 64],
+        'Зарплата': [25, 22, 36, 70, 33, 102, 88, 37, 59, 74, 80],
+        'Невозрат кредита': [1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0]
+    }).sort_values(by='Зарплата')
+    age_tree = DecisionTreeClassifier(random_state=17)
+    age_tree.fit(data['Возраст'].values.reshape(-1, 1), data['Невозрат кредита'].values)
+    export_graphviz(age_tree, feature_names=['Возраст'], out_file='img/age_tree.dot', filled=True)
+    dot_to_png('age_tree')
+
+    age_sal_tree = DecisionTreeClassifier(random_state=17)
+    age_sal_tree.fit(data[['Возраст', 'Зарплата']], data['Невозрат кредита'].values)
+    export_graphviz(age_sal_tree, feature_names=['Возраст', 'Зарплата'], out_file='img/age_sal_tree.dot', filled=True)
+    dot_to_png('age_sal_tree')
+
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Отрисовка Неопределённости Джини, энтропии, ошибки классификации.
@@ -92,5 +123,5 @@ def draw_entropy_and_Jini():
 
 
 if __name__ == '__main__':
-    test_des_tree()
+    test_des_tree_2()
     plt.show()
