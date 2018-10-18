@@ -62,6 +62,7 @@ def dot_to_png(name: str):
     render('dot', 'png', path)
 
 
+##DecisionTreeClassifier
 # Применяем дерево решений на синтетических данных. Один Гауссов массив раскручивается вокруг 0, другой вокруг 2.
 def test_des_tree_1():
     np.seed = 7
@@ -88,6 +89,7 @@ def test_des_tree_1():
     dot_to_png('my_first_DT')
 
 
+# DecisionTreeClassifier
 # Применяем дерево решений на синтетических данных. Создадим, таблицу с возрастом и невозвратом кредита.
 def test_des_tree_2():
     data = pd.DataFrame({
@@ -105,6 +107,8 @@ def test_des_tree_2():
     export_graphviz(age_sal_tree, feature_names=['Возраст', 'Зарплата'], out_file='img/age_sal_tree.dot', filled=True)
     dot_to_png('age_sal_tree')
 
+
+# DecisionTreeRegressor
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Отрисовка Неопределённости Джини, энтропии, ошибки классификации.
