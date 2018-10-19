@@ -37,6 +37,21 @@ def x_y_matrix(x: list, y:list):
     return np.meshgrid(x, y)
 
 
+# Вернуть знак числа (который, например, неизвестен до расчётов)
+def np_sign(x):
+    return np.sign(x)
+
+
+# Случаный массив и заданных чисел
+def random_from_list(data: list, size, probability: list):
+    return np.random.choice(data, size=size, p=probability)
+
+
+# Стак массивов по столбцам
+def stack_by_columns(a: np.array, b: np.array):
+    return np.hstack(a, b)
+
+
 def random_txt_file():
     t1 = time.time()
     with open('Temp.txt', 'w') as f:
