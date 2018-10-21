@@ -23,6 +23,34 @@ warnings.filterwarnings('ignore')
 plt.rcParams['figure.figsize'] = (10, 8)
 
 
+# Создаём решётку значений в виде матриц для каждой точки от min до max
+def get_grid(data, eps: float=0.01):
+    x_min, x_max = data[:, 0].min() - 1, data[:, 0].max() + 1
+    y_min, y_max = data[:, 1].min() - 1, data[:, 1].max() + 1
+    return np.meshgrid(np.arange(x_min, x_max, eps), np.arange(y_min, y_max, eps))
+
+
+# Конвертируем dot в png
+def dot_to_png(name: str):
+    path = 'img/' + name + '.dot'
+    render('dot', 'png', path)
+
+
+# Применяем к каждому из множества значений формулу
+def func_for_elements(x: list):
+    x = x.ravel()
+    return np.exp(-x ** 2) + 1.5 * np.exp(-(x - 2) ** 2)
+
+
+# Генерируем рандом-семплы с некоторым шумом
+def generate_samples_and_noise(n_samples, noise):
+    X = np.random.rand(n_samples) * 10 - 5
+    X = np.sort(X).ravel()
+    y = np.exp(-X ** 2) + 1.5 * np.exp(-(X - 2) ** 2) + np.random.normal(0.0, noise, n_samples)
+    X = X.reshape((n_samples, 1))
+    return X, y
+
+
 ''' t-SNE (t-distributed Stohastic Neighbor Embedding)
 Найдем такое отображение из многомерного признакового пространства на плоскость (или в 3D, но почти всегда выбирают
 2D), чтоб точки, которые были далеко друг от друга, на плоскости тоже оказались удаленными, а близкие точки – также
@@ -55,35 +83,7 @@ min_samples_leaf - указывает, при каком минимальном 
 '''
 
 
-# Создаём решётку значений в виде матриц для каждой точки от min до max
-def get_grid(data, eps: float=0.01):
-    x_min, x_max = data[:, 0].min() - 1, data[:, 0].max() + 1
-    y_min, y_max = data[:, 1].min() - 1, data[:, 1].max() + 1
-    return np.meshgrid(np.arange(x_min, x_max, eps), np.arange(y_min, y_max, eps))
-
-
-# Конвертируем dot в png
-def dot_to_png(name: str):
-    path = 'C:/Users/Lex/PycharmProjects/Start/GitHub/My_Libs/img/' + name + '.dot'
-    render('dot', 'png', path)
-
-
-# Применяем к каждому из множества значений формулу
-def func_for_elements(x: list):
-    x = x.ravel()
-    return np.exp(-x ** 2) + 1.5 * np.exp(-(x - 2) ** 2)
-
-
-# Генерируем рандом-семплы с некоторым шумом
-def generate_samples_and_noise(n_samples, noise):
-    X = np.random.rand(n_samples) * 10 - 5
-    X = np.sort(X).ravel()
-    y = np.exp(-X ** 2) + 1.5 * np.exp(-(X - 2) ** 2) + np.random.normal(0.0, noise, n_samples)
-    X = X.reshape((n_samples, 1))
-    return X, y
-
-
-##DecisionTreeClassifier
+# DecisionTreeClassifier
 # Применяем дерево решений на синтетических данных. Один Гауссов массив раскручивается вокруг 0, другой вокруг 2.
 def test_des_tree_1():
     np.seed = 7
@@ -358,5 +358,5 @@ def numbers_reader():
 
 
 if __name__ == '__main__':
-    neighbors_problem()
+    dot_to_png('cardio_tree')
     plt.show()

@@ -122,3 +122,8 @@ def del_duplic(df: pd.DataFrame, columns: list):
 # Вернуть индекс максимаьного значения колонки
 def max_index(df: pd.DataFrame, column: str):
     return df[column].idxmax()
+
+
+# Фиктивное кодирование. Создание доп. столбцов, которые расшифровывают наличие/неналичие элемента для признака
+def dummy_encoding(df: pd.DataFrame, columns: list):
+    pd.get_dummies(df, columns=columns)

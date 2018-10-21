@@ -17,7 +17,7 @@ def gaussian_massive(rows: int, columns: int, centre: int):
     return np.random.normal(size=(rows, columns), loc=centre)
 
 
-# Собрать разные листы или их срезы в один лист
+# Собрать разные листы или их срезы в один лист, но не складывать как обычно делает numpy
 def one_list_for_many_lists(*list_: list):
     return np.r_[list_]
 
