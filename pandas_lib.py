@@ -127,3 +127,8 @@ def max_index(df: pd.DataFrame, column: str):
 # Фиктивное кодирование. Создание доп. столбцов, которые расшифровывают наличие/неналичие элемента для признака
 def dummy_encoding(df: pd.DataFrame, columns: list):
     pd.get_dummies(df, columns=columns)
+
+
+# Создание нового столбца фильтруя по условиям текущий столбец
+def filter_by_column(column: pd.Series, x_1: int, x_2: int) -> pd.Series:
+    return column.apply(lambda x: 1 if x >= x_1 and x < x_2 else 0)
