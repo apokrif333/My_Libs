@@ -1,11 +1,12 @@
 from __future__ import division, print_function
 from sklearn.manifold import TSNE
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, PolynomialFeatures
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.tree import export_graphviz
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import LogisticRegression, LogisticRegressionCV
 from sklearn.model_selection import train_test_split, StratifiedKFold, GridSearchCV, cross_val_score
 from sklearn.metrics import accuracy_score
 from sklearn.pipeline import Pipeline
@@ -270,6 +271,34 @@ def neighbors_problem():
     tree_holdout_score = accuracy_score(y_holdout, tree.predict(X_holdout))
     print(f'Decision tree. CV: {tree_cv_score}, holdout: {tree_holdout_score}')
 
+'''Регрессия
+
+'''
+
+# Логистическая регрессия
+def logictic_regression():
+    data = pd.read_csv('test_data/microchip_tests.txt', header=None, names=('test1', 'test2', 'released'))
+
+    # Сохраним признаки с целевой класс в Numpy.
+    X = data.iloc[:, :2].values
+    y = data.ix[:, 2].values
+
+    # plt.scatter(X[y ==1, 0], X[y == 1, 1], c='green', label='Выпущен')
+    # plt.scatter(X[y == 0, 0], X[y == 0, 1], c='red', label='Бракован')
+    # plt.xlabel('Тест 1')
+    # plt.ylabel('Тест 2')
+    # plt.title('2 теста микрочипов')
+    # plt.legend()
+
+    # Код для отображения разделяющей кривой классификатора
+    grid_step = .01
+    poly_featurizer = None
+    x_min, x_max = X[:, 0].min() - .1, X[:, 0].max + .1
+    y_min, y_max = X[:, 1].min() - .1, X[:, 1].max( + .1)
+    xx, yy = np.meshgrid(np.arange(x_min, x_max, grid_step), np.arange(y_min, y_max, grid_step))
+    Z = clf.predict(poly_featurizer.transform(np.c_[xx.ravel(), yy.ravel()]))
+    Z = Z.reshape(xx.shape)
+    plt.contour(xx, yy, Z, cmap=plt.cm.Paired)
 
 # Различные примеры-----------------------------------------------------------------------------------------------------
 # Отрисовка Неопределённости Джини, энтропии, ошибки классификации.
@@ -358,5 +387,5 @@ def numbers_reader():
 
 
 if __name__ == '__main__':
-    dot_to_png('cardio_tree_final')
+    logictic_regression()
     plt.show()

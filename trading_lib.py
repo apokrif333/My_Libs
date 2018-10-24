@@ -310,7 +310,7 @@ def plot_capital(date: list, capital: list):
     ax2 = ax1.twinx()
     ax2.plot(date, capital)
     ax2.set_ylabel('Динамика капитала')
-    ax2.set_yticks(np.arange(0, 28_000_000 + 1_000_000, 1_000_000))
+    # ax2.set_yticks(np.arange(0, 28_000_000 + 1_000_000, 1_000_000))
 
     tx1 = fig.add_subplot(6, 1, 6, frameon=False)
     tx1.axis("off")
