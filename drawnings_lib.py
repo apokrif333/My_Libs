@@ -41,6 +41,15 @@ def heatmap_plt(pivot_table):
     plt.imshow(pivot_table, cmap='seismic', interpolation='none')
 
 
+# Тепловая карта
+def heatmap_plt(pivot_table):
+    plt.imshow(pivot_table, cmap='seismic', interpolation='none')
+
+
+# Выделить контур
+def contour_plt(x: list, y:list, z:list):
+    plt.contour(x, y, z)
+
 # ----------------------------------------------------------------------------------------------------------------------
 # Seaborn
 # Матрица колонок к друг другу. Диагональ разбивает значение одной колонки на децели, и показывает насыщение каждого

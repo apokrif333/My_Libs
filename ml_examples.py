@@ -1,12 +1,15 @@
 from __future__ import division, print_function
+from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer, TfidfVectorizer
 from sklearn.manifold import TSNE
 from sklearn.preprocessing import StandardScaler, PolynomialFeatures
+from sklearn.datasets import load_files
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.tree import export_graphviz
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression, LogisticRegressionCV
+from sklearn.svm import LinearSVC
 from sklearn.model_selection import train_test_split, StratifiedKFold, GridSearchCV, cross_val_score
 from sklearn.metrics import accuracy_score
 from sklearn.pipeline import Pipeline
@@ -271,9 +274,11 @@ def neighbors_problem():
     tree_holdout_score = accuracy_score(y_holdout, tree.predict(X_holdout))
     print(f'Decision tree. CV: {tree_cv_score}, holdout: {tree_holdout_score}')
 
-'''Регрессия
 
+'''Регрессия
+--------------------------
 '''
+
 
 # Логистическая регрессия
 def logictic_regression():
@@ -290,15 +295,40 @@ def logictic_regression():
     # plt.title('2 теста микрочипов')
     # plt.legend()
 
+    # Добавляем полиноминальные признаки и обучим лог. регрессию с заданой регуляризацией
+    poly = PolynomialFeatures(degree=7)
+    X_poly = poly.fit_transform(X)
+
+    C = 10_000  # 1e-2, 1, 10_000
+    logit = LogisticRegression(C=C, n_jobs=-1, random_state=17).fit(X_poly, y)
+
     # Код для отображения разделяющей кривой классификатора
     grid_step = .01
-    poly_featurizer = None
-    x_min, x_max = X[:, 0].min() - .1, X[:, 0].max + .1
-    y_min, y_max = X[:, 1].min() - .1, X[:, 1].max( + .1)
+    poly_featurizer = poly
+
+    x_min, x_max = X[:, 0].min() - .1, X[:, 0].max() + .1
+    y_min, y_max = X[:, 1].min() - .1, X[:, 1].max() + .1
     xx, yy = np.meshgrid(np.arange(x_min, x_max, grid_step), np.arange(y_min, y_max, grid_step))
-    Z = clf.predict(poly_featurizer.transform(np.c_[xx.ravel(), yy.ravel()]))
+    # Ставим цвета в каждой точке
+    Z = logit.predict(poly_featurizer.transform(np.c_[xx.ravel(), yy.ravel()]))
     Z = Z.reshape(xx.shape)
     plt.contour(xx, yy, Z, cmap=plt.cm.Paired)
+
+    # plt.scatter(X[y == 1, 0], X[y == 1, 1], c='green', label='Выпущен')
+    # plt.scatter(X[y == 0, 0], X[y == 0, 1], c='red', label='Бракован')
+    # plt.xlabel('Тест 1')
+    # plt.ylabel('Тест 2')
+    # plt.title(f'2 теста микрочипов. Логит с С={C}')
+    # plt.legend()
+
+    print('Доля правильных ответов классификатора на обучающей выборке: ', round(logit.score(X_poly, y), 3))
+
+    # Найдём оптимальное значение С (регулиризации)
+    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=17)
+    c_values = np.logspace(-2, 3, 500)
+    logit_searcher = LogisticRegressionCV(Cs=c_values, cv=skf, verbose=1, n_jobs=-1).fit(X_poly, y)
+    # Дальнейший код весьма прост. Можно сравнить качество LogisticRegression, просто выведя на один график logit.score
+    # при С от 0 до 1000, а на другой LogisticRegressionCV выведя все значения logit.score при С от -2 до 3.
 
 # Различные примеры-----------------------------------------------------------------------------------------------------
 # Отрисовка Неопределённости Джини, энтропии, ошибки классификации.
@@ -352,7 +382,7 @@ def tree_and_neighbors_problem():
     plt.title('Easy task, kNN. Not bad')
 
 
-# Обучим сеть разпознавать рукописные цифры
+# Обучим сеть разпознавать рукописные цифры деревом и соседями
 def numbers_reader():
     # Загружаем дату, где цифры в виде матриц 8х8, каждое значение элемента - интенсивность белого
     from sklearn.datasets import load_digits
@@ -386,6 +416,10 @@ def numbers_reader():
     print(np.mean(cross_val_score(RandomForestClassifier(random_state=17), X_train, y_train, cv=5)))
 
 
+# Определяем хороший отзыв о фильме или нет, при помощи логистической регресиии
+def movie_review_logictic_reg():
+    pass
+
 if __name__ == '__main__':
-    logictic_regression()
+    movie_review_logictic_reg()
     plt.show()
