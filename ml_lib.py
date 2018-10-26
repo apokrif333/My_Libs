@@ -2,9 +2,7 @@ from __future__ import division, print_function
 from sklearn import preprocessing
 from sklearn.manifold import TSNE
 from sklearn.preprocessing import StandardScaler
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.tree import DecisionTreeRegressor
-from sklearn.tree import export_graphviz
+from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor, export_graphviz
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split, StratifiedKFold, GridSearchCV, cross_val_score
@@ -77,8 +75,8 @@ def cv_quality(model_grid, y_holdout, X_holdout):
 
 
 # Создаём dot-file c обученным деревом
-def create_dot(clf_tree, feature_names: list, file_name: str ):
-    export_graphviz(clf_tree, feature_names=feature_names, out_file=file_name + '.dot', filled=True)
+def create_dot(clf_tree, feature_names: list, file_name: str, clases: list):
+    export_graphviz(clf_tree, feature_names=feature_names, out_file=file_name + '.dot', filled=True,  class_names=clases)
 
 
 # Конвертируем dot в png

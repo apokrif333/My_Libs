@@ -42,6 +42,10 @@ def np_sign(x):
     return np.sign(x)
 
 
+# Вычислить значение истины по условию
+def try_or_false(list_) -> list:
+    return np.logical_xor(list_[:, 0] > 0, list_[:, 1] > 0)
+
 # Случаный массив и заданных чисел
 def random_from_list(data: list, size, probability: list):
     return np.random.choice(data, size=size, p=probability)

@@ -8,11 +8,11 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.tree import export_graphviz
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.linear_model import LogisticRegression, LogisticRegressionCV
+from sklearn.linear_model import LogisticRegression, LogisticRegressionCV, SGDClassifier
 from sklearn.svm import LinearSVC
-from sklearn.model_selection import train_test_split, StratifiedKFold, GridSearchCV, cross_val_score
+from sklearn.model_selection import train_test_split, StratifiedKFold, GridSearchCV, cross_val_score, validation_curve, learning_curve
 from sklearn.metrics import accuracy_score
-from sklearn.pipeline import Pipeline
+from sklearn.pipeline import Pipeline, make_pipeline
 from graphviz import render
 
 import os
@@ -55,6 +55,13 @@ def generate_samples_and_noise(n_samples, noise):
     return X, y
 
 
+# Выдаём данные на график о средней ошибке, и её отклонении
+def plot_with_err(x, data, **kwargs):
+    mu, std = data.mean(1), data.std(1)
+    lines = plt.plot(x, mu, '-', **kwargs)
+    plt.fill_between(x, mu - std, mu + std, edgecolor='none', facecolor=lines[0].get_color(), alpha=0.2)
+
+
 ''' t-SNE (t-distributed Stohastic Neighbor Embedding)
 Найдем такое отображение из многомерного признакового пространства на плоскость (или в 3D, но почти всегда выбирают
 2D), чтоб точки, которые были далеко друг от друга, на плоскости тоже оказались удаленными, а близкие точки – также
@@ -95,9 +102,9 @@ def test_des_tree_1():
     train_labels = np.zeros(100)
     train_data = np.r_[train_data, np.random.normal(size=(100, 2), loc=2)]
     train_labels = np.r_[train_labels, np.ones(100)]
-    # plt.scatter(train_data[:, 0], train_data[:, 1], c=train_labels, s=50, cmap='autumn', edgecolors='black',
-    #             linewidths=1.5)
-    # plt.plot(range(-2, 5), range(4, -3, -1))
+    plt.scatter(train_data[:, 0], train_data[:, 1], c=train_labels, s=50, cmap='autumn', edgecolors='black',
+                linewidths=1.5)
+    plt.plot(range(-2, 5), range(4, -3, -1))
 
     # Параметры дерева.
     clf_tree = DecisionTreeClassifier(criterion='entropy', max_depth=3, random_state=17)
@@ -418,8 +425,177 @@ def numbers_reader():
 
 # Определяем хороший отзыв о фильме или нет, при помощи логистической регресиии
 def movie_review_logictic_reg():
-    pass
+    path = 'test_data/Del/aclImdb'
+    reviews_train = load_files(os.path.join(path, 'train'), categories=['pos', 'neg'])
+    text_train, y_train = reviews_train.data, reviews_train.target
+    reviews_test = load_files(os.path.join(path, 'test'), categories=['pos', 'neg'])
+    text_test, y_test = reviews_test.data, reviews_test.target
+    print(f"Number of documents in training data: {len(text_train)}\n",
+          f"Number of documents in test data: {len(text_test)}\n",
+          np.bincount(y_test))
+
+    # Создадим словарь всех слов с индексом
+    cv = CountVectorizer().fit(text_train)
+    print(len(cv.vocabulary_))
+    print(cv.get_feature_names()[:50])
+    print(cv.get_feature_names()[50_000:50_050])
+
+    X_train = cv.transform(text_train)
+    X_test = cv.transform(text_test)
+
+    # Обучим логист. регрессию
+    logit = LogisticRegression(n_jobs=-1, random_state=7).fit(X_train, y_train)
+    print('logit without C on train and test' + str(round(logit.score(X_train, y_train), 3)),
+                                                    str(round(logit.score(X_test, y_test), 3)))
+
+    # Тут должна быть фукнция, но вынесем её пока в тело. Отрисосываем веса ключевых слов после обучения
+    classifier = logit
+    feature_names = cv.get_feature_names()
+    n_top_features = 25
+    coef = classifier.coef_.ravel()
+    positive_coefficients = np.argsort(coef)[-n_top_features:]
+    negative_coefficients = np.argsort(coef)[:n_top_features]
+    interesting_coefficients = np.hstack([negative_coefficients, positive_coefficients])
+
+    plt.figure(figsize=(15 ,5))
+    colors = ['red' if c < 0 else 'blue' for c in coef[interesting_coefficients]]
+    plt.bar(np.arange(2 * n_top_features), coef[interesting_coefficients], color=colors)
+    feature_names = np.array(feature_names)
+    plt.xticks(np.arange(1, 1 + 2 * n_top_features), feature_names[interesting_coefficients], rotation=60, ha='right')
+    plt.show()
+
+    # Подбираем коэфф. регулиризации для лог. регрессии. sklearn.pipeline говорит сначала применить CountVectorizer, а
+    # затем обучить регрессию. Так мы избегаем подсматривания в тестовую выборку.
+    text_pipe_logit = make_pipeline(CountVectorizer(), LogisticRegression(n_jobs=-1, random_state=7)).fit(text_train,
+                                                                                                          y_train)
+    print('HO on test by train ' + str(text_pipe_logit.score(text_test, y_test)))
+
+    param_grid_logit = {'logisticregression__C': np.logspace(-5, 0, 6)}
+    grid_logit = GridSearchCV(text_pipe_logit, param_grid_logit, cv=3, n_jobs=-1).fit(text_train, y_train)
+    print('CV on train with C: ' + str(grid_logit.best_params_), str(grid_logit.best_score_))
+
+    grid = grid_logit
+    param_name = 'logisticregression__C'
+    plt.plot(grid.param_grid[param_name], grid.cv_results_['mean_train_score'], color='green', label='train')
+    plt.plot(grid.param_grid[param_name], grid.cv_results_['mean_test_score'], color='red', label='test')
+    plt.legend()
+
+    print('From CV on train to test: ' + str(grid_logit.score(text_test, y_test)))
+
+    # Сравним лог. регрессию и случ. лес
+    forest = RandomForestClassifier(n_estimators=200, n_jobs=-1, random_state=17).fit(X_train, y_train)
+    print('Fores from train to test: ' + str(round(forest.score(X_test, y_test), 3)))
+
+
+# XOR проблема, т.е. исключающее ИЛИ, как проблема для линейных моделей
+def xor_problem():
+    # Создаем дата-сет с исключающием или. Или одно, или другое.
+    rng = np.random.RandomState(0)  # Это подобие random_seed, только сохраняется на будущее, без вызова
+    X = rng.randn(200, 2)
+    print(X)
+    y = np.logical_xor(X[:, 0] > 0, X[:, 1] > 0)
+    plt.scatter(X[:, 0], X[:, 1], s=30, c=y, cmap=plt.cm.Paired)
+
+    # Попытаемся обучить линейной
+    clf = LogisticRegression()
+    plot_title = 'Logictic Regression, XOR problem'
+
+    xx, yy = np.meshgrid(np.linspace(-3, 3, 50), np.linspace(-3, 3, 50))
+    clf.fit(X, y)
+    Z = clf.predict_proba(np.vstack((xx.ravel(), yy.ravel())).T)[:, 1]  # Прогнозируем вероятности
+    Z = Z.reshape(xx.shape)
+
+    image = plt.imshow(Z, interpolation='nearest', extent=(xx.min(), xx.max(), yy.min(), yy.max()), aspect='auto',
+                       origin='lower', cmap=plt.cm.PuOr_r)
+    contours = plt.contour(xx, yy, Z, levels=[0], linewidths=2, linetypes='--')
+    plt.scatter(X[:, 0], X[:, 1], s=30, c=y, cmap=plt.cm.Paired)
+    plt.xticks(())
+    plt.yticks(())
+    plt.xlabel(r'$<!--math>$inline$x_1$inline$</math -->$')
+    plt.ylabel(r'$<!--math>$inline$x_2$inline$</math -->$')
+    plt.axis([-3, 3, -3, 3])
+    plt.colorbar(image)
+    plt.title(plot_title, fontsize=12)
+    plt.show()
+
+
+    # Подадим полиноминальные признаки, т.е. создадим 6-мерное пространство
+    logit_pipe = Pipeline([('poly', PolynomialFeatures(degree=2)), ('logit', LogisticRegression())])
+    clf = logit_pipe
+    plot_title = 'Logictic Regression + quadratic features. XOR problem'
+
+    xx, yy = np.meshgrid(np.linspace(-3, 3, 50), np.linspace(-3, 3, 50))
+    clf.fit(X, y)
+    Z = clf.predict_proba(np.vstack((xx.ravel(), yy.ravel())).T)[:, 1]  # Прогнозируем вероятности
+    Z = Z.reshape(xx.shape)
+
+    image = plt.imshow(Z, interpolation='nearest', extent=(xx.min(), xx.max(), yy.min(), yy.max()), aspect='auto',
+                       origin='lower', cmap=plt.cm.PuOr_r)
+    contours = plt.contour(xx, yy, Z, levels=[0], linewidths=2, linetypes='--')
+    plt.scatter(X[:, 0], X[:, 1], s=30, c=y, cmap=plt.cm.Paired)
+    plt.xticks(())
+    plt.yticks(())
+    plt.xlabel(r'$<!--math>$inline$x_1$inline$</math -->$')
+    plt.ylabel(r'$<!--math>$inline$x_2$inline$</math -->$')
+    plt.axis([-3, 3, -3, 3])
+    plt.colorbar(image)
+    plt.title(plot_title, fontsize=12)
+    plt.show()
+
+
+# Попытка понять, что лучше Простить/Усложнить модель, Добавить больше признаков, Накопить больше данных
+def main_DS_problem():
+    data = pd.read_csv('test_data/telecom_churn.csv').drop('State', axis=1)
+    data['International plan'] = data['International plan'].map({'Yes': 1, 'No': 0})
+    data['Voice mail plan'] = data['Voice mail plan'].map({'Yes': 1, 'No': 0})
+    y = data['Churn'].astype('int').values
+    X = data.drop('Churn', axis=1).values
+
+    # Используем стохастический град. спуск и построим валид. кривые по обучающей и проверочной выборке
+    alphas = np.logspace(-2, 0, 20)  # коэффициеты регуляризации
+    sgd_logit = SGDClassifier(loss='log', n_jobs=-1, random_state=17)
+    logit_pipe = Pipeline(
+        [('scaler', StandardScaler()), ('poly', PolynomialFeatures(degree=2)), ('sgd_logit', sgd_logit)])
+    val_train, val_test = validation_curve(logit_pipe, X, y, 'sgd_logit__alpha', alphas, cv=5, scoring='roc_auc')
+
+    # Обученные данные выводим на график. Тренировочная.
+    x = alphas
+    data = val_train
+    plot_with_err(alphas, val_train, label='training scores')
+
+    # Обученные данные выводим на график. Тестировочная.
+    data = val_test
+    plot_with_err(alphas, val_test, label='validation scores')
+
+    plt.xlabel(r'$\alpha$'); plt.ylabel('ROC AUC')
+    plt.legend()
+    plt.show()
+
+    # Результат нас не удовлетворяет. Построим кривые обучения, чтобы понять, нужно ли нам накопить больше данных
+    degree = 2
+    alpha = 10  # коэфф. регуляризации. Для примера взято значение 10.
+    train_sizes = np.linspace(0.05, 1, 20)
+    logit_pipe = Pipeline([('scalae', StandardScaler()), ('poly', PolynomialFeatures(degree=degree)),
+                           ('sgd_logit', SGDClassifier(n_jobs=-1, random_state=17, alpha=alpha))])
+    N_train, val_train, val_test = learning_curve(logit_pipe, X, y, train_sizes=train_sizes, cv=5, scoring='roc_auc')
+    plot_with_err(N_train, val_train, label='trainings scores')
+    plot_with_err(N_train, val_test, label='validation scores')
+    plt.xlabel('Training Set Size'); plt.ylabel('AUC')
+    plt.legend()
+    plt.show()
+
+    # Как видно из кривых обучения, для небольшого объёма данных ошибки сильно отличаются, так как на небольшом объёме
+    # быстро возникает переобучение.
+    # А для больших объёмов, ошибки сходятся, что указывает на недообучение.
+    # Вывод: если добавить ещё данных, ошибка на обучающей не будет расти, но и на тестовых не будет уменьшаться. То
+    # есть ошибки сошлись и добавление новых данных не поможет.
+    # Значит надо улучшать модель. Исходя из первого графика видим, что мы можем взять коэфф. регуляризации 0.05
+    # Тогда мы видим, что кривые сходятся и ешё не стали параллельными, а значит в этом случае новые данные окажут
+    # эффект, чтобы повысить качество валидации.
+    # Если усложнить модель и выставить коэфф. регуляризации на 10 ** -4, то возникнет переобучение, качество модели
+    # постоянно падает, как на обучении, так и на валидации.
+
 
 if __name__ == '__main__':
-    movie_review_logictic_reg()
+    main_DS_problem()
     plt.show()
