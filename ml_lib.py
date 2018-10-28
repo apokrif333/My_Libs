@@ -31,8 +31,9 @@ def des_tree(criterion: str, depth: int, random: int, X_train, y_train, tree: st
 
 
 # Обучаем дерево по кросс-валидации
-def cross_valid_tree(des_tree_params, depth: list, features: list, cv_samples: int, X_train, y_train):
-    return GridSearchCV(des_tree_params, max_depth=depth, max_features=features, cv=cv_samples, n_jobs=-1,
+def cross_valid_tree(des_tree_params, depth: list, features: list, cv_samples: int, random: int, X_train, y_train):
+    skf = StratifiedKFold(n_splits=cv_samples, shuffle=False, random_state=random)
+    return GridSearchCV(des_tree_params, max_depth=depth, max_features=features, cv=skf, n_jobs=-1,
                         verbose=True).fit(X_train, y_train)
 
 
@@ -69,8 +70,8 @@ def print_accuracy(y_holdout, X_holdout):
 
 # Выводим качество кросс-валидации
 def cv_quality(model_grid, y_holdout, X_holdout):
-    print(model_grid.best_params_)
-    print(model_grid.best_score_)
+    print(pd.DataFrame(model_grid.cv_results_))
+    print(model_grid.best_params_, model_grid.best_score_)
     print(accuracy_score(y_holdout, model_grid.predict(X_holdout)))
 
 
