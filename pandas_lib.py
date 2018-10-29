@@ -1,4 +1,5 @@
 import pandas as pd
+import pickle
 import sqlite3
 import numpy as np
 
@@ -132,3 +133,22 @@ def dummy_encoding(df: pd.DataFrame, columns: list):
 # Создание нового столбца фильтруя по условиям текущий столбец
 def filter_by_column(column: pd.Series, x_1: int, x_2: int) -> pd.Series:
     return column.apply(lambda x: 1 if x >= x_1 and x < x_2 else 0)
+
+
+# pickle
+# ---------------------------------------------------------------------------------------------------------------------
+def dumps_decode(frame):
+    frame_dump = pickle.dumps(frame, protocol=0)
+    return frame_dump.decode()
+
+
+# Перевод серии в поток байтов и сохранение в файл
+def frame_to_bite(name: str, frame):
+    with open(name + '.pickle', 'wb') as f:
+        pickle.dump(frame, f)
+
+
+# Загрузка файла байт-потока
+def bite_to_frame(name: str, frame):
+    with open(name + '.pickle', 'rb') as f:
+        return pickle.load(f)

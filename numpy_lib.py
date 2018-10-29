@@ -7,6 +7,11 @@ from pprint import pprint as pp
 np.seed = 7  # Теперь будет генерация одних и тех же случайных чисел при запуске
 
 
+# Собрать разные массивы в один массив
+def to_one_massive(list_: list):
+    return list.flatten()
+
+
 # Массив от и до, с равным шагом
 def np_linspace(start: int, end: int, steps: int) -> np.array:
     return np.linspace(start, end, steps)
@@ -54,6 +59,11 @@ def random_from_list(data: list, size, probability: list):
 # Стак массивов по столбцам
 def stack_by_columns(a: np.array, b: np.array):
     return np.hstack(a, b)
+
+
+# Нампи, работа с датами
+def np_date(int_: int, period: str):
+    return np.timedelta64(int_, period)
 
 
 def random_txt_file():
