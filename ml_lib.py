@@ -58,6 +58,11 @@ def hold_out_create(df: pd.DataFrame, y: pd.Series, test: float, random: int):
      return train_test_split(df.values, y, test_size=test, random_state=random)
 
 
+# Скалируем признак
+def feature_scaler(column: list):
+    return StandardScaler().fit_transform(column)
+
+
 # Оценка кросс-валидации по средней c созданием кросс-валидации
 def cv_mean(trained_model, X_train, y_train, cv_samples: int):
     return np.mean(cross_val_score(trained_model, X_train, y_train, cv=cv_samples))

@@ -1,4 +1,5 @@
 import numpy as np
+from scipy.sparse import csr_matrix
 import time
 
 from numpy import linalg
@@ -64,6 +65,16 @@ def stack_by_columns(a: np.array, b: np.array):
 # Нампи, работа с датами
 def np_date(int_: int, period: str):
     return np.timedelta64(int_, period)
+
+
+# Разряжённая матрица. Матрица, которая хранит в себе значения, но преимущественно состоит из нулей, которые косвенно
+# записаны в памяти, для экономии места.
+# values_massive - одномерный массив значений, каждое уникальное занчение которого станет признаком.
+# step - шаг, после которого сменяется строчка наблюдений.
+# csr_matrix().todense() - вернуть разряжённой матрице обычный вид
+def sparse_matrix(values_massive, step: int):
+    return csr_matrix(([1] * values_massive.shape[0], values_massive, range(0, values_massive.shape[0] + step, step)))[
+           :, 1:]
 
 
 def random_txt_file():
