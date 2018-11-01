@@ -1,21 +1,18 @@
 from __future__ import division, print_function
 from sklearn import preprocessing
-from sklearn.manifold import TSNE
+from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor, export_graphviz
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.model_selection import train_test_split, StratifiedKFold, GridSearchCV, cross_val_score
+from sklearn.model_selection import train_test_split, StratifiedKFold, GridSearchCV, cross_val_score, TimeSeriesSplit
 from sklearn.metrics import accuracy_score
 from sklearn.pipeline import Pipeline
 from graphviz import render
 
-import os
 import pandas as pd
 import numpy as np
-import seaborn as sns
-import matplotlib.pyplot as plt
-import warnings
+
 
 
 # Создание обученного дерева (классификатора или регрессора или случаного леса)
@@ -61,6 +58,17 @@ def hold_out_create(df: pd.DataFrame, y: pd.Series, test: float, random: int):
 # Скалируем признак
 def feature_scaler(column: list):
     return StandardScaler().fit_transform(column)
+
+
+# Создаём матрицу из текстового файла, для анализа токенов-слов
+def words_tokens(range: tuple, max: int, train_text):
+    return CountVectorizer(ngram_range=range, max_features=max).fit(train_text)
+
+
+# Последовательно сплитуем тренировочную дату(кросс-валиадация миксует дату, а тут мы движемся от старой даты к  новой,
+# постепенно наращивая обучающую выборку)
+def time_split_for_cv(splits: int):
+    return TimeSeriesSplit(n_splits=splits)
 
 
 # Оценка кросс-валидации по средней c созданием кросс-валидации
