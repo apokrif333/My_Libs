@@ -126,8 +126,8 @@ def max_index(df: pd.DataFrame, column: str):
 
 
 # Фиктивное кодирование. Создание доп. столбцов, которые расшифровывают наличие/неналичие элемента для признака
-def dummy_encoding(df: pd.DataFrame, columns: list):
-    pd.get_dummies(df, columns=columns)
+def dummy_encoding(df: pd.DataFrame, columns: list, prfx: str) -> pd.DataFrame:
+    return pd.get_dummies(df, columns=columns, prefix=prfx)
 
 
 # Создание нового столбца фильтруя по условиям текущий столбец

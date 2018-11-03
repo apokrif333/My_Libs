@@ -1,18 +1,18 @@
 from __future__ import division, print_function
 from sklearn import preprocessing
-from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor, export_graphviz
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split, StratifiedKFold, GridSearchCV, cross_val_score, TimeSeriesSplit
-from sklearn.metrics import accuracy_score
-from sklearn.pipeline import Pipeline
+from sklearn.metrics import accuracy_score, roc_auc_score
+from sklearn.pipeline import Pipeline, make_pipeline
 from graphviz import render
 
 import pandas as pd
 import numpy as np
-
 
 
 # Создание обученного дерева (классификатора или регрессора или случаного леса)
@@ -45,6 +45,7 @@ def cross_valid_kNN(neighbors: list, cv_samples: int, X_train, y_train):
     return GridSearchCV(knn_pipe, knn__n_neighbors=neighbors, cv=cv_samples, n_jobs=-1, verbose=True).fit(X_train,
                                                                                                           y_train)
 
+
 # Предсказываем данные по обученной модели
 def tree_predict(model, X_holdout):
     return model.predict(X_holdout)
@@ -62,13 +63,27 @@ def feature_scaler(column: list):
 
 # Создаём матрицу из текстового файла, для анализа токенов-слов
 def words_tokens(range: tuple, max: int, train_text):
-    return CountVectorizer(ngram_range=range, max_features=max).fit(train_text)
+    cv = CountVectorizer(ngram_range=range, max_features=max)
+    vectorizer = make_pipeline(cv, TfidfTransformer())
+    return vectorizer.fit_transform(train_text)
 
 
-# Последовательно сплитуем тренировочную дату(кросс-валиадация миксует дату, а тут мы движемся от старой даты к  новой,
-# постепенно наращивая обучающую выборку)
-def time_split_for_cv(splits: int):
-    return TimeSeriesSplit(n_splits=splits)
+# Используем последовательный тайм-срез через кросс-валидацию, чтобы найти регрессор в логист. регрессии
+def time_split_cv_for_logit(splits: int, random: int, c_start: int, c_end: int, c_step, int, X, y):
+    time_split = TimeSeriesSplit(n_splits=splits)
+    logit = LogisticRegression(C=1, random_state=random)
+    c_values = np.logspace(c_start, c_end, c_step)
+    logit_grid_searcher = GridSearchCV(estimator=logit, param_grid={'C': c_values},
+                                       scoring='roc_auc', n_jobs=4, cv=time_split, verbose=1)
+    logit_grid_searcher.fit(X, y)
+    return logit_grid_searcher.best_score_, logit_grid_searcher.best_params_
+
+
+# Оценка полученой логистичекой регрессии
+def estimate_logit(logit_grid, X_test, y_test):
+    test = logit_grid.predict_proba(X_test)[:, 1]
+    print(roc_auc_score(y_test, test))
+    return test
 
 
 # Оценка кросс-валидации по средней c созданием кросс-валидации
