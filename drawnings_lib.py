@@ -105,6 +105,13 @@ def heat_map(pivot_table):
     sns.heatmap(pivot_table, annot=True, fmt='.1f', linewidths=0.5)
 
 
+# Распределение плотности значений
+def sns_density(df: pd.DataFrame, column1: str, column_show: str, label:str, x_name: str, y_name: str):
+    fig = sns.kdeplot(df[df[column1] == False][column_show], label=label)
+    fig = sns.kdeplot(df[df[column1] == True][column_show], label=label)
+    fig.set(xlabel=x_name, ylabel=y_name)
+
+
 # ----------------------------------------------------------------------------------------------------------------------
 # Plotly
 # График-линии

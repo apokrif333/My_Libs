@@ -77,6 +77,16 @@ def sparse_matrix(values_massive, step: int):
            :, 1:]
 
 
+# Персентили
+def np_persentile(list_, perc1: int, prec2: int):
+    return np.percentile(list_, [perc1, prec2])
+
+
+# Конвертация входящих данных в массив с определённым типом
+def array_to_type(data, type: str):
+    return np.asarray(data, dtype=type)
+
+
 def random_txt_file():
     t1 = time.time()
     with open('Temp.txt', 'w') as f:
