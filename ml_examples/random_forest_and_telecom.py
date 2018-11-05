@@ -117,5 +117,6 @@ plt.show()
 # с помощью GridSearchCV найдём оптимальные параметры для всей модели
 parameters = {'max_features': [4, 7, 10, 12, 15], 'min_samples_leaf': [1, 3, 5, 7], 'max_depth': [5, 10, 15, 17, 20]}
 rfc = RandomForestClassifier(n_estimators=100, random_state=42, n_jobs=-1, oob_score=True)
-gcv = GridSearchCV(rfc, parameters, n_jobs=-1, cv=skf, verbose=1).fit(X, y)
-print(gcv)
+gcv = GridSearchCV(rfc, parameters, n_jobs=4, cv=skf, verbose=1).fit(X, y)
+print(gcv, "\n",
+      gcv.best_estimator_, gcv.best_score_)
