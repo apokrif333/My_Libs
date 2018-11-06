@@ -14,7 +14,8 @@ font = {'family': 'Verdana',
         'weight': 'normal'}
 rc('font', **font)
 
-hostel_data = pd.read_csv('C:/Users/Tom/PycharmProjects/Start/GibHub/My_Libs/test_data/hostel_factors.csv')
+hostel_data = pd.read_csv('C:/Users/Lex/PycharmProjects/Start/GitHub/My_Libs/test_data/hostel_factors.csv')
+
 features = {'f1': u"Персонал",
             'f2': u"Бронирование хостела",
             'f3': u"Заезд и выезд из хостела",

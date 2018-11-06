@@ -46,6 +46,11 @@ def cross_valid_kNN(neighbors: list, cv_samples: int, X_train, y_train):
                                                                                                           y_train)
 
 
+# Веса признаков у случайного леса
+def rforest_features(train_forest):
+    return train_forest.feature_importances_
+
+
 # Предсказываем данные по обученной модели
 def tree_predict(model, X_holdout):
     return model.predict(X_holdout)
