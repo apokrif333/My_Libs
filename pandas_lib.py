@@ -9,6 +9,11 @@ pd.options.display.max_rows = 7  # Отображение количества �
 pd.set_option('display.max_columns', 100)  # Второй вариант настройки. Количесвто столбцов
 
 
+# Тип данных колонок
+def columns_data(df: pd.DataFrame):
+    return df.dtypes
+
+
 # Работа с .loc
 def work_loc(df: pd.DataFrame, column_for_row_check: str, any, column_for_show: str, func: function):
     return df.loc[(df[column_for_row_check] == any), column_for_show].apply(func)
