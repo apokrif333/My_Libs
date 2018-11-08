@@ -38,6 +38,7 @@ plt.title("Bagging (dec. tree)")
 
 rf = RandomForestClassifier(n_estimators=300, random_state=42)
 rf.fit(X_train_circles, y_train_circles)
+print(rf.predict_proba(X_train_circles))
 
 x_range = np.linspace(X.min(), X.max(), 100)
 xx1, xx2 = np.meshgrid(x_range, x_range)
