@@ -108,6 +108,11 @@ def cv_quality(model_grid, y_holdout, X_holdout):
     print(accuracy_score(y_holdout, model_grid.predict(X_holdout)))
 
 
+# Выводим все значения для настройки естиматора
+def get_all_params(estimator):
+    print(estimator.get_params().keys())
+
+
 # Создаём dot-file c обученным деревом
 def create_dot(clf_tree, feature_names: list, file_name: str, clases: list):
     export_graphviz(clf_tree, feature_names=feature_names, out_file=file_name + '.dot', filled=True,  class_names=clases)
