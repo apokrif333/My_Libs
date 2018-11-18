@@ -8,6 +8,11 @@ from pprint import pprint as pp
 np.seed = 7  # Теперь будет генерация одних и тех же случайных чисел при запуске
 
 
+# Куммулятивная сумма в виде массива
+def cum_sum(list_):
+    return np.cumsum(list_)
+
+
 # Собрать разные массивы в один массив
 def to_one_massive(list_: list):
     return list.flatten()

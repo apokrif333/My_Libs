@@ -18,10 +18,12 @@ print(VarianceThreshold(.9).fit_transform(x_data_generated).shape)
 # Сравниваем чистые данные, удалённую дисперисию и скоринг качества классификации(KBest)
 x_data_varth = VarianceThreshold(.9).fit_transform(x_data_generated)
 x_data_kbest = SelectKBest(f_classif, k=5).fit_transform(x_data_generated, y_data_generated)
+kb_var = SelectKBest(f_classif, k=5).fit_transform(x_data_varth, y_data_generated)
 
-print(cross_val_score(LogisticRegression(), x_data_generated, y_data_generated,scoring='neg_log_loss').mean())
-print(cross_val_score(LogisticRegression(), x_data_varth, y_data_generated,scoring='neg_log_loss').mean())
-print(cross_val_score(LogisticRegression(), x_data_kbest, y_data_generated,scoring='neg_log_loss').mean())
+print("LR: ", cross_val_score(LogisticRegression(), x_data_generated, y_data_generated,scoring='neg_log_loss').mean())
+print("LR+var: ", cross_val_score(LogisticRegression(), x_data_varth, y_data_generated,scoring='neg_log_loss').mean())
+print("LR+kbest", cross_val_score(LogisticRegression(), x_data_kbest, y_data_generated,scoring='neg_log_loss').mean())
+print("LR+kbest+var", cross_val_score(LogisticRegression(), kb_var, y_data_generated,scoring='neg_log_loss').mean())
 
 # Используем baseline-модель (Forest или линейная с лассо-регуляризацией) для оценки признаков, чтобы после неё
 # передавать отобранные признаки в более сложную модель
