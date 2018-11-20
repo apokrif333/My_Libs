@@ -1,4 +1,5 @@
 from scipy.spatial.distance import cdist
+from sklearn.cluster import KMeans
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -56,4 +57,15 @@ for i in range(4):
     plt.legend(loc=0)
     plt.title('Step {:}'.format(i + 1))
 
+plt.show()
+
+# Найдём оптимальное количество кластеров (при котором функционал практически не падает)
+inertia = []
+for k in range(1, 8):
+    kmeans = KMeans(n_clusters=k, random_state=1).fit(X)
+    inertia.append(np.sqrt(kmeans.inertia_))
+
+plt.plot(range(1, 8), inertia, marker='s')
+plt.xlabel('$kS')
+plt.ylabel('$J(C_k)$')
 plt.show()
