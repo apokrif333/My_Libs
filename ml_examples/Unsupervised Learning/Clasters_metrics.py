@@ -8,7 +8,7 @@ X, y = data.data, data.target
 
 algorithms = []
 algorithms.append(KMeans(n_clusters=10, random_state=1))
-algorithms.append((AffinityPropagation()))
+algorithms.append(AffinityPropagation())
 algorithms.append(SpectralClustering(n_clusters=10, random_state=1, affinity='nearest_neighbors'))
 algorithms.append(AgglomerativeClustering(n_clusters=10))
 
