@@ -1,10 +1,6 @@
 from sklearn import decomposition
 from sklearn.manifold import TSNE
 from sklearn import datasets
-from mpl_toolkits.mplot3d import Axes3D
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, roc_auc_score
 
 import numpy as np
 import matplotlib.pyplot as plt
