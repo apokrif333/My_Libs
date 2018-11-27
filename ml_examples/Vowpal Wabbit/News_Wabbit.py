@@ -42,3 +42,5 @@ with open('D:/PycharmProjects/Start/GitHub/My_Libs/ml_examples/test_data/news_da
         vw_train_data:
     for text in test_doc:
         vw_train_data.write(to_vw_format(text))
+
+# https://pypi.org/project/vowpalwabbit/
