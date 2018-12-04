@@ -1,27 +1,23 @@
 # Библиотека функций для трейдов
 import pandas as pd
-import numpy as np
 import statistics as stat
 import math
 import time
 import cmath
 import os
 import matplotlib.pyplot as plt
-import sys
 
-# sys.path.append(os.path.abspath('C:/Users/Lex/PycharmProjects/Start/GitHub/My_Libs'))
 
 from alpha_vantage.timeseries import TimeSeries
 from yahoofinancials import YahooFinancials
 from datetime import datetime
-from pprint import pprint as pp
 
 
 # Constants
 ALPHA_KEY = 'FE8STYV4I7XHRIAI'
 
 # Variables
-default_data_dir = 'exportTables'  # Директория
+default_data_dir = 'historical_data'  # Директория
 start_date = datetime(2004, 1, 1)  # Для yahoo, alpha выкачает всю доступную историю
 end_date = datetime.now()
 
@@ -44,7 +40,7 @@ def str_to_dt(string: str) -> datetime:
 def str_list_to_date(file: pd.DataFrame):
     try:
         file["Date"] = pd.to_datetime(file["Date"], dayfirst=False)
-    except:
+    except ValueError:
         file["Date"] = pd.to_datetime(file["Date"], format='%d-%m-%Y')
 
 
@@ -62,6 +58,7 @@ def number_to_int(n) -> int:
         return int(round(float(n), 0))
     else:
         return n
+
 
 # Не пустой ли объект?
 def empty_check(n) -> bool:
@@ -310,7 +307,6 @@ def plot_capital(date: list, capital: list):
     ax2 = ax1.twinx()
     ax2.plot(date, capital)
     ax2.set_ylabel('Динамика капитала')
-    # ax2.set_yticks(np.arange(0, 28_000_000 + 1_000_000, 1_000_000))
 
     tx1 = fig.add_subplot(6, 1, 6, frameon=False)
     tx1.axis("off")
