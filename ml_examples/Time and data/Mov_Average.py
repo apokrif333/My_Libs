@@ -85,7 +85,8 @@ def double_exponential_smoothing(series, alpha, beta):
     return result
 
 
-dataset = pd.read_csv('D:/PycharmProjects/Start/GitHub/My_Libs/ml_examples/test_data/hour_online.csv',
+#   'D:/PycharmProjects/Start/GitHub/My_Libs/ml_examples/test_data/hour_online.csv'
+dataset = pd.read_csv('C:/Users/Tom/PycharmProjects/Start/GibHub/My_Libs/ml_examples/test_data/hour_online.csv',
                       index_col=['Time'],
                       parse_dates=['Time']
                       )

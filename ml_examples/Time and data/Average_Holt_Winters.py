@@ -1,4 +1,6 @@
 import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
 
 
 class HoltWinters:
@@ -35,7 +37,7 @@ class HoltWinters:
 
         # Вычислим сезонные средние
         for j in range(n_seasons):
-            season_averages.append(sum(self.series[self.slen*j : self.slen*j+self.slen]) / float(self.slen))
+            season_averages.append(sum(self.series[self.slen*j:self.slen*j+self.slen]) / float(self.slen))
         # Начальные значения
         for i in range(self.slen):
             sum_of_vals_over_avg = 0
@@ -85,7 +87,7 @@ class HoltWinters:
                                       self.alpha * (val - seasonals[i%self.slen]) + (1 - self.alpha) * (smooth + trend)
                 trend = self.beta * (smooth - last_smooth) + (1 - self.beta) * trend
                 seasonals[i%self.slen] = self.gamma * (val - smooth) + (1 - self.gamma) * seasonals[i%self.slen]
-                self.result.append(smooth * trend * seasonals[i%self.slen])
+                self.result.append(smooth + trend + seasonals[i%self.slen])
 
                 # Отклонение рассчитывается в соотвествии с алгоритмом Брутлага
                 self.PredictedDeviation.append(self.gamma * np.abs(self.series[i] - self.result[i]) +
@@ -96,3 +98,20 @@ class HoltWinters:
                 self.Trend.append(trend)
                 self.Season.append(seasonals[i%self.slen])
 
+
+dataset = pd.read_csv('C:/Users/Tom/PycharmProjects/Start/GibHub/My_Libs/ml_examples/test_data/hour_online.csv',
+                      index_col=['Time'],
+                      parse_dates=['Time']
+                      )
+model = HoltWinters(dataset.Users, 7, 0.05, 0.05, 0.05, 200)
+model.triple_exponential_smoothing()
+print(model.result)
+
+plt.figure(figsize=(20, 8))
+plt.plot(model.result, label=f"Season len {model.slen} Alpha {model.alpha} Beta {model.beta} Gamma {model.gamma}")
+plt.plot(dataset.Users.values, label='Actual')
+plt.legend(loc='best')
+plt.axis('tight')
+plt.title('Triple Exponential Smoothing')
+plt.grid(True)
+plt.show()
