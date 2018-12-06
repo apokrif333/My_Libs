@@ -1,6 +1,18 @@
-import numpy as np
+from tqdm import tqdm
+from sklearn.model_selection import TimeSeriesSplit
+from sklearn.metrics import mean_absolute_error, mean_squared_error
+from scipy.optimize import minimize
+from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
+from plotly import graph_objs as go; init_notebook_mode(connected=True)
+
+import sys
+import warnings; warnings.filterwarnings('ignore')
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
+import statsmodels.formula.api as smf
+import statsmodels.tsa.api as smt
+import scipy.stats as scs
 
 
 class HoltWinters:
@@ -92,26 +104,89 @@ class HoltWinters:
                 # Отклонение рассчитывается в соотвествии с алгоритмом Брутлага
                 self.PredictedDeviation.append(self.gamma * np.abs(self.series[i] - self.result[i]) +
                                                (1 - self.gamma) * self.PredictedDeviation[-1])
-                self.UpperBond.append(self.result[-1] + self.scaling_factor * self.PredictedDeviation[-1])
-                self.LowerBond.append(self.result[-1] - self.scaling_factor * self.PredictedDeviation[-1])
-                self.Smooth.append(smooth)
-                self.Trend.append(trend)
-                self.Season.append(seasonals[i%self.slen])
+
+            self.UpperBond.append(self.result[-1] + self.scaling_factor * self.PredictedDeviation[-1])
+            self.LowerBond.append(self.result[-1] - self.scaling_factor * self.PredictedDeviation[-1])
+            self.Smooth.append(smooth)
+            self.Trend.append(trend)
+            self.Season.append(seasonals[i%self.slen])
 
 
-dataset = pd.read_csv('C:/Users/Tom/PycharmProjects/Start/GibHub/My_Libs/ml_examples/test_data/hour_online.csv',
+def plotHolWinters(data):
+    plt.figure(figsize=(25, 10))
+    plt.plot(model.result, label='Model')
+    plt.plot(data.values, label='Actual')
+    # error = mean_squared_error(data.values, model.result[:len(data)])
+    plt.title(f"Mean Squared Error: {error}")
+
+    Anomalies = np.array([np.NaN]*len(data))
+    Anomalies[data.values<model.LowerBond[:len(data)]] = data.values[data.values<model.LowerBond[:len(data)]]
+    plt.plot(Anomalies, 'o', markersize=10, label='Anomalies')
+
+    plt.plot(model.UpperBond, 'r--', alpha=0.5, label='Up/Low confidence')
+    plt.plot(model.LowerBond, 'r--', alpha=0.5)
+    plt.fill_between(x=range(0, len(model.result)), y1=model.UpperBond, y2=model.LowerBond, alpha=0.5, color='grey')
+
+    plt.axvspan(len(data)-128, len(data), alpha=0.5, color='lightgrey')
+    plt.grid(True)
+    plt.axis('tight')
+    plt.legend(loc='best', fontsize=13)
+    plt.show()
+
+
+def timeseriesCVscore(x):
+    # Вектор ошибок
+    errors = []
+
+    values = data.values
+    alpha, beta, gamma = x
+
+    # Число фолдов для кросс-валидации
+    tscv = TimeSeriesSplit(n_splits=3)
+
+    # На каждом фолде обучаем нашу модель, прогнозим и считаем ошибку
+    for train, test in tscv.split(values):
+        model = HoltWinters(series=values[train], slen=24*7, alpha=alpha, beta=beta, gamma=gamma, n_preds=len(test))
+        model.triple_exponential_smoothing()
+
+        predictions = model.result[-len(test):]
+        actual = values[test]
+        error = mean_squared_error(predictions, actual)
+        errors.append(error)
+
+    # Средний квадрат ошибки по вектору ошибок
+    return np.mean(np.array(errors))
+
+
+#  C:/Users/Tom/PycharmProjects/Start/GibHub/My_Libs/ml_examples/test_data/hour_online.csv
+dataset = pd.read_csv('D:/PycharmProjects/Start/GitHub/My_Libs/ml_examples/test_data/hour_online.csv',
                       index_col=['Time'],
                       parse_dates=['Time']
                       )
-model = HoltWinters(dataset.Users, 7, 0.05, 0.05, 0.05, 200)
-model.triple_exponential_smoothing()
-print(model.result)
+# model = HoltWinters(dataset.Users, 7, 0.05, 0.05, 0.05, 200)
+# model.triple_exponential_smoothing()
+# plt.figure(figsize=(20, 8))
+# plt.plot(model.result, label=f"Season len {model.slen} Alpha {model.alpha} Beta {model.beta} Gamma {model.gamma}")
+# plt.plot(dataset.Users.values, label='Actual')
+# plt.legend(loc='best')
+# plt.axis('tight')
+# plt.title('Triple Exponential Smoothing')
+# plt.grid(True)
+# plt.show()
 
-plt.figure(figsize=(20, 8))
-plt.plot(model.result, label=f"Season len {model.slen} Alpha {model.alpha} Beta {model.beta} Gamma {model.gamma}")
-plt.plot(dataset.Users.values, label='Actual')
-plt.legend(loc='best')
-plt.axis('tight')
-plt.title('Triple Exponential Smoothing')
-plt.grid(True)
-plt.show()
+# Отложим часть данных для тестирования
+data = dataset.Users[:-128]
+# Инициализируем альфу, гаамму, бетту
+x = [0, 0, 0]
+# Минимизируем и ограничим функцию потерь
+opt = minimize(timeseriesCVscore, x0=x, method='TNC', bounds=((0, 1), (0, 1), (0, 1)))
+# Из оптимизиатора берём оптимальное значение
+alpha_final, beta_final, gamma_final = opt.x
+print(alpha_final, beta_final, gamma_final)
+
+# Обучаем модель на найденых параметрах
+model = HoltWinters(dataset.Users[:-128], slen=24*7, alpha = alpha_final, beta=beta_final, gamma=gamma_final,
+                    n_preds=128, scaling_factor=2.56)
+model.triple_exponential_smoothing()
+plotHolWinters(dataset.Users)
+
