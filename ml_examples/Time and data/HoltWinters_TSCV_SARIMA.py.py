@@ -1,9 +1,10 @@
 from tqdm import tqdm
+from itertools import product
 from sklearn.model_selection import TimeSeriesSplit
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from scipy.optimize import minimize
 from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
-from plotly import graph_objs as go; init_notebook_mode(connected=True)
+from plotly import graph_objs as go
 
 import sys
 import warnings; warnings.filterwarnings('ignore')
@@ -11,7 +12,10 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import statsmodels.formula.api as smf
+import statsmodels.tsa.stattools as tsa
+import statsmodels.tsa.statespace.sarimax as sarimax
 import statsmodels.tsa.api as smt
+import statsmodels.api as sm
 import scipy.stats as scs
 
 
@@ -117,7 +121,7 @@ def plotHolWinters(data):
     plt.plot(model.result, label='Model')
     plt.plot(data.values, label='Actual')
     # error = mean_squared_error(data.values, model.result[:len(data)])
-    plt.title(f"Mean Squared Error: {error}")
+    # plt.title(f"Mean Squared Error: {error}")
 
     Anomalies = np.array([np.NaN]*len(data))
     Anomalies[data.values<model.LowerBond[:len(data)]] = data.values[data.values<model.LowerBond[:len(data)]]
@@ -158,23 +162,81 @@ def timeseriesCVscore(x):
     return np.mean(np.array(errors))
 
 
-#  C:/Users/Tom/PycharmProjects/Start/GibHub/My_Libs/ml_examples/test_data/hour_online.csv
-dataset = pd.read_csv('D:/PycharmProjects/Start/GitHub/My_Libs/ml_examples/test_data/hour_online.csv',
-                      index_col=['Time'],
-                      parse_dates=['Time']
-                      )
-# model = HoltWinters(dataset.Users, 7, 0.05, 0.05, 0.05, 200)
-# model.triple_exponential_smoothing()
-# plt.figure(figsize=(20, 8))
-# plt.plot(model.result, label=f"Season len {model.slen} Alpha {model.alpha} Beta {model.beta} Gamma {model.gamma}")
-# plt.plot(dataset.Users.values, label='Actual')
-# plt.legend(loc='best')
-# plt.axis('tight')
-# plt.title('Triple Exponential Smoothing')
-# plt.grid(True)
-# plt.show()
+def tsplot(y, lags=None, figsize=(12, 7), style='bmh'):
+    if not isinstance(y, pd.Series):
+        y = pd.Series(y)
+    with plt.style.context(style):
+        fig = plt.figure(figsize=figsize)
+        layout = (2, 2)
+        ts_ax = plt.subplot2grid(layout, (0, 0), colspan=2)
+        acf_ax = plt.subplot2grid(layout, (1, 0))
+        pacf_ax = plt.subplot2grid(layout, (1, 1))
 
-# Отложим часть данных для тестирования
+        y.plot(ax=ts_ax)
+        ts_ax.set_title('Time Series Analysis Plots')
+        smt.graphics.plot_acf(y, lags=lags, ax=acf_ax, alpha=0.5)
+        smt.graphics.plot_pacf(y, lags=lags, ax=pacf_ax, alpha=0.5)
+
+        print('Критерий Дики-Фуллера: p=%f' % tsa.adfuller(y)[1])
+
+        plt.tight_layout()
+
+    plt.show()
+    return
+
+
+def invboxcox(y, lmbda):
+    if lmbda == 0:
+        return (np.exp(y))
+    else:
+        return (np.exp(np.log(lmbda * y + 1) / lmbda))
+
+
+def optimizeSARIMA(parameters_list, d, D):
+    """
+    Return dataframe with parameters and correspondong AIC
+
+    :param parameters_list:
+    :param d: integration order in ARIMA model
+    :param D: seasonal integration order
+    :param s: lenght of season
+    """
+
+    results = []
+    best_aic = float("inf")
+
+    for param in tqdm(parameters_list):
+
+        try:
+            model = sm.tsa.statespace.SARIMAX(data.Users_box,
+                                              order=(param[0], d, param[1]),
+                                              seasonal_order=(param[2], D, param[3], 24*7)
+                                              ).fit(disp=-1)
+        except:
+            print('wrong parameters:', param)
+            continue
+
+        aic = model.aic
+        # Сохраняем лучшую модель
+        if aic < best_aic:
+            best_model = model
+            best_aic = aic
+            best_param = param
+        results.append([param, model.aic])
+
+    result_table = pd.DataFrame(results)
+    result_table.columns = ['parameters', 'aic']
+    result_table = result_table.sort_values(by= 'aic', ascending=True).reset_index(drop=True)
+
+    return result_table
+
+
+#  C:/Users/Tom/PycharmProjects/Start/GibHub/My_Libs/ml_examples/test_data/hour_online.csv
+dataset = pd.read_csv('D:/Py_Projects/GitHub/My_Libs/ml_examples/test_data/hour_online.csv',
+                      index_col=['Time'],
+                      parse_dates=['Time'])
+
+# Создадим предсказание будущих данных, не приводя данные к стационарному ряду. Отложим часть данных для тестирования.
 data = dataset.Users[:-128]
 # Инициализируем альфу, гаамму, бетту
 x = [0, 0, 0]
@@ -190,3 +252,49 @@ model = HoltWinters(dataset.Users[:-128], slen=24*7, alpha = alpha_final, beta=b
 model.triple_exponential_smoothing()
 plotHolWinters(dataset.Users)
 
+# Теперь приведём данные к стационарности и снова сделаем прогноз
+# tsplot(dataset.Users, lags=30)
+data = dataset.copy()
+data['Users_box'], lmbda = scs.boxcox(data.Users + 1)
+# tsplot(data.Users_box, lags=30)
+print('Отпимальный параметр преобразования Бокса-Кокса: %f' % lmbda)
+data['Users_box_season'] = data.Users_box - data.Users_box.shift(24 * 7)
+# tsplot(data.Users_box_season[24*7:], lags=30)
+data['Users_box_season_diff'] = data.Users_box_season - data.Users_box_season.shift(1)
+# tsplot(data.Users_box_season_diff[24*7+1:], lags=30)
+
+# Построим SARIMA
+ps = range(0, 5)
+d = 1
+qs = range(0, 4)
+Ps = range(0, 5)
+D = 1
+Qs = range(0, 1)
+parameters = product(ps, qs, Ps, Qs)
+parameters_list = list(parameters)
+
+data.index = data.index.to_datetime()
+result_table = optimizeSARIMA(parameters_list, d, D)
+
+best_model = sm.tsa.statespace.SARIMAX(data.Users_box,
+                             order=(4, d, 3),
+                             seasonal_order=(4, D, 1, 24)
+                             ).fit(disp=-1)
+print(best_model.summary())
+
+# Проверим остатки модели
+tsplot(best_model.resid[24:], lags=30)
+
+# Построим прогноз на полученной модели
+data['arima_model'] = invboxcox(best_model.fittedvalues, lmbda)
+forecast = invboxcox(best_model.predict(start=data.shape[0], end=data.shape[0] + 100), lmbda)
+forecast = data.arima_model.append(forecast).values[-500:]
+actual = data.Users.values[-400:]
+plt.figure(figsize=(15, 7))
+plt.plot(forecast, color='r', lable='model')
+plt.title("SARIMA model\n Mean absolute error {} users".format(round(mean_absolute_error(data.dropna().Users,
+                                                                                         data.dropna().arima_model))))
+plt.plot(actual, lable='actual')
+plt.legend()
+plt.axvspan(len(actual), len(forecast), alpha=0.5, color='lightgrey')
+plt.grid(True)

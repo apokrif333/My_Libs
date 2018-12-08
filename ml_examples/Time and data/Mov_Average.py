@@ -1,17 +1,10 @@
-from tqdm import tqdm
-from sklearn.metrics import mean_absolute_error, mean_squared_error
-from scipy.optimize import minimize
 from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
-from plotly import graph_objs as go; init_notebook_mode(connected=True)
+from plotly import graph_objs as go
 
-import sys
 import warnings; warnings.filterwarnings('ignore')
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import statsmodels.formula.api as smf
-import statsmodels.tsa.api as smt
-import scipy.stats as scs
 
 
 def plotly_df(df, title= ''):
@@ -86,7 +79,7 @@ def double_exponential_smoothing(series, alpha, beta):
 
 
 #   'D:/PycharmProjects/Start/GitHub/My_Libs/ml_examples/test_data/hour_online.csv'
-dataset = pd.read_csv('C:/Users/Tom/PycharmProjects/Start/GibHub/My_Libs/ml_examples/test_data/hour_online.csv',
+dataset = pd.read_csv('D:/Py_Projects/GitHub/My_Libs/ml_examples/test_data/hour_online.csv',
                       index_col=['Time'],
                       parse_dates=['Time']
                       )
