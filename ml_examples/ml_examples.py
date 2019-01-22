@@ -62,23 +62,6 @@ def plot_with_err(x, data, **kwargs):
     plt.fill_between(x, mu - std, mu + std, edgecolor='none', facecolor=lines[0].get_color(), alpha=0.2)
 
 
-''' t-SNE (t-distributed Stohastic Neighbor Embedding)
-Найдем такое отображение из многомерного признакового пространства на плоскость (или в 3D, но почти всегда выбирают
-2D), чтоб точки, которые были далеко друг от друга, на плоскости тоже оказались удаленными, а близкие точки – также
-отобразились на близкие. То есть neighbor embedding – это своего рода поиск нового представления данных, при котором
-сохраняется соседство.
-
-Бинарные Yes/No-признаки переведем в числа (pd.factorize). Также нужно масштабировать выборку – из каждого признака
-вычесть его среднее и поделить на стандартное отклонение, это делает StandardScaler.
-'''
-
-
-def t_SNE(df: pd.DataFrame, random: int, bool_column: pd.Series):
-    X_scaled = StandardScaler().fit_transform(df)
-    tsne_representation = TSNE(random_state=random).fit_transform(X_scaled)
-    plt.scatter(tsne_representation[:, 0], tsne_representation[:, 1], c=bool_column.map({0: 'blue', 1: 'orange'}))
-
-
 '''Деревья решений
 Разбиваем данные по принципу жадного прироста информации (уменьшения энтропии). Указываем сколько может быть минимум
 значений в системе после разбиения, указываем количество разбиений и т.д.
