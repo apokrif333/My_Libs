@@ -19,8 +19,8 @@ def dot_to_png(name: str):
     render('dot', 'png', path)
 
 
-# Сравниваем соседей, дерево и лес
-df = pd.read_csv('test_data/telecom_churn.csv')
+# Сравниваем соседей, дерево и лес в классификации клиентов, которые уйдут от нас или нет
+df = pd.read_csv('data/telecom_churn.csv')
 df['International plan'] = pd.factorize(df['International plan'])[0]
 df['Voice mail plan'] = pd.factorize(df['Voice mail plan'])[0]
 df['Churn'] = df['Churn'].astype('int')
@@ -42,7 +42,7 @@ tree_pred = tree.predict(X_holdout)
 print('DT on holdout: ', accuracy_score(y_holdout, tree_pred))
 knn_pred = knn.predict(X_holdout)
 print('kNN on holdout: ', accuracy_score(y_holdout, knn_pred))
-print(np.mean(cross_val_score(forest, X_train, y_train, cv=5)))
+print('RF cross_val score: ', np.mean(cross_val_score(forest, X_train, y_train, cv=5)))
 
 
 # Проверим качество прогнозов дерева на кросс-валидации. GridSearchCV: для каждой уникальной пары значений
