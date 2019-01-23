@@ -7,7 +7,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,24 +26,50 @@
     <expand />
     <select />
   </component>
+  <component name="DockManager">
+    <window id="2">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/Machine Learning/Regression/R - Logistic.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="1156">
+                    <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
+                    <folding>
+                      <element signature="e#0#52#0" expanded="true" />
+                      <marker date="1548269966283" expanded="true" signature="1843:2037" ph="..." />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ml_examples.py" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ml_examples/ml_examples.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="100" selection-start-line="12" selection-start-column="85" selection-end-line="12" selection-end-column="100" />
+            <state relative-caret-position="-4590">
+              <caret line="24" column="76" lean-forward="true" selection-start-line="24" selection-start-column="76" selection-end-line="24" selection-end-column="76" />
+              <folding>
+                <element signature="e#0#47#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="kNN, DT, RF.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Machine Learning/kNN/kNN, DT, RF.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/drawnings_lib.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="75" column="17" lean-forward="true" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
+            <state relative-caret-position="476">
+              <caret line="28" column="77" lean-forward="true" selection-start-line="28" selection-start-column="77" selection-end-line="28" selection-end-column="77" />
               <folding>
-                <element signature="e#0#48#0" expanded="true" />
+                <element signature="e#0#31#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -63,6 +88,7 @@
     <findStrings>
       <find>\</find>
       <find>StandardScaler</find>
+      <find>правильных</find>
     </findStrings>
     <replaceStrings>
       <replace>/</replace>
@@ -87,17 +113,10 @@
         <option value="$PROJECT_DIR$/ml_examples/ml_examples.py" />
         <option value="$PROJECT_DIR$/Machine Learning/DT/DT - Regressor.py" />
         <option value="$PROJECT_DIR$/Machine Learning/kNN/kNN, DT, RF.py" />
+        <option value="$PROJECT_DIR$/Machine Learning/kNN/Большое количество признаков.py" />
+        <option value="$PROJECT_DIR$/Machine Learning/Regression/R - Logistic.py" />
       </list>
     </option>
-  </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="NodePackageJsonFileManager">
-    <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-413" />
@@ -110,7 +129,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -122,6 +140,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -141,25 +160,25 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.DT - Regressor">
-    <configuration name="Average_Holt_Winters" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.R - Logistic">
+    <configuration name="Большое количество признаков" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="My_Libs" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml_examples/Time and data" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Machine Learning/kNN" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="D:\PycharmProjects\Start\GitHub\My_Libs\ml_examples\Time and data\Holt_Winters_and_TSCV.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Machine Learning/kNN/Большое количество признаков.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration name="DT - Regressor" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="My_Libs" />
@@ -179,6 +198,9 @@
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration name="DT-Classifier 1" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="My_Libs" />
@@ -198,6 +220,9 @@
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration name="DT-Classifier (невозврат кредита)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="My_Libs" />
@@ -217,25 +242,28 @@
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
-    <configuration name="Holt_Winters_and_TSCV" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="R - Logistic" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="My_Libs" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml_examples/Time and data" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Machine Learning/Regression" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ml_examples/Time and data/Holt_Winters_and_TSCV.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Machine Learning/Regression/R - Logistic.py" />
       <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="My_Libs" />
@@ -255,21 +283,24 @@
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.Average_Holt_Winters" />
-      <item itemvalue="Python.Holt_Winters_and_TSCV" />
       <item itemvalue="Python.DT-Classifier 1" />
       <item itemvalue="Python.DT-Classifier (невозврат кредита)" />
       <item itemvalue="Python.DT - Regressor" />
+      <item itemvalue="Python.Большое количество признаков" />
+      <item itemvalue="Python.R - Logistic" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.R - Logistic" />
+        <item itemvalue="Python.Большое количество признаков" />
         <item itemvalue="Python.DT - Regressor" />
         <item itemvalue="Python.DT-Classifier (невозврат кредита)" />
         <item itemvalue="Python.DT-Classifier 1" />
-        <item itemvalue="Python.Holt_Winters_and_TSCV" />
-        <item itemvalue="Python.Average_Holt_Winters" />
       </list>
     </recent_temporary>
   </component>
@@ -290,7 +321,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14439000" />
+    <option name="totallyTimeSpent" value="23661000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -304,46 +335,36 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <layout>
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.3290461" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Database Changes" order="12" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3290461" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.24089935" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.34653464" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3290461" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16577825" />
-      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
-      <window_info active="true" anchor="right" id="Database" order="6" sideWeight="0.49858758" visible="true" weight="0.32995737" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32976446" />
-      <window_info anchor="right" id="SciView" order="7" sideWeight="0.49717513" weight="0.3139659" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32976446" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.34653464" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3290461" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3290461" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3290461" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" visible="true" weight="0.34297964" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="R Graphics" order="3" sideWeight="0.49858758" weight="0.32995737" />
       <window_info anchor="right" id="R Packages" order="4" sideWeight="0.49858758" weight="0.32995737" />
-      <window_info active="true" anchor="right" x="0" y="0" width="434" height="866" id="Documentation" order="5" sideWeight="0.50282484" side_tool="true" visible="true" weight="0.3139659" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="right" x="0" y="0" width="434" height="866" id="Documentation" order="5" sideWeight="0.5040783" side_tool="true" visible="true" weight="0.3139659" />
+      <window_info anchor="right" id="Database" order="6" sideWeight="0.49858758" weight="0.32995737" />
+      <window_info anchor="right" x="665" y="373" width="589" height="304" id="SciView" maximized="true" order="7" sideWeight="0.4959217" type="WINDOWED" weight="0.3139659" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ml_examples/ml_examples.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="100" selection-start-line="12" selection-start-column="85" selection-end-line="12" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ml_examples/test_data/weights_heights.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -374,19 +395,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ml_examples/ml_examples.py">
+    <entry file="file://$PROJECT_DIR$/Machine Learning/kNN/kNN, DT, RF.py" />
+    <entry file="file://$PROJECT_DIR$/Machine Learning/DT/DT - Classifier (отображение дерева в png).py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="100" selection-start-line="12" selection-start-column="85" selection-end-line="12" selection-end-column="100" />
+        <state>
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Machine Learning/kNN/kNN, DT, RF.py">
+    <entry file="file://$PROJECT_DIR$/Machine Learning/kNN/Большое количество признаков.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="75" column="17" lean-forward="true" selection-start-line="75" selection-start-column="17" selection-end-line="75" selection-end-column="17" />
+        <state relative-caret-position="850">
+          <caret line="50" column="10" lean-forward="true" selection-start-line="50" selection-start-column="10" selection-end-line="50" selection-end-column="10" />
           <folding>
-            <element signature="e#0#48#0" expanded="true" />
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ml_examples/ml_examples.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4590">
+          <caret line="24" column="76" lean-forward="true" selection-start-line="24" selection-start-column="76" selection-end-line="24" selection-end-column="76" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Regression/R - Logistic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1156">
+          <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+            <marker date="1548269966283" expanded="true" signature="1843:2037" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/drawnings_lib.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="77" lean-forward="true" selection-start-line="28" selection-start-column="77" selection-end-line="28" selection-end-column="77" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
