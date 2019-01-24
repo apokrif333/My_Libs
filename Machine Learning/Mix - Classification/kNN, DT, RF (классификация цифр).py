@@ -1,18 +1,29 @@
 from sklearn.datasets import load_digits
 from sklearn.model_selection import train_test_split, GridSearchCV, cross_val_score
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.tree import DecisionTreeClassifier, export_graphviz
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
+from graphviz import render
 
+import os
 import numpy as np
 import matplotlib.pyplot as plt
+os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin'
+
+
+# Конвертируем dot в png
+def dot_to_png(name: str):
+    path = 'img/' + name + '.dot'
+    render('dot', 'png', path)
+
 
 # Обучим сеть разпознавать рукописные цифры деревом и соседями
 # Загружаем дату, где цифры в виде матриц 8х8, каждое значение элемента - интенсивность белого
 data = load_digits()
 X, y = data.data, data.target
 X[0, :].reshape([8, 8])
+print(y, len(y))
 
 # Создадим в plt 4 суб-плота и в каждом выведем 4 первые цифры из даты
 f, axes = plt.subplots(1, 4, sharey=True, figsize=(16, 6))
@@ -35,6 +46,11 @@ tree_params = {
 }
 tree_grid = GridSearchCV(tree, tree_params, cv=5, n_jobs=4, verbose=True).fit(X_train, y_train)
 print(tree_grid.best_params_, tree_grid.best_score_)
+
+# tree = DecisionTreeClassifier(max_depth=20, max_features=64, random_state=17).fit(X_train, y_train)
+# export_graphviz(tree,  feature_names=np.arange(1, 65), out_file='img/digits_tree.dot', filled=True)
+# dot_to_png('digits_tree')
+
 
 # Один сосед и случайный лес
 print(np.mean(cross_val_score(KNeighborsClassifier(n_neighbors=1), X_train, y_train, cv=5)))
