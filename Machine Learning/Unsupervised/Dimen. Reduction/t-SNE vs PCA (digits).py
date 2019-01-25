@@ -1,6 +1,5 @@
-from sklearn import decomposition
+from sklearn import decomposition, datasets
 from sklearn.manifold import TSNE
-from sklearn import datasets
 
 import numpy as np
 import matplotlib.pyplot as plt

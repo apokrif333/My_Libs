@@ -1,11 +1,10 @@
 from __future__ import division, print_function
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import BaggingRegressor, RandomForestRegressor
+
 import warnings
 import numpy as np
-import seaborn as sns
 import matplotlib.pyplot as plt
-
-from sklearn.ensemble import BaggingRegressor, RandomForestRegressor, RandomForestClassifier
-from sklearn.tree import DecisionTreeRegressor, DecisionTreeClassifier
 
 warnings.filterwarnings('ignore')
 np.random.seed(42)
@@ -19,7 +18,6 @@ noise = .1  # Std of the noise
 # Generate data
 def f(x):
     x = x.ravel()
-
     return np.exp(-x ** 2) + 1.5 * np.exp(-(x - 2) ** 2)
 
 
@@ -28,7 +26,6 @@ def generate(n_samples, noise):
     X = np.sort(X).ravel()
     y = np.exp(-X ** 2) + 1.5 * np.exp(-(X - 2) ** 2) + np.random.normal(0.0, noise, n_samples)
     X = X.reshape((n_samples, 1))
-
     return X, y
 
 

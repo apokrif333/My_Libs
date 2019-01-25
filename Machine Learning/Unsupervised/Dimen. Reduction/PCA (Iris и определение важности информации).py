@@ -1,5 +1,4 @@
-from sklearn import decomposition
-from sklearn import datasets
+from sklearn import decomposition, datasets
 from mpl_toolkits.mplot3d import Axes3D
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
@@ -20,16 +19,18 @@ ax = Axes3D(fig, rect=[0, 0, 0.95, 1], elev=48, azim=134)
 plt.cla()
 
 for name, label in [('Setosa', 0), ('Versicolour', 1), ('Virginica', 2)]:
-    ax.text3D(X[y == label, 0].mean(),
-              X[y == label, 1].mean() + 1.5,
-              X[y == label, 2].mean(),
-              name, horizontalalignment='center', bbox=dict(alpha=0.5, edgecolor='w', facecolor='w')
-              )
+    ax.text3D(
+        X[y == label, 0].mean(),
+        X[y == label, 1].mean() + 1.5,
+        X[y == label, 2].mean(),
+        name,
+        horizontalalignment='center',
+        bbox=dict(alpha=0.5, edgecolor='w', facecolor='w')
+    )
 
 # Поменяем порядок цветов меток, чтобы они соотвествовали правильному
 y_clr = np.choose(y, [1, 2, 0]).astype((np.float))
 ax.scatter(X[:, 0], X[:, 1], X[:, 2], c=y_clr, cmap=plt.cm.viridis)
-
 ax.w_xaxis.set_ticklabels([])
 ax.w_yaxis.set_ticklabels([])
 ax.w_zaxis.set_ticklabels([])

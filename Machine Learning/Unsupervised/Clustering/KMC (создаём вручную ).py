@@ -1,18 +1,17 @@
 from scipy.spatial.distance import cdist
 from sklearn.cluster import KMeans
+
 import numpy as np
 import matplotlib.pyplot as plt
 
+np.random.seed(seed=42)
+
 # Создадим 3 группы точек
 X = np.zeros((150, 2))
-
-np.random.seed(seed=42)
 X[:50, 0] = np.random.normal(loc=0.0, scale=.3, size=50)
 X[:50, 1] = np.random.normal(loc=0.0, scale=.3, size=50)
-
 X[50:100, 0] = np.random.normal(loc=2.0, scale=.5, size=50)
 X[50:100, 1] = np.random.normal(loc=-1.0, scale=.2, size=50)
-
 X[100:150, 0] = np.random.normal(loc=-1.0, scale=.2, size=50)
 X[100:150, 1] = np.random.normal(loc=2.0, scale=.5, size=50)
 
@@ -21,9 +20,8 @@ plt.plot(X[:, 0], X[:, 1], 'bo')
 plt.show()
 
 # Создадим центроиды
-np.random.seed(seed=42)
 centroids = np.random.normal(loc=0.0, scale=1., size=6)
-centroids = centroids.reshape(((3, 2)))
+centroids = centroids.reshape((3, 2))
 
 cent_history = []
 cent_history.append(centroids)
@@ -56,7 +54,6 @@ for i in range(4):
     print(cent_history[i][:, 0])
     plt.legend(loc=0)
     plt.title('Step {:}'.format(i + 1))
-
 plt.show()
 
 # Найдём оптимальное количество кластеров (при котором функционал практически не падает)

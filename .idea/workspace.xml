@@ -28,25 +28,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ml_examples/ml_examples.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/drawnings_lib.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="558" selection-start-line="558" selection-end-line="609" />
+            <state relative-caret-position="17">
+              <caret line="29" column="44" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
               <folding>
-                <element signature="e#0#47#0" expanded="true" />
+                <element signature="e#0#31#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/drawnings_lib.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Machine Learning/Unsupervised/Dimen. Reduction/t-SNE vs PCA (digits).py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-289">
-              <caret line="29" column="44" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
+            <state relative-caret-position="442">
+              <caret line="26" column="54" lean-forward="true" selection-start-line="26" selection-start-column="54" selection-end-line="26" selection-end-column="54" />
               <folding>
-                <element signature="e#0#31#0" expanded="true" />
+                <element signature="e#0#33#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -67,6 +67,11 @@
       <find>StandardScaler</find>
       <find>правильных</find>
       <find>load_files</find>
+      <find>data</find>
+      <find>y_error</find>
+      <find>y_bias</find>
+      <find>print</find>
+      <find>train_acc</find>
     </findStrings>
     <replaceStrings>
       <replace>/</replace>
@@ -88,17 +93,36 @@
         <option value="$PROJECT_DIR$/Machine Learning/DT/DT-Classifier 1.py" />
         <option value="$PROJECT_DIR$/Machine Learning/DT/DT-Classifier (отображение дерева в png).py" />
         <option value="$PROJECT_DIR$/Machine Learning/DT/DT-Classifier (невозврат кредита).py" />
-        <option value="$PROJECT_DIR$/ml_examples/ml_examples.py" />
-        <option value="$PROJECT_DIR$/Machine Learning/DT/DT - Regressor.py" />
         <option value="$PROJECT_DIR$/Machine Learning/kNN/kNN, DT, RF.py" />
         <option value="$PROJECT_DIR$/Machine Learning/kNN/Большое количество признаков.py" />
         <option value="$PROJECT_DIR$/Machine Learning/Regression/R - Logistic.py" />
         <option value="$PROJECT_DIR$/Machine Learning/Mix - Classification/kNN, DT, RF (классификация цифр).py" />
         <option value="$PROJECT_DIR$/Machine Learning/Regression/R - Logistic (отзывы о фильмах).py" />
         <option value="$PROJECT_DIR$/Machine Learning/Regression/R - Logistic (XOR и полиномы).py" />
-        <option value="$PROJECT_DIR$/Machine Learning/RF/RF.py" />
         <option value="$PROJECT_DIR$/Machine Learning/Entropy, Jini graphs.py" />
         <option value="$PROJECT_DIR$/Machine Learning/Regression/R (SGD) - Logistic (отказы клиентов и оптимизация модели).py" />
+        <option value="$PROJECT_DIR$/Machine Learning/Regression/R (SGD) - Logistic (отказы клиентов и кривые валидации).py" />
+        <option value="$PROJECT_DIR$/Machine Learning/Regression/R (SGD) - Logistic (отказы клиентов и кривые валидации_обучения).py" />
+        <option value="$PROJECT_DIR$/Machine Learning/DT/DT - Regressor.py" />
+        <option value="$PROJECT_DIR$/ml_examples/ml_examples.py" />
+        <option value="$PROJECT_DIR$/ml_examples/bagging_vs_destree.py" />
+        <option value="$PROJECT_DIR$/Machine Learning/DT/DT - Regressor (Bagging и его эффективность).py" />
+        <option value="$PROJECT_DIR$/ml_examples/bootstrap_on_telecom.py" />
+        <option value="$PROJECT_DIR$/Machine Learning/bootstrap_on_telecom.py" />
+        <option value="$PROJECT_DIR$/Machine Learning/Mix - Classification/classifier_bagging_vs_detree_vs_randforest.py" />
+        <option value="$PROJECT_DIR$/Machine Learning/RF/RF.py" />
+        <option value="$PROJECT_DIR$/Machine Learning/RF/random_forest_and_telecom.py" />
+        <option value="$PROJECT_DIR$/ml_examples/random_forest_importance_features.py" />
+        <option value="$PROJECT_DIR$/Machine Learning/RF/random_forest_importance_features.py" />
+        <option value="$PROJECT_DIR$/Machine Learning/RF/RF -  Regressor.py" />
+        <option value="$PROJECT_DIR$/ml_examples/regression_bagging_vs_detree_vs_randforest.py" />
+        <option value="$PROJECT_DIR$/Machine Learning/Mix - Regressor/DT, BagDT, RF - Regressor.py" />
+        <option value="$PROJECT_DIR$/additional_lib.py" />
+        <option value="$PROJECT_DIR$/ml_examples/Unsupervised Learning/Agglomerative_clustering.py" />
+        <option value="$PROJECT_DIR$/ml_examples/Unsupervised Learning/Clasters_K_average.py" />
+        <option value="$PROJECT_DIR$/ml_examples/Unsupervised Learning/Clasters_metrics.py" />
+        <option value="$PROJECT_DIR$/ml_examples/Unsupervised Learning/PCA_iris.py" />
+        <option value="$PROJECT_DIR$/ml_examples/Unsupervised Learning/PCA_TSNE_digits.py" />
       </list>
     </option>
   </component>
@@ -114,7 +138,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -131,18 +154,52 @@
               <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
               <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
               <item name="Machine Learning" type="462c0819:PsiDirectoryNode" />
-              <item name="Mix - Classification" type="462c0819:PsiDirectoryNode" />
+              <item name="Unsupervised" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
+              <item name="Machine Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="Unsupervised" type="462c0819:PsiDirectoryNode" />
+              <item name="Dimen. Reduction" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
+              <item name="ml_examples" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
+              <item name="ml_examples" type="462c0819:PsiDirectoryNode" />
+              <item name="Unsupervised Learning" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Python Git\My_Libs\Machine Learning\Unsupervised\Dimen. Reduction" />
+      <recent name="D:\Python Git\My_Libs\Machine Learning\Unsupervised\PCA" />
+      <recent name="D:\Python Git\My_Libs\Machine Learning\Unsupervised" />
+      <recent name="D:\Python Git\My_Libs\Machine Learning\Supervised" />
+      <recent name="D:\Python Git\My_Libs\Machine Learning\Clustering" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Python Git\My_Libs\Machine Learning\RF\data" />
+      <recent name="D:\Python Git\My_Libs\Machine Learning\RF" />
+      <recent name="D:\Python Git\My_Libs\Machine Learning\data" />
+      <recent name="D:\Python Git\My_Libs\Machine Learning\DT" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -156,18 +213,18 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Entropy, Jini graphs">
-    <configuration name="Entropy, Jini graphs" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.PCA_TSNE_digits">
+    <configuration name="Agglomerative_clustering" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="My_Libs" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Machine Learning" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml_examples/Unsupervised Learning" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Machine Learning/Entropy, Jini graphs.py" />
+      <option name="SCRIPT_NAME" value="D:\Python Git\My_Libs\Machine Learning\Clastering\Hierarc_Cluster (на основе минимального расстояния).py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -176,17 +233,17 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="R - Logistic (отзывы о фильмах)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Clasters_K_average" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="My_Libs" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Machine Learning/Regression" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml_examples/Unsupervised Learning" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Machine Learning/Regression/R - Logistic (отзывы о фильмах).py" />
+      <option name="SCRIPT_NAME" value="D:\Python Git\My_Libs\Machine Learning\Clustering\KMC (создаём вручную ).py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -195,17 +252,17 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="R - Logistic (XOR и полиномы)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Clasters_metrics" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="My_Libs" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Machine Learning/Regression" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml_examples/Unsupervised Learning" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Machine Learning/Regression/R - Logistic (XOR и полиномы).py" />
+      <option name="SCRIPT_NAME" value="D:\Python Git\My_Libs\Machine Learning\Clustering\KMC, AP, SC, AC (методы их оценки).py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -214,20 +271,36 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="R - Logistic" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="PCA_TSNE_digits" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="My_Libs" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Machine Learning/Regression" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml_examples/Unsupervised Learning" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Machine Learning/Regression/R - Logistic.py" />
+      <option name="SCRIPT_NAME" value="D:\Python Git\My_Libs\Machine Learning\Unsupervised\Dimen. Reduction\t-SNE vs PCA (digits).py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="PCA_iris" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="My_Libs" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml_examples/Unsupervised Learning" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="D:\Python Git\My_Libs\Machine Learning\Unsupervised\PCA\PCA (Iris и определение важности информации).py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -258,39 +331,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="kNN, DT, RF (классификация цифр)" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="My_Libs" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Machine Learning/Mix - Classification" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Machine Learning/Mix - Classification/kNN, DT, RF (классификация цифр).py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="Python.R - Logistic" />
-      <item itemvalue="Python.kNN, DT, RF (классификация цифр)" />
-      <item itemvalue="Python.R - Logistic (отзывы о фильмах)" />
-      <item itemvalue="Python.R - Logistic (XOR и полиномы)" />
-      <item itemvalue="Python.Entropy, Jini graphs" />
+      <item itemvalue="Python.Agglomerative_clustering" />
+      <item itemvalue="Python.Clasters_K_average" />
+      <item itemvalue="Python.Clasters_metrics" />
+      <item itemvalue="Python.PCA_iris" />
+      <item itemvalue="Python.PCA_TSNE_digits" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Entropy, Jini graphs" />
-        <item itemvalue="Python.R - Logistic (XOR и полиномы)" />
-        <item itemvalue="Python.R - Logistic (отзывы о фильмах)" />
-        <item itemvalue="Python.kNN, DT, RF (классификация цифр)" />
-        <item itemvalue="Python.R - Logistic" />
+        <item itemvalue="Python.PCA_TSNE_digits" />
+        <item itemvalue="Python.PCA_iris" />
+        <item itemvalue="Python.Clasters_metrics" />
+        <item itemvalue="Python.Clasters_K_average" />
+        <item itemvalue="Python.Agglomerative_clustering" />
       </list>
     </recent_temporary>
   </component>
@@ -309,11 +363,12 @@
       <workItem from="1548158428725" duration="10883000" />
       <workItem from="1548331186320" duration="851000" />
       <workItem from="1548332765057" duration="7164000" />
+      <workItem from="1548415016250" duration="18735000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31676000" />
+    <option name="totallyTimeSpent" value="50411000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -327,11 +382,11 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16897655" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1705757" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3290461" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.3290461" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.34653464" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -340,7 +395,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3290461" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3290461" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" visible="true" weight="0.34297964" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.34297964" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -348,7 +403,7 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="R Graphics" order="3" sideWeight="0.49858758" weight="0.32995737" />
       <window_info anchor="right" id="R Packages" order="4" sideWeight="0.49858758" weight="0.32995737" />
-      <window_info active="true" anchor="right" x="0" y="0" width="434" height="866" id="Documentation" order="5" sideWeight="0.5040783" side_tool="true" visible="true" weight="0.3139659" />
+      <window_info anchor="right" x="0" y="0" width="434" height="866" id="Documentation" order="5" sideWeight="0.5040783" side_tool="true" visible="true" weight="0.31503198" />
       <window_info anchor="right" id="Database" order="6" sideWeight="0.49858758" weight="0.32995737" />
       <window_info anchor="right" x="2504" y="247" width="589" height="304" id="SciView" maximized="true" order="7" sideWeight="0.4959217" type="WINDOWED" weight="0.3139659" />
     </layout>
@@ -370,45 +425,12 @@
       </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/pycharm64.exe.vmoptions" />
-    <entry file="file://$PROJECT_DIR$/Machine Learning/Clastering/t-SNE.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Machine Learning/DT/DT-Classifier 1.py" />
     <entry file="file://$PROJECT_DIR$/Machine Learning/DT/DT-Classifier (отображение дерева в png).py" />
     <entry file="file://$PROJECT_DIR$/Machine Learning/DT/DT-Classifier (невозврат кредита).py" />
-    <entry file="file://$PROJECT_DIR$/Machine Learning/DT/DT - Regressor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="39" column="10" lean-forward="true" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Machine Learning/kNN/kNN, DT, RF.py" />
-    <entry file="file://$PROJECT_DIR$/Machine Learning/DT/DT - Classifier (отображение дерева в png).py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Machine Learning/kNN/Большое количество признаков.py" />
     <entry file="file://$PROJECT_DIR$/Machine Learning/Regression/R - Logistic.py" />
-    <entry file="file://$PROJECT_DIR$/Machine Learning/Mix - Classification/kNN, DT, RF (классификация цифр).py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -416,26 +438,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Machine Learning/Mix - Classification/kNN, DT (простая классификация).py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-          <folding>
-            <element signature="e#0#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Machine Learning/Regression/R - Logistic (полиномы и cross-val).py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Machine Learning/Regression/R - Logistic (отзывы о фильмах).py">
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/Regression/R - Logistic (отзывы о фильмах).py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="836">
           <caret line="76" column="78" lean-forward="true" selection-start-line="76" selection-start-column="78" selection-end-line="76" selection-end-column="78" />
@@ -445,20 +448,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Machine Learning/Regression/R - Logistic (XOR и полиномы).py">
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/Regression/R - Logistic (XOR и полиномы).py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="513">
           <caret line="45" column="68" lean-forward="true" selection-start-line="45" selection-start-column="68" selection-end-line="45" selection-end-column="68" />
           <folding>
             <element signature="e#0#4#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Machine Learning/RF/RF.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>
@@ -472,9 +468,224 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/Regression/R (SGD) - Logistic (отказы клиентов и кривые валидации_обучения).py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="811">
+          <caret line="65" column="54" lean-forward="true" selection-start-line="65" selection-start-column="54" selection-end-line="65" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#4#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/DT/DT - Logistic (отображение дерева в png).py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="40" column="11" lean-forward="true" selection-start-line="40" selection-start-column="11" selection-end-line="40" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/DT/DT - Logistic (невозврат кредита).py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-135">
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/DT/DT - Regressor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="27" column="37" lean-forward="true" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/Mix - Logistic/kNN, DT, RF (отказы клиентов).py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-167">
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/Regression/R - Logistic (полиномы и cross-val).py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1156">
+          <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/Mix - Logistic/kNN, DT, RF (классификация цифр).py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/Mix - Logistic/kNN, DT (простая классификация).py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-203">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="e#0#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/kNN/kNN - Regressor (случайные признаки).py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ml_examples/ml_examples.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="633">
+          <caret line="65" selection-start-line="65" selection-end-line="65" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ml_examples/bagging_vs_destree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1394">
+          <caret line="82" column="27" selection-start-line="82" selection-start-column="19" selection-end-line="82" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/data/telecom_churn.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Бутстреп и доверительный интервал.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="19" column="21" lean-forward="true" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+            <marker date="1548425659169" expanded="true" signature="824:834" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/RF/data/telecom_churn.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/RF/RF - Logistic (кросс-валидируем и гридсёрчим вручную).py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/RF/RF - Logistic (кросс-валидируем и гридсёрчим вручную).py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="55" lean-forward="true" selection-start-line="18" selection-start-column="55" selection-end-line="18" selection-end-column="55" />
+          <folding>
+            <element signature="e#2#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/Mix - Logistic/DT, BagDT, RF (эффекивность бэггинга).py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/RF/data/hostel_factors.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/RF/RF -  Regressor (отображаем важность признаков).py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="47" column="27" lean-forward="true" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/DT/DT - Regressor (Bagging и его эффективность).py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="48" column="51" lean-forward="true" selection-start-line="48" selection-start-column="51" selection-end-line="48" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ml_examples/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/additional_lib.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/Mix - Regressor/DT, BagDT, RF - Regressor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1156">
+          <caret line="68" selection-start-line="68" selection-end-line="68" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Unsupervised/Clustering/Hierarc_Cluster (на основе минимального расстояния).py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="8" lean-forward="true" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Unsupervised/Clustering/KMC, AP, SC, AC (методы их оценки).py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" column="14" selection-start-line="33" selection-start-column="14" selection-end-line="33" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Unsupervised/Clustering/KMC (создаём вручную ).py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1139">
+          <caret line="67" column="10" selection-start-line="67" selection-start-column="10" selection-end-line="67" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/drawnings_lib.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-289">
+        <state relative-caret-position="17">
           <caret line="29" column="44" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
@@ -482,19 +693,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Machine Learning/Regression/R (SGD) - Logistic (отказы клиентов и оптимизация модели).py">
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Unsupervised/PCA/PCA (Iris и определение важности информации).py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="51" selection-start-line="51" selection-end-line="51" />
+        <state relative-caret-position="460">
+          <caret line="72" selection-start-line="72" selection-end-line="72" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ml_examples/ml_examples.py">
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Unsupervised/PCA/t-SNE.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="558" selection-start-line="558" selection-end-line="609" />
+        <state relative-caret-position="17">
+          <caret line="1" column="32" lean-forward="true" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Unsupervised/Dimen. Reduction/t-SNE vs PCA (digits).py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="54" lean-forward="true" selection-start-line="26" selection-start-column="54" selection-end-line="26" selection-end-column="54" />
           <folding>
-            <element signature="e#0#47#0" expanded="true" />
+            <element signature="e#0#33#0" expanded="true" />
           </folding>
         </state>
       </provider>

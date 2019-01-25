@@ -1,8 +1,8 @@
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import BaggingRegressor
+
 import numpy as np
 import matplotlib.pyplot as plt
-
-from sklearn.ensemble import BaggingRegressor
-from sklearn.tree import DecisionTreeRegressor
 
 # Settings
 n_repeat = 50
@@ -13,15 +13,16 @@ noise = .1  # Std of the noise
 np.random.seed(0)
 plt.figure(figsize=(10, 8))
 
-estimators = [('Tree', DecisionTreeRegressor()),
-              ('Bagging(Tree)', BaggingRegressor(DecisionTreeRegressor()))]
+estimators = [
+    ('Tree', DecisionTreeRegressor()),
+    ('Bagging(Tree)', BaggingRegressor(DecisionTreeRegressor()))
+]
 n_estimators = len(estimators)
 
 
 # Generate data
 def f(x):
     x = x.ravel()
-
     return np.exp(-x ** 2) + 1.5 * np.exp(-(x - 2) ** 2)
 
 
@@ -38,7 +39,6 @@ def generate(n_samples, noise, n_repeat=1):
             y[:, i] = f(X) + np.random.normal(0.0, noise, n_samples)
 
     X = X.reshape((n_samples, 1))
-
     return X, y
 
 
@@ -73,8 +73,8 @@ for n, (name, estimator) in enumerate(estimators):
     y_var = np.var(y_predict, axis=1)
 
     print("{0}: {1:.4f} (error) = {2:.4f} (bias^2) + {3:.4f} (var) + {4:.4f} (noise)".format(
-        name, np.mean(y_error), np.mean(y_bias), np.mean(y_var), np.mean(y_noise)
-    ))
+        name, np.mean(y_error), np.mean(y_bias), np.mean(y_var), np.mean(y_noise))
+    )
 
     plt.subplot(2, n_estimators, n + 1)
     plt.plot(X_test, f(X_test), "b", label="$f(x)$")
@@ -98,7 +98,6 @@ for n, (name, estimator) in enumerate(estimators):
     plt.plot(X_test, y_bias, "b", label="$bias^2(x)$"),
     plt.plot(X_test, y_var, "g", label="$variance(x)$"),
     plt.plot(X_test, y_noise, "c", label="$noise(x)$")
-
     plt.xlim([-5, 5])
     plt.ylim([0, 0.1])
 

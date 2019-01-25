@@ -22,7 +22,7 @@ def func_for_elements(x: list):
 # DecisionTreeRegressor
 # Применяем дерево решений на синтетических данных. Тут, для решения количественной классификации.
 n_train = 150
-n_test = 1000
+n_test = 1_000
 noise = 0.1
 
 X_train, y_train = generate_samples_and_noise(n_samples=n_train, noise=noise)
