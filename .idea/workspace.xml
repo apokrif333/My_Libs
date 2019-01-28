@@ -31,7 +31,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/drawnings_lib.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
+            <state relative-caret-position="391">
               <caret line="29" column="44" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
@@ -43,11 +43,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Machine Learning/Unsupervised/Dimen. Reduction/t-SNE vs PCA (digits).py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="54" lean-forward="true" selection-start-line="26" selection-start-column="54" selection-end-line="26" selection-end-column="54" />
-              <folding>
-                <element signature="e#0#33#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="255">
+              <caret line="20" column="39" lean-forward="true" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -72,6 +69,8 @@
       <find>y_bias</find>
       <find>print</find>
       <find>train_acc</find>
+      <find>dataset</find>
+      <find>random</find>
     </findStrings>
     <replaceStrings>
       <replace>/</replace>
@@ -123,6 +122,9 @@
         <option value="$PROJECT_DIR$/ml_examples/Unsupervised Learning/Clasters_metrics.py" />
         <option value="$PROJECT_DIR$/ml_examples/Unsupervised Learning/PCA_iris.py" />
         <option value="$PROJECT_DIR$/ml_examples/Unsupervised Learning/PCA_TSNE_digits.py" />
+        <option value="$PROJECT_DIR$/ml_examples/Time and data/AverageData_XGBoosting.py" />
+        <option value="$PROJECT_DIR$/Machine Learning/Supervised/GB/123.py" />
+        <option value="$PROJECT_DIR$/Machine Learning/Supervised/GB/AverageData_XGBoosting.py" />
       </list>
     </option>
   </component>
@@ -138,6 +140,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -145,60 +148,31 @@
               <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
               <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
-              <item name="Machine Learning" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
-              <item name="Machine Learning" type="462c0819:PsiDirectoryNode" />
-              <item name="Unsupervised" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
-              <item name="Machine Learning" type="462c0819:PsiDirectoryNode" />
-              <item name="Unsupervised" type="462c0819:PsiDirectoryNode" />
-              <item name="Dimen. Reduction" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
-              <item name="ml_examples" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
-              <item name="ml_examples" type="462c0819:PsiDirectoryNode" />
-              <item name="Unsupervised Learning" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="E:/Python/Short_and_SPY" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Python Git\My_Libs\Machine Learning\Unsupervised\Dimen. Reduction" />
-      <recent name="D:\Python Git\My_Libs\Machine Learning\Unsupervised\PCA" />
-      <recent name="D:\Python Git\My_Libs\Machine Learning\Unsupervised" />
-      <recent name="D:\Python Git\My_Libs\Machine Learning\Supervised" />
-      <recent name="D:\Python Git\My_Libs\Machine Learning\Clustering" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Python Git\My_Libs\Machine Learning\Supervised\GB\data" />
       <recent name="D:\Python Git\My_Libs\Machine Learning\RF\data" />
       <recent name="D:\Python Git\My_Libs\Machine Learning\RF" />
       <recent name="D:\Python Git\My_Libs\Machine Learning\data" />
       <recent name="D:\Python Git\My_Libs\Machine Learning\DT" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Python Git\My_Libs\Machine Learning\Supervised\GB" />
+      <recent name="D:\Python Git\My_Libs\Machine Learning\Unsupervised\Dimen. Reduction" />
+      <recent name="D:\Python Git\My_Libs\Machine Learning\Unsupervised\PCA" />
+      <recent name="D:\Python Git\My_Libs\Machine Learning\Unsupervised" />
+      <recent name="D:\Python Git\My_Libs\Machine Learning\Supervised" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -213,18 +187,18 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.PCA_TSNE_digits">
-    <configuration name="Agglomerative_clustering" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.AverageData_XGBoosting (1)">
+    <configuration name="123" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="My_Libs" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml_examples/Unsupervised Learning" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Machine Learning/Supervised/GB" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="D:\Python Git\My_Libs\Machine Learning\Clastering\Hierarc_Cluster (на основе минимального расстояния).py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Machine Learning/Supervised/GB/123.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -233,17 +207,17 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Clasters_K_average" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="AverageData_XGBoosting (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="My_Libs" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml_examples/Unsupervised Learning" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Machine Learning/Supervised/GB" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="D:\Python Git\My_Libs\Machine Learning\Clustering\KMC (создаём вручную ).py" />
+      <option name="SCRIPT_NAME" value="D:\Python Git\My_Libs\Machine Learning\Supervised\GB\XGB - Regressor (количество пользователей онлайн).py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -252,17 +226,17 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Clasters_metrics" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="AverageData_XGBoosting" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="My_Libs" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml_examples/Unsupervised Learning" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml_examples/Time and data" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="D:\Python Git\My_Libs\Machine Learning\Clustering\KMC, AP, SC, AC (методы их оценки).py" />
+      <option name="SCRIPT_NAME" value="D:\Python Git\My_Libs\Machine Learning\Supervised\GB\XGB - Regressor (количество пользователей онлайн).py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -275,6 +249,9 @@
       <module name="My_Libs" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml_examples/Unsupervised Learning" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -294,6 +271,9 @@
       <module name="My_Libs" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml_examples/Unsupervised Learning" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -332,19 +312,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.Agglomerative_clustering" />
-      <item itemvalue="Python.Clasters_K_average" />
-      <item itemvalue="Python.Clasters_metrics" />
       <item itemvalue="Python.PCA_iris" />
       <item itemvalue="Python.PCA_TSNE_digits" />
+      <item itemvalue="Python.AverageData_XGBoosting" />
+      <item itemvalue="Python.AverageData_XGBoosting (1)" />
+      <item itemvalue="Python.123" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.AverageData_XGBoosting (1)" />
+        <item itemvalue="Python.123" />
+        <item itemvalue="Python.AverageData_XGBoosting" />
         <item itemvalue="Python.PCA_TSNE_digits" />
         <item itemvalue="Python.PCA_iris" />
-        <item itemvalue="Python.Clasters_metrics" />
-        <item itemvalue="Python.Clasters_K_average" />
-        <item itemvalue="Python.Agglomerative_clustering" />
       </list>
     </recent_temporary>
   </component>
@@ -364,11 +344,13 @@
       <workItem from="1548331186320" duration="851000" />
       <workItem from="1548332765057" duration="7164000" />
       <workItem from="1548415016250" duration="18735000" />
+      <workItem from="1548675219902" duration="868000" />
+      <workItem from="1548683431532" duration="8090000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50411000" />
+    <option name="totallyTimeSpent" value="59369000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -382,11 +364,11 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1705757" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17377399" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.3290461" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3290461" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.34653464" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -394,8 +376,8 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3290461" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3290461" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3290461" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.34297964" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.06663113" side_tool="true" weight="0.34190783" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.93336886" visible="true" weight="0.34190783" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -405,7 +387,7 @@
       <window_info anchor="right" id="R Packages" order="4" sideWeight="0.49858758" weight="0.32995737" />
       <window_info anchor="right" x="0" y="0" width="434" height="866" id="Documentation" order="5" sideWeight="0.5040783" side_tool="true" visible="true" weight="0.31503198" />
       <window_info anchor="right" id="Database" order="6" sideWeight="0.49858758" weight="0.32995737" />
-      <window_info anchor="right" x="2504" y="247" width="589" height="304" id="SciView" maximized="true" order="7" sideWeight="0.4959217" type="WINDOWED" weight="0.3139659" />
+      <window_info anchor="right" x="1920" y="23" width="1920" height="1057" id="SciView" order="7" sideWeight="0.4959217" type="WINDOWED" visible="true" weight="0.3139659" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -553,26 +535,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ml_examples/ml_examples.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="633">
-          <caret line="65" selection-start-line="65" selection-end-line="65" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ml_examples/bagging_vs_destree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1394">
-          <caret line="82" column="27" selection-start-line="82" selection-start-column="19" selection-end-line="82" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/ml_examples/ml_examples.py" />
+    <entry file="file://$PROJECT_DIR$/ml_examples/bagging_vs_destree.py" />
     <entry file="file://$PROJECT_DIR$/Machine Learning/data/telecom_churn.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -588,9 +552,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/RF/data/telecom_churn.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/RF/RF - Logistic (кросс-валидируем и гридсёрчим вручную).py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/RF/RF - Logistic (кросс-валидируем и гридсёрчим вручную).py">
@@ -683,9 +644,11 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Unsupervised/PCA/PCA (Iris и определение важности информации).py" />
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Unsupervised/PCA/t-SNE.py" />
     <entry file="file://$PROJECT_DIR$/drawnings_lib.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="391">
           <caret line="29" column="44" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
@@ -693,27 +656,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Machine Learning/Unsupervised/PCA/PCA (Iris и определение важности информации).py">
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/GB/data/hour_online.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/GB/123.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="72" selection-start-line="72" selection-end-line="72" />
+        <state relative-caret-position="290">
+          <caret line="89" column="4" selection-start-line="89" selection-start-column="4" selection-end-line="89" selection-end-column="82" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Machine Learning/Unsupervised/PCA/t-SNE.py">
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/GB/XGB - Regressor (количество пользователей онлайн).py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="32" lean-forward="true" selection-start-line="1" selection-start-column="32" selection-end-line="1" selection-end-column="32" />
+        <state relative-caret-position="374">
+          <caret line="22" column="49" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Machine Learning/Unsupervised/Dimen. Reduction/t-SNE vs PCA (digits).py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="54" lean-forward="true" selection-start-line="26" selection-start-column="54" selection-end-line="26" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="255">
+          <caret line="20" column="39" lean-forward="true" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="39" />
         </state>
       </provider>
     </entry>

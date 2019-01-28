@@ -1,5 +1,5 @@
-from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, mean_squared_error
 
 import xgboost as xgb
 import warnings; warnings.filterwarnings('ignore')
@@ -26,7 +26,7 @@ def prepateData(data, lag_start=5, lag_end=20, test_size=0.15):
     for i in range(lag_start, lag_end):
         data[f"lag_{i}"] = data.y.shift(i)
 
-    data.index = pd.to_datetime(data.index)
+    data.index = data.index.to_pydatetime()
     data['hour'] = data.index.weekday
     data['weekday'] = data.index.weekday
     data['is_weekend'] = data.weekday.isin([5, 6]) * 1
@@ -61,7 +61,7 @@ def performTimeSeriesCV(X_train, y_train, number_folds, model, metrics):
         print('Splitting the first ' + str(i) + ' chunks at ' + str(i - 1) + '/' + str(i))
 
         X = X_train[:(k*i)]
-        y = y_train[:(k * i)]
+        y = y_train[:(k*i)]
         print('Size of train + test: {}'.format(X.shape))
 
         index = int(np.floor(X.shape[0] * split))
@@ -79,29 +79,33 @@ def performTimeSeriesCV(X_train, y_train, number_folds, model, metrics):
 
 
 def XGB_forecast(data, lag_start=5, lag_end=20, test_size=0.15, scale=1.96):
-    X_train, X_test, y_train, y_test = prepateData(dataset.Users, lag_start, lag_end, test_size)
+    X_train, X_test, y_train, y_test = prepateData(dataset, lag_start, lag_end, test_size)
     dtrain = xgb.DMatrix(X_train, label=y_train)
     dtest = xgb.DMatrix(X_test)
 
-    params = {'objective': 'reg:linear',
-              'booster':'gblinear'}
+    params = {
+        'objective': 'reg:linear',
+        'booster':'gblinear'
+    }
     trees = 1_000
 
     # Кросс-валидация и метрика rmse
-    cv = xgb.cv(params, dtrain, metrics=('rmse'), verbose_eval=False, nfold=10, show_stdv=False, num_boost_round=trees)
+    cv = xgb.cv(params, dtrain, metrics=('rmse'), verbose_eval=False, nfold=10, show_stdv=False, num_boost_round=trees,
+                seed=60)
     bst = xgb.train(params, dtrain, num_boost_round=cv['test-rmse-mean'].argmin())
 
     # Кривые валидации и ошибка
     # cv.plot(y=['test-mae-mean', 'train-mae-mean'])
-    deviation = cv.loc[cv['test-rmse-mean'].argmin(), 'test-rmse-mean']
+    deviation = cv.loc[cv['test-rmse-mean'].argmin()]["test-rmse-mean"]
 
     # Как модель вела себя на тренировочном отрезке ряда
     prediction_train = bst.predict(dtrain)
     plt.figure(figsize=(15, 5))
-    plt.plot(prediction_train)
-    plt.plot(y_train)
+    plt.plot(prediction_train, label='prediction')
+    plt.plot(y_train, label='y_train')
     plt.axis('tight')
     plt.grid(True)
+    plt.legend()
 
     # Как модель вела себя на тестовом ряде
     prediction_test = bst.predict(dtest)
@@ -124,9 +128,7 @@ def XGB_forecast(data, lag_start=5, lag_end=20, test_size=0.15, scale=1.96):
     plt.legend()
 
 
-dataset = pd.read_csv('D:/Py_Projects/GitHub/My_Libs/ml_examples/test_data/hour_online.csv',
-                      index_col=['Time'],
-                      parse_dates=['Time'])
+dataset = pd.read_csv('data/hour_online.csv', index_col=['Time'], parse_dates=['Time'])
 
 # Линейная регрессия
 X_train, X_test, y_train, y_test = prepateData(dataset.Users, test_size=0.3, lag_start=12, lag_end=48)
@@ -145,5 +147,6 @@ plt.show()
 print(performTimeSeriesCV(X_train, y_train, 5, lr, mean_absolute_error))
 
 # XGBoost
+# Какая-то дикая трабла с seed. В зависимости от компа и seed, результаты для xgb меняются абсолютно.
 XGB_forecast(dataset, test_size=0.2, lag_start=5, lag_end=30)
 plt.show()
