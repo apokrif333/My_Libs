@@ -94,7 +94,8 @@ def download_alpha(ticker: str, base_dir: str = default_data_dir) -> pd.DataFram
         dic_with_prices(prices, ticker, date, secondary_dic['1. open'], secondary_dic['2. high'],
                         secondary_dic['3. low'], secondary_dic['4. close'], secondary_dic['5. volume'])
 
-    frame = pd.DataFrame.from_dict(prices, orient='index', columns=['Open', 'High', 'Low', 'Close', 'Volume'])
+    frame = pd.DataFrame.from_dict(prices, orient='index',
+                                   columns=['Open', 'High', 'Low', 'Close', 'Volume', 'Dividend'])
     save_csv(base_dir, ticker, frame, 'alpha')
     time.sleep(15 if alpha_count != 0 else 0)
     alpha_count += 1
@@ -140,11 +141,11 @@ def dic_with_prices(prices: dict, ticker: str, date: datetime, open, high, low, 
         print(f'Найден выходной в {ticker} на {date}')
         return
 
-    open = number_to_float(open)
-    high = number_to_float(high)
-    low = number_to_float(low)
-    close = number_to_float(close)
-    volume = number_to_int(volume)
+    open = number_to_float(float(open))
+    high = number_to_float(float(high))
+    low = number_to_float(float(low))
+    close = number_to_float(float(close))
+    volume = number_to_int(float(volume))
 
     error_price = (not empty_check(open)) or (not empty_check(high)) or (not empty_check(low)) or (
         not empty_check(close))
