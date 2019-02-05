@@ -7,6 +7,7 @@ def vectorize(text):
     vector = np.zeros(len(dictionary))
     for i, word in dictionary:
         num = 0
+
         for w in text:
             if w == word:
                num += 1

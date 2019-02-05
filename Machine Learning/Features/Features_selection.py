@@ -16,7 +16,7 @@ print(VarianceThreshold(.7).fit_transform(x_data_generated).shape)
 print(VarianceThreshold(.85).fit_transform(x_data_generated).shape)
 print(VarianceThreshold(.9).fit_transform(x_data_generated).shape)
 
-# Сравниваем чистые данные, удалённую дисперисию и скоринг качества классификации(KBest)
+# Сравниваем чистые данные, удалённую дисперcию и скоринг качества классификации(KBest)
 x_data_varth = VarianceThreshold(.9).fit_transform(x_data_generated)
 x_data_kbest = SelectKBest(f_classif, k=5).fit_transform(x_data_generated, y_data_generated)
 kb_var = SelectKBest(f_classif, k=5).fit_transform(x_data_varth, y_data_generated)

@@ -2,12 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="42ec38f9-cfae-4a2a-b05b-42491c2b3fd9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Machine Learning/Features/data/train.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Machine Learning/Features/data/bank_train.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Machine Learning/Features/data/bank_train_target.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/My_Libs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/My_Libs.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_examples/Features/Bag_of_Words.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/Features/Bag_of_Words (Vectorize).py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_examples/Features/Features_selection.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/Features/Features_selection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Machine Learning/Features/Bag_of_Words (Vectorize).py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/Features/Bag_of_Words (Vectorize).py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Machine Learning/Features/Features_selection.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/Features/Features_selection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_examples/Features/Features_with_classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/Features/Label_vs_OneHot_Encoders.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_examples/Features/Lasso_Ridge_Regressions_and_Features_Selection.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/Features/Lasso_vs_Ridge (Влияние альфы на признаки и веса).py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_examples/Features/Scalling.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/Features/Scalling.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_examples/Features/Texts_and_N_Grams.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/Features/N_Grams_and_Vectorizer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_examples/Features/Use_Scalers_in_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/Features/Scaler_and_Regression.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_examples/Features/Web_features.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/Features/Features_from_Web.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_examples/Features/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_examples/Time and data/Mov_Average.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/MovAverages_and_Plotly.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_examples/Time and data/White_noise.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/WhiteNoise_and_DickeyFuller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_examples/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_examples/historical_data/AAPL NonSplit.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_examples/test_data/hour_online.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/data/hour_online.csv" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,37 +44,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/drawnings_lib.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="29" column="44" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/Mix - Regressor/DT, BagDT, RF - Regressor.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1054">
-              <caret line="68" selection-start-line="68" selection-end-line="68" />
-              <folding>
-                <element signature="e#0#47#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Machine Learning/Features/Features_selection.py">
+        <entry file="file://$PROJECT_DIR$/Machine Learning/WhiteNoise_and_DickeyFuller.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="38" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
+            <state relative-caret-position="219">
+              <caret line="18" column="44" lean-forward="true" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
               <folding>
-                <element signature="e#0#63#0" expanded="true" />
+                <element signature="e#0#21#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -102,15 +91,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ml_examples/Time and data/Name_me.py" />
-        <option value="$PROJECT_DIR$/ml_examples/Time and data/Mov_Average.py" />
-        <option value="$PROJECT_DIR$/ml_examples/Time and data/del.py" />
-        <option value="$PROJECT_DIR$/ml_examples/Time and data/Time_CV.py" />
-        <option value="$PROJECT_DIR$/ml_examples/Time and data/Average_Holt_Winters.py" />
-        <option value="$PROJECT_DIR$/ml_examples/Time and data/Holt_Winters_and_TSCV.py" />
-        <option value="$PROJECT_DIR$/Machine Learning/Clastering/t-SNE.py" />
-        <option value="$PROJECT_DIR$/Machine Learning/DT/DT-Classifier 1.py" />
-        <option value="$PROJECT_DIR$/Machine Learning/DT/DT-Classifier (отображение дерева в png).py" />
         <option value="$PROJECT_DIR$/Machine Learning/DT/DT-Classifier (невозврат кредита).py" />
         <option value="$PROJECT_DIR$/Machine Learning/kNN/kNN, DT, RF.py" />
         <option value="$PROJECT_DIR$/Machine Learning/kNN/Большое количество признаков.py" />
@@ -150,14 +130,26 @@
         <option value="$PROJECT_DIR$/ml_examples/Features/Bag_of_Words.py" />
         <option value="$PROJECT_DIR$/ml_examples/Features/Features_selection.py" />
         <option value="$PROJECT_DIR$/Machine Learning/Features/Features_selection.py" />
+        <option value="$PROJECT_DIR$/ml_examples/Features/Features_with_classes.py" />
+        <option value="$PROJECT_DIR$/Machine Learning/Features/Features_with_classes.py" />
+        <option value="$PROJECT_DIR$/ml_examples/Features/Lasso_Ridge_Regressions_and_Features_Selection.py" />
+        <option value="$PROJECT_DIR$/Machine Learning/Features/Bag_of_Words (Vectorize).py" />
+        <option value="$PROJECT_DIR$/Machine Learning/Features/Scalling.py" />
+        <option value="$PROJECT_DIR$/Machine Learning/Features/Use_Scalers_in_models.py" />
+        <option value="$PROJECT_DIR$/ml_examples/Features/Web_features.py" />
+        <option value="$PROJECT_DIR$/ml_examples/Time and data/HoltWinters_TSCV_SARIMA.py.py" />
+        <option value="$PROJECT_DIR$/ml_examples/Time and data/Mov_Average.py" />
+        <option value="$PROJECT_DIR$/Machine Learning/Mov_Average.py" />
+        <option value="$PROJECT_DIR$/Machine Learning/MovAverages_and_Plotly.py" />
+        <option value="$PROJECT_DIR$/ml_examples/Time and data/White_noise.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1912" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1096" />
+    <option name="x" value="3170" />
+    <option name="y" value="485" />
+    <option name="width" value="673" />
+    <option name="height" value="604" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -181,25 +173,13 @@
             <path>
               <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
               <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
-              <item name="Machine Learning" type="462c0819:PsiDirectoryNode" />
-              <item name="Features" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
               <item name="ml_examples" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
               <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
               <item name="ml_examples" type="462c0819:PsiDirectoryNode" />
-              <item name="Features" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
-              <item name="ml_examples" type="462c0819:PsiDirectoryNode" />
-              <item name="test_data" type="462c0819:PsiDirectoryNode" />
+              <item name="Time and data" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -209,23 +189,23 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="E:/Python/Short_and_SPY" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Py_Projects\GitHub\My_Libs\Machine Learning\Features" />
-      <recent name="D:\Python Git\My_Libs\Machine Learning\Supervised\GB" />
-      <recent name="D:\Python Git\My_Libs\Machine Learning\Unsupervised\Dimen. Reduction" />
-      <recent name="D:\Python Git\My_Libs\Machine Learning\Unsupervised\PCA" />
-      <recent name="D:\Python Git\My_Libs\Machine Learning\Unsupervised" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Python Git\My_Libs\Machine Learning\Features\data" />
       <recent name="D:\Py_Projects\GitHub\My_Libs\Machine Learning\Features\data" />
       <recent name="D:\Python Git\My_Libs\Machine Learning\Supervised\GB\data" />
       <recent name="D:\Python Git\My_Libs\Machine Learning\RF\data" />
       <recent name="D:\Python Git\My_Libs\Machine Learning\RF" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Python Git\My_Libs\Machine Learning" />
       <recent name="D:\Python Git\My_Libs\Machine Learning\data" />
+      <recent name="D:\Python Git\My_Libs\Machine Learning\Features" />
+      <recent name="D:\Py_Projects\GitHub\My_Libs\Machine Learning\Features" />
+      <recent name="D:\Python Git\My_Libs\Machine Learning\Supervised\GB" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -240,21 +220,18 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Features_selection (1)">
-    <configuration name="DT, BagDT, RF - Regressor" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.White_noise">
+    <configuration name="MovAverages_and_Plotly" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="My_Libs" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Machine Learning/Supervised/Mix - Regressor" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Machine Learning" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Machine Learning/Supervised/Mix - Regressor/DT, BagDT, RF - Regressor.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Machine Learning/MovAverages_and_Plotly.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -263,20 +240,17 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Features_selection (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Mov_Average" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="My_Libs" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Machine Learning/Features" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Machine Learning" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Machine Learning/Features/Features_selection.py" />
+      <option name="SCRIPT_NAME" value="D:\Python Git\My_Libs\Machine Learning\MovAverages_and_Plotly.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -285,20 +259,55 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Features_selection" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Texts_and_N_Grams" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="My_Libs" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml_examples/Features" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="D:\Py_Projects\GitHub\My_Libs\Machine Learning\Features\Features_selection.py" />
+      <option name="SCRIPT_NAME" value="D:\Python Git\My_Libs\Machine Learning\Features\N_Grams_and_Vectorizer.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Use_Scalers_in_models" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="My_Libs" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Machine Learning/Features" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="D:\Python Git\My_Libs\Machine Learning\Features\Scaler_and_Regression.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="White_noise" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="My_Libs" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml_examples/Time and data" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="D:\Python Git\My_Libs\Machine Learning\WhiteNoise_and_DickeyFuller.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -329,64 +338,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main_run" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="My_Libs" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../sma200_invest_model" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../sma200_invest_model/main_run.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="My_Libs" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml_examples" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ml_examples/test.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="Python.main_run" />
-      <item itemvalue="Python.test" />
-      <item itemvalue="Python.DT, BagDT, RF - Regressor" />
-      <item itemvalue="Python.Features_selection" />
-      <item itemvalue="Python.Features_selection (1)" />
+      <item itemvalue="Python.Texts_and_N_Grams" />
+      <item itemvalue="Python.Use_Scalers_in_models" />
+      <item itemvalue="Python.Mov_Average" />
+      <item itemvalue="Python.MovAverages_and_Plotly" />
+      <item itemvalue="Python.White_noise" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Features_selection (1)" />
-        <item itemvalue="Python.Features_selection" />
-        <item itemvalue="Python.DT, BagDT, RF - Regressor" />
-        <item itemvalue="Python.test" />
-        <item itemvalue="Python.main_run" />
+        <item itemvalue="Python.White_noise" />
+        <item itemvalue="Python.MovAverages_and_Plotly" />
+        <item itemvalue="Python.Mov_Average" />
+        <item itemvalue="Python.Use_Scalers_in_models" />
+        <item itemvalue="Python.Texts_and_N_Grams" />
       </list>
     </recent_temporary>
   </component>
@@ -416,7 +381,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63944000" />
+    <option name="totallyTimeSpent" value="75066000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -430,7 +395,7 @@
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18017058" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17857143" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -440,10 +405,10 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3281412" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3290461" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3281412" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3281412" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.06663113" side_tool="true" weight="0.34190783" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="10" sideWeight="0.93336886" visible="true" weight="0.28764278" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.93336886" visible="true" weight="0.33125648" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -451,67 +416,15 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="R Graphics" order="3" sideWeight="0.49858758" weight="0.32995737" />
       <window_info anchor="right" id="R Packages" order="4" sideWeight="0.49858758" weight="0.32995737" />
-      <window_info active="true" anchor="right" x="0" y="0" width="434" height="866" id="Documentation" order="5" sideWeight="0.5046729" side_tool="true" visible="true" weight="0.3139659" />
+      <window_info anchor="right" x="0" y="0" width="434" height="866" id="Documentation" order="5" sideWeight="0.50621116" side_tool="true" visible="true" weight="0.3139659" />
       <window_info anchor="right" id="Database" order="6" sideWeight="0.49858758" weight="0.32995737" />
-      <window_info anchor="right" x="-1920" y="23" width="1920" height="1057" id="SciView" order="7" sideWeight="0.49532712" weight="0.3139659" />
+      <window_info anchor="right" x="665" y="366" width="589" height="318" id="SciView" maximized="true" order="7" sideWeight="0.4937888" type="WINDOWED" weight="0.3139659" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ml_examples/Time and data/Holt_Winters_and_TSCV.py" />
-    <entry file="file://$PROJECT_DIR$/ml_examples/Time and data/Mov_Average.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/pycharm64.exe.vmoptions" />
-    <entry file="file://$PROJECT_DIR$/Machine Learning/DT/DT-Classifier 1.py" />
-    <entry file="file://$PROJECT_DIR$/Machine Learning/DT/DT-Classifier (отображение дерева в png).py" />
-    <entry file="file://$PROJECT_DIR$/Machine Learning/DT/DT-Classifier (невозврат кредита).py" />
-    <entry file="file://$PROJECT_DIR$/Machine Learning/kNN/kNN, DT, RF.py" />
-    <entry file="file://$PROJECT_DIR$/Machine Learning/kNN/Большое количество признаков.py" />
-    <entry file="file://$PROJECT_DIR$/Machine Learning/Regression/R - Logistic.py" />
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="46" lean-forward="true" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/Regression/R - Logistic (отзывы о фильмах).py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="836">
-          <caret line="76" column="78" lean-forward="true" selection-start-line="76" selection-start-column="78" selection-end-line="76" selection-end-column="78" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/Regression/R - Logistic (XOR и полиномы).py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="45" column="68" lean-forward="true" selection-start-line="45" selection-start-column="68" selection-end-line="45" selection-end-column="68" />
-          <folding>
-            <element signature="e#0#4#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Machine Learning/Entropy, Jini graphs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/Regression/R (SGD) - Logistic (отказы клиентов и кривые валидации_обучения).py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="811">
@@ -656,9 +569,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ml_examples/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/additional_lib.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -682,16 +592,6 @@
           <caret line="33" column="14" selection-start-line="33" selection-start-column="14" selection-end-line="33" selection-end-column="14" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Machine Learning/Unsupervised/Clustering/KMC (создаём вручную ).py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1139">
-          <caret line="67" column="10" selection-start-line="67" selection-start-column="10" selection-end-line="67" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -723,18 +623,8 @@
     <entry file="file://$PROJECT_DIR$/ml_examples/test.py" />
     <entry file="file://$PROJECT_DIR$/Machine Learning/Unsupervised/Dimen. Reduction/t-SNE vs PCA (digits).py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="34" column="27" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Machine Learning/Features/Bag_of_Words (Vectorize).py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="491">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
         </state>
       </provider>
     </entry>
@@ -763,10 +653,133 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Machine Learning/Features/Features_selection.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="38" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
+        <state relative-caret-position="850">
+          <caret line="56" column="24" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
           <folding>
             <element signature="e#0#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Features/Label_vs_OneHot_Encoders.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="50" column="60" lean-forward="true" selection-start-line="50" selection-start-column="60" selection-end-line="50" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Features/data/bank_train.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Features/Bag_of_Words (Vectorize).py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="9" lean-forward="true" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Features/qq_price_z.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Features/qq_price_mm.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Features/qq_price_log.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Features/Scalling.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+          <folding>
+            <element signature="e#0#62#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Features/Lasso_vs_Ridge (Влияние альфы на признаки и веса).py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="26" column="14" selection-start-line="26" selection-start-column="14" selection-end-line="26" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Features/N_Grams_and_Vectorizer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+          <folding>
+            <element signature="e#0#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Features/Scaler_and_Regression.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+          <folding>
+            <element signature="e#0#62#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ml_examples/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Features/Features_from_Web.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Unsupervised/Clustering/KMC (создаём вручную ).py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1139">
+          <caret line="67" column="10" selection-start-line="67" selection-start-column="10" selection-end-line="67" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ml_examples/Time and data/HoltWinters_TSCV_SARIMA.py.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/MovAverages_and_Plotly.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="118" lean-forward="true" selection-start-line="118" selection-end-line="118" />
+          <folding>
+            <element signature="e#0#77#0" expanded="true" />
+            <marker date="1549390099081" expanded="true" signature="2175:2215" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/WhiteNoise_and_DickeyFuller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="18" column="44" lean-forward="true" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
           </folding>
         </state>
       </provider>

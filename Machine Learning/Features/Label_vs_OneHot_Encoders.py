@@ -1,11 +1,11 @@
-import warnings; warnings.filterwarnings('ignore')
-import pandas as pd
-import matplotlib.pyplot as plt
-
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report
+
+import warnings; warnings.filterwarnings('ignore')
+import pandas as pd
+import matplotlib.pyplot as plt
 
 
 # Logistic Regression
@@ -18,21 +18,23 @@ def logistic_regression_accuracy(dataframe, labels):
     return classification_report(test_labels, logit.predict(test_features))
 
 
-df = pd.read_csv('D:/PycharmProjects/Start/GitHub/My_Libs/ml_examples/test_data/bank_train.csv')
-labels = pd.read_csv('D:/PycharmProjects/Start/GitHub/My_Libs/ml_examples/test_data/bank_train_target.csv', header=None)
+df = pd.read_csv('data/bank_train.csv')
+labels = pd.read_csv('data/bank_train_target.csv', header=None)
 
-# df['education'].value_counts().plot.barh()
-# plt.show()
+df['education'].value_counts().plot.barh()
+plt.show()
 
 # LabelEncoder
 label_encoder = LabelEncoder()
 mapped_education = pd.Series(label_encoder.fit_transform(df['education']))
-# mapped_education.value_counts().plot.barh()
-# plt.show()
+mapped_education.value_counts().plot.barh()
+plt.show()
 print(dict(enumerate(label_encoder.classes_)))
 df['education'] = mapped_education
 
+# Лейбим каждый признак
 categorical_columns = df.columns[df.dtypes == 'object'].union(['education'])
+print('Сategorical columns: ', categorical_columns)
 for column in categorical_columns:
     df[column] = label_encoder.fit_transform(df[column])
 

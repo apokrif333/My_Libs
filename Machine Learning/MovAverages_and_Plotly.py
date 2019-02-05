@@ -1,4 +1,4 @@
-from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
+from plotly.offline import plot
 from plotly import graph_objs as go
 
 import warnings; warnings.filterwarnings('ignore')
@@ -7,19 +7,20 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def plotly_df(df, title= ''):
+def plotly_df(df, title=''):
     data = []
 
     for column in df.columns:
-        trace = go.Scatter(x=df.index,
-                           y=df[column],
-                           mode='lines',
-                           name=column
-                           )
+        trace = go.Scatter(
+            x=df.index,
+            y=df[column],
+            mode='lines',
+            name=column
+        )
         data.append(trace)
 
     layout = dict(title=title)
-    fig = dict(data =data, layout=layout)
+    fig = dict(data=data, layout=layout)
     plot(fig, show_link=False)
 
 
@@ -78,38 +79,37 @@ def double_exponential_smoothing(series, alpha, beta):
     return result
 
 
-#   'D:/PycharmProjects/Start/GitHub/My_Libs/ml_examples/test_data/hour_online.csv'
-dataset = pd.read_csv('D:/Py_Projects/GitHub/My_Libs/ml_examples/test_data/hour_online.csv',
-                      index_col=['Time'],
-                      parse_dates=['Time']
-                      )
-# plotly_df(dataset, title='Online users')
+dataset = pd.read_csv('data/hour_online.csv', index_col=['Time'], parse_dates=['Time'])
+plotly_df(dataset, title='Online users')
 print(moving_average(dataset.Users, 24))
-# plotMovingAverage(dataset, 24)
-# plotMovingAverage(dataset, 24 * 7)
-# plt.show()
+
+plotMovingAverage(dataset, 24)
+plotMovingAverage(dataset, 24 * 7)
+plt.show()
+
 print(weighted_average(dataset.Users, [0.6, 0.2, 0.1, 0.07, 0.03]))
 
 # Экспоненциальное сглаживание
-# with plt.style.context('seaborn-white'):
-#     for alpha in [0.3, 0.05]:
-#         plt.figure(figsize=(20, 8))
-#         plt.plot(exponential_smoothing(dataset.Users, alpha), label='Alpha {}'.format(alpha))
-#         plt.plot(dataset.Users.values, 'c', label='Actual')
-#         plt.legend(loc='best')
-#         plt.axis('tight')
-#         plt.title('Exponential Smoothing')
-#         plt.grid(True)
-#         plt.show()
+with plt.style.context('seaborn-white'):
+    for alpha in [0.3, 0.05]:
+        plt.figure(figsize=(20, 8))
+        plt.plot(exponential_smoothing(dataset.Users, alpha), label='Alpha {}'.format(alpha))
+        plt.plot(dataset.Users.values, 'c', label='Actual')
+        plt.legend(loc='best')
+        plt.axis('tight')
+        plt.title('Exponential Smoothing')
+        plt.grid(True)
+        plt.show()
 
 # Двойное сглаживание
 with plt.style.context('seaborn-white'):
     for alpha in [0.9, 0.02]:
         for beta in [0.9, 0.02]:
             plt.figure(figsize=(20, 8))
-            plt.plot(double_exponential_smoothing(dataset.Users, alpha, beta),
-                     label='Alpha {}, beta {}'.format(alpha, beta)
-                     )
+            plt.plot(
+                double_exponential_smoothing(dataset.Users, alpha, beta),
+                label='Alpha {}, beta {}'.format(alpha, beta)
+            )
             plt.plot(dataset.Users.values, label='Actual')
             plt.legend(loc='best')
             plt.axis('tight')

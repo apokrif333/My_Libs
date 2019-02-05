@@ -26,12 +26,12 @@ def plotProcess(n_samples=1_000, rho=0):
         plt.title("Rho {}\ Dickey-Fuller p-value: {}".format(rho, round(tsa.adfuller(x)[1], 3)))
         plt.show()
 
-# white_noise = np.random.normal(size = 1_000)
-# with plt.style.context('bmh'):
-#     plt.figure(figsize=(15, 5))
-#     plt.plot(white_noise)
-#     plt.show()
 
+white_noise = np.random.normal(size = 1_000)
+with plt.style.context('bmh'):
+    plt.figure(figsize=(15, 5))
+    plt.plot(white_noise)
+    plt.show()
 
 for rho in [0, 0.6, 0.9, 1]:
     plotProcess(rho=rho)
