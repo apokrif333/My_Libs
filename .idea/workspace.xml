@@ -2,25 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="42ec38f9-cfae-4a2a-b05b-42491c2b3fd9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Machine Learning/Features/data/bank_train.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Machine Learning/Features/data/bank_train_target.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/My_Libs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/My_Libs.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Machine Learning/Features/Bag_of_Words (Vectorize).py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/Features/Bag_of_Words (Vectorize).py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Machine Learning/Features/Features_selection.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/Features/Features_selection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_examples/Features/Features_with_classes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/Features/Label_vs_OneHot_Encoders.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_examples/Features/Lasso_Ridge_Regressions_and_Features_Selection.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/Features/Lasso_vs_Ridge (Влияние альфы на признаки и веса).py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_examples/Features/Scalling.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/Features/Scalling.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_examples/Features/Texts_and_N_Grams.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/Features/N_Grams_and_Vectorizer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_examples/Features/Use_Scalers_in_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/Features/Scaler_and_Regression.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_examples/Features/Web_features.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/Features/Features_from_Web.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_examples/Features/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_examples/Time and data/Mov_Average.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/MovAverages_and_Plotly.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_examples/Time and data/White_noise.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/WhiteNoise_and_DickeyFuller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_examples/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_examples/historical_data/AAPL NonSplit.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_examples/test_data/hour_online.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/data/hour_online.csv" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,8 +31,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Machine Learning/WhiteNoise_and_DickeyFuller.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="18" column="44" lean-forward="true" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
+            <state relative-caret-position="510">
+              <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -168,18 +152,7 @@
             <path>
               <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
               <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
-              <item name="Machine Learning" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
               <item name="ml_examples" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
-              <item name="ml_examples" type="462c0819:PsiDirectoryNode" />
-              <item name="Time and data" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -189,7 +162,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="E:/Python/Short_and_SPY" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Short_and_SPY" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -225,6 +198,9 @@
       <module name="My_Libs" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Machine Learning" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -244,6 +220,9 @@
       <module name="My_Libs" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Machine Learning" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -263,6 +242,9 @@
       <module name="My_Libs" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml_examples/Features" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -282,6 +264,9 @@
       <module name="My_Libs" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Machine Learning/Features" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -301,6 +286,9 @@
       <module name="My_Libs" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml_examples/Time and data" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -377,11 +365,12 @@
       <workItem from="1549295382446" duration="774000" />
       <workItem from="1549346140709" duration="2119000" />
       <workItem from="1549363760832" duration="159000" />
+      <workItem from="1549399858175" duration="37000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75066000" />
+    <option name="totallyTimeSpent" value="75103000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -395,7 +384,7 @@
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17857143" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18017058" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -418,7 +407,7 @@
       <window_info anchor="right" id="R Packages" order="4" sideWeight="0.49858758" weight="0.32995737" />
       <window_info anchor="right" x="0" y="0" width="434" height="866" id="Documentation" order="5" sideWeight="0.50621116" side_tool="true" visible="true" weight="0.3139659" />
       <window_info anchor="right" id="Database" order="6" sideWeight="0.49858758" weight="0.32995737" />
-      <window_info anchor="right" x="665" y="366" width="589" height="318" id="SciView" maximized="true" order="7" sideWeight="0.4937888" type="WINDOWED" weight="0.3139659" />
+      <window_info anchor="right" x="665" y="366" width="589" height="318" id="SciView" maximized="true" order="7" sideWeight="0.4937888" weight="0.3139659" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -684,15 +673,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Machine Learning/Features/qq_price_z.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Machine Learning/Features/qq_price_mm.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Machine Learning/Features/qq_price_log.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Features/qq_price_z.png" />
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Features/qq_price_mm.png" />
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Features/qq_price_log.png" />
     <entry file="file://$PROJECT_DIR$/Machine Learning/Features/Scalling.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
@@ -776,8 +759,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Machine Learning/WhiteNoise_and_DickeyFuller.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="18" column="44" lean-forward="true" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
+        <state relative-caret-position="510">
+          <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
