@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="42ec38f9-cfae-4a2a-b05b-42491c2b3fd9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Machine Learning/Supervised/Regression/data/hour_online.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/My_Libs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/My_Libs.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_examples/Time and data/HoltWinters_TSCV_SARIMA.py.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/Supervised/Regression/SARIMA - HoltWinters_TSCV (оптимизация не работает до конца).py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_examples/Vowpal Wabbit/News_Wabbit.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_lib.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/ML_lib.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_first_DT.dot" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,13 +35,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Machine Learning/WhiteNoise_and_DickeyFuller.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
-              <folding>
-                <element signature="e#0#21#0" expanded="true" />
-              </folding>
+        <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/DT/DT - Medicine_Dummies.ipynb">
+          <provider selected="true" editor-type-id="ipnb-editor">
+            <state>
+              <selected id="21" />
             </state>
           </provider>
         </entry>
@@ -64,6 +67,8 @@
       <find>random</find>
       <find>NONE</find>
       <find>save_csv</find>
+      <find>Отпимальный параметр преобразования Бокса-Кокса</find>
+      <find>result_table.</find>
     </findStrings>
     <replaceStrings>
       <replace>/</replace>
@@ -75,9 +80,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Machine Learning/DT/DT-Classifier (невозврат кредита).py" />
-        <option value="$PROJECT_DIR$/Machine Learning/kNN/kNN, DT, RF.py" />
-        <option value="$PROJECT_DIR$/Machine Learning/kNN/Большое количество признаков.py" />
         <option value="$PROJECT_DIR$/Machine Learning/Regression/R - Logistic.py" />
         <option value="$PROJECT_DIR$/Machine Learning/Mix - Classification/kNN, DT, RF (классификация цифр).py" />
         <option value="$PROJECT_DIR$/Machine Learning/Regression/R - Logistic (отзывы о фильмах).py" />
@@ -126,14 +128,17 @@
         <option value="$PROJECT_DIR$/Machine Learning/Mov_Average.py" />
         <option value="$PROJECT_DIR$/Machine Learning/MovAverages_and_Plotly.py" />
         <option value="$PROJECT_DIR$/ml_examples/Time and data/White_noise.py" />
+        <option value="$PROJECT_DIR$/Machine Learning/Supervised/Regression/SARIMA - HoltWinters_TSCV_.py" />
+        <option value="$PROJECT_DIR$/ml_examples/Vowpal Wabbit/News_Wabbit.py" />
+        <option value="$PROJECT_DIR$/Machine Learning/Supervised/DT/assignment3_decision_trees.ipynb" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="3170" />
-    <option name="y" value="485" />
-    <option name="width" value="673" />
-    <option name="height" value="604" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1066" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -152,7 +157,20 @@
             <path>
               <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
               <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
-              <item name="ml_examples" type="462c0819:PsiDirectoryNode" />
+              <item name="Machine Learning" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
+              <item name="Machine Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="Supervised" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
+              <item name="Machine Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="Supervised" type="462c0819:PsiDirectoryNode" />
+              <item name="DT" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -162,23 +180,23 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Short_and_SPY" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Python Git\My_Libs\Machine Learning" />
+      <recent name="D:\Python Git\My_Libs\Machine Learning\Supervised\Regression" />
+      <recent name="D:\Python Git\My_Libs\Machine Learning\data" />
+      <recent name="D:\Python Git\My_Libs\Machine Learning\Features" />
+      <recent name="D:\Py_Projects\GitHub\My_Libs\Machine Learning\Features" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Python Git\My_Libs\Machine Learning\Supervised\Regression\data" />
       <recent name="D:\Python Git\My_Libs\Machine Learning\Features\data" />
       <recent name="D:\Py_Projects\GitHub\My_Libs\Machine Learning\Features\data" />
       <recent name="D:\Python Git\My_Libs\Machine Learning\Supervised\GB\data" />
       <recent name="D:\Python Git\My_Libs\Machine Learning\RF\data" />
-      <recent name="D:\Python Git\My_Libs\Machine Learning\RF" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Python Git\My_Libs\Machine Learning" />
-      <recent name="D:\Python Git\My_Libs\Machine Learning\data" />
-      <recent name="D:\Python Git\My_Libs\Machine Learning\Features" />
-      <recent name="D:\Py_Projects\GitHub\My_Libs\Machine Learning\Features" />
-      <recent name="D:\Python Git\My_Libs\Machine Learning\Supervised\GB" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -193,7 +211,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.White_noise">
+  <component name="RunManager" selected="Python.SARIMA - HoltWinters_TSCV_">
     <configuration name="MovAverages_and_Plotly" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="My_Libs" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -238,20 +256,17 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Texts_and_N_Grams" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="SARIMA - HoltWinters_TSCV_" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="My_Libs" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml_examples/Features" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Machine Learning/Supervised/Regression" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="D:\Python Git\My_Libs\Machine Learning\Features\N_Grams_and_Vectorizer.py" />
+      <option name="SCRIPT_NAME" value="D:\Python Git\My_Libs\Machine Learning\Supervised\Regression\SARIMA - HoltWinters_TSCV (оптимизация не работает до конца).py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -327,19 +342,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.Texts_and_N_Grams" />
       <item itemvalue="Python.Use_Scalers_in_models" />
       <item itemvalue="Python.Mov_Average" />
       <item itemvalue="Python.MovAverages_and_Plotly" />
       <item itemvalue="Python.White_noise" />
+      <item itemvalue="Python.SARIMA - HoltWinters_TSCV_" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.SARIMA - HoltWinters_TSCV_" />
         <item itemvalue="Python.White_noise" />
         <item itemvalue="Python.MovAverages_and_Plotly" />
         <item itemvalue="Python.Mov_Average" />
         <item itemvalue="Python.Use_Scalers_in_models" />
-        <item itemvalue="Python.Texts_and_N_Grams" />
       </list>
     </recent_temporary>
   </component>
@@ -366,11 +381,12 @@
       <workItem from="1549346140709" duration="2119000" />
       <workItem from="1549363760832" duration="159000" />
       <workItem from="1549399858175" duration="37000" />
+      <workItem from="1549456100871" duration="4094000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75103000" />
+    <option name="totallyTimeSpent" value="79197000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -382,13 +398,13 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18017058" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18176973" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3290461" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.28938907" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.34653464" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -397,7 +413,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3281412" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3281412" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.06663113" side_tool="true" weight="0.34190783" />
-      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.93336886" visible="true" weight="0.33125648" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.93336886" visible="true" weight="0.33118972" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -405,51 +421,15 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="R Graphics" order="3" sideWeight="0.49858758" weight="0.32995737" />
       <window_info anchor="right" id="R Packages" order="4" sideWeight="0.49858758" weight="0.32995737" />
-      <window_info anchor="right" x="0" y="0" width="434" height="866" id="Documentation" order="5" sideWeight="0.50621116" side_tool="true" visible="true" weight="0.3139659" />
+      <window_info anchor="right" x="0" y="0" width="434" height="866" id="Documentation" order="5" sideWeight="0.507764" side_tool="true" visible="true" weight="0.3139659" />
       <window_info anchor="right" id="Database" order="6" sideWeight="0.49858758" weight="0.32995737" />
-      <window_info anchor="right" x="665" y="366" width="589" height="318" id="SciView" maximized="true" order="7" sideWeight="0.4937888" weight="0.3139659" />
+      <window_info anchor="right" x="665" y="366" width="589" height="318" id="SciView" maximized="true" order="7" sideWeight="0.49223602" type="WINDOWED" weight="0.3139659" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/Regression/R (SGD) - Logistic (отказы клиентов и кривые валидации_обучения).py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="811">
-          <caret line="65" column="54" lean-forward="true" selection-start-line="65" selection-start-column="54" selection-end-line="65" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#4#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/DT/DT - Logistic (отображение дерева в png).py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="530">
-          <caret line="40" column="11" lean-forward="true" selection-start-line="40" selection-start-column="11" selection-end-line="40" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/DT/DT - Logistic (невозврат кредита).py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-135">
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/DT/DT - Regressor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="27" column="37" lean-forward="true" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/Mix - Logistic/kNN, DT, RF (отказы клиентов).py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-167">
@@ -716,9 +696,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ml_examples/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/ml_examples/__init__.py" />
     <entry file="file://$PROJECT_DIR$/Machine Learning/Features/Features_from_Web.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -736,16 +714,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ml_examples/Time and data/HoltWinters_TSCV_SARIMA.py.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Machine Learning/MovAverages_and_Plotly.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="491">
@@ -759,11 +727,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Machine Learning/WhiteNoise_and_DickeyFuller.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+        <state relative-caret-position="493">
+          <caret line="29" column="44" lean-forward="true" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/Regression/data/hour_online.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/Regression/SARIMA - HoltWinters_TSCV (оптимизация не работает до конца).py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="280" column="27" lean-forward="true" selection-start-line="280" selection-start-column="27" selection-end-line="280" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ml_examples/Vowpal Wabbit/News_Wabbit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="52" lean-forward="true" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/ML_lib.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1768">
+          <caret line="104" column="49" lean-forward="true" selection-start-line="104" selection-start-column="49" selection-end-line="104" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/DT/DT - Medicine_Dummies.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="21" />
         </state>
       </provider>
     </entry>
