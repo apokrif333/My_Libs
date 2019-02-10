@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="42ec38f9-cfae-4a2a-b05b-42491c2b3fd9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Machine Learning/Supervised/Regression/data/hour_online.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/My_Libs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/My_Libs.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_examples/Time and data/HoltWinters_TSCV_SARIMA.py.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/Supervised/Regression/SARIMA - HoltWinters_TSCV (оптимизация не работает до конца).py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_examples/Vowpal Wabbit/News_Wabbit.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_lib.py" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/ML_lib.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_first_DT.dot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Machine Learning/Supervised/DT/DT - Medicine_Dummies.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/Supervised/DT/DT - Medicine_Dummies.ipynb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,17 +26,7 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/DT/DT - Medicine_Dummies.ipynb">
-          <provider selected="true" editor-type-id="ipnb-editor">
-            <state>
-              <selected id="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -135,10 +118,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
+    <option name="x" value="1912" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
-    <option name="height" value="1066" />
+    <option name="height" value="1096" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -153,24 +136,6 @@
             <path>
               <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
               <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
-              <item name="Machine Learning" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
-              <item name="Machine Learning" type="462c0819:PsiDirectoryNode" />
-              <item name="Supervised" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
-              <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
-              <item name="Machine Learning" type="462c0819:PsiDirectoryNode" />
-              <item name="Supervised" type="462c0819:PsiDirectoryNode" />
-              <item name="DT" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -260,6 +225,9 @@
       <module name="My_Libs" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Machine Learning/Supervised/Regression" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -382,11 +350,12 @@
       <workItem from="1549363760832" duration="159000" />
       <workItem from="1549399858175" duration="37000" />
       <workItem from="1549456100871" duration="4094000" />
+      <workItem from="1549796333375" duration="66000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79197000" />
+    <option name="totallyTimeSpent" value="79263000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -398,9 +367,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18176973" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18336888" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -413,7 +382,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3281412" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3281412" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.06663113" side_tool="true" weight="0.34190783" />
-      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.93336886" visible="true" weight="0.33118972" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.93336886" visible="true" weight="0.33021808" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -423,7 +392,7 @@
       <window_info anchor="right" id="R Packages" order="4" sideWeight="0.49858758" weight="0.32995737" />
       <window_info anchor="right" x="0" y="0" width="434" height="866" id="Documentation" order="5" sideWeight="0.507764" side_tool="true" visible="true" weight="0.3139659" />
       <window_info anchor="right" id="Database" order="6" sideWeight="0.49858758" weight="0.32995737" />
-      <window_info anchor="right" x="665" y="366" width="589" height="318" id="SciView" maximized="true" order="7" sideWeight="0.49223602" type="WINDOWED" weight="0.3139659" />
+      <window_info anchor="right" x="665" y="366" width="589" height="318" id="SciView" maximized="true" order="7" sideWeight="0.49223602" weight="0.3139659" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -738,16 +707,7 @@
     <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/Regression/data/hour_online.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/Regression/SARIMA - HoltWinters_TSCV (оптимизация не работает до конца).py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="280" column="27" lean-forward="true" selection-start-line="280" selection-start-column="27" selection-end-line="280" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/Regression/SARIMA - HoltWinters_TSCV (оптимизация не работает до конца).py" />
     <entry file="file://$PROJECT_DIR$/ml_examples/Vowpal Wabbit/News_Wabbit.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
