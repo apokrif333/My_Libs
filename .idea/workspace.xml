@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="42ec38f9-cfae-4a2a-b05b-42491c2b3fd9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Machine Learning/Supervised/DT/DT - Medicine_Dummies.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/Supervised/DT/DT - Medicine_Dummies.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Machine Learning/Features/pandas_graphs/Pandas_1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Machine Learning/Features/pandas_graphs/Pandas_1.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Machine Learning/Features/pandas_graphs/Pandas_Graphs.ipynb" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -136,6 +138,24 @@
             <path>
               <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
               <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
+              <item name="Machine Learning" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
+              <item name="Machine Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="Features" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="My_Libs" type="b2602c69:ProjectViewProjectNode" />
+              <item name="My_Libs" type="462c0819:PsiDirectoryNode" />
+              <item name="Machine Learning" type="462c0819:PsiDirectoryNode" />
+              <item name="Features" type="462c0819:PsiDirectoryNode" />
+              <item name="pandas_graphs" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -355,7 +375,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79263000" />
+    <option name="totallyTimeSpent" value="79641000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -683,38 +703,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Machine Learning/MovAverages_and_Plotly.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="118" lean-forward="true" selection-start-line="118" selection-end-line="118" />
-          <folding>
-            <element signature="e#0#77#0" expanded="true" />
-            <marker date="1549390099081" expanded="true" signature="2175:2215" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Machine Learning/WhiteNoise_and_DickeyFuller.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="44" lean-forward="true" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Machine Learning/MovAverages_and_Plotly.py" />
+    <entry file="file://$PROJECT_DIR$/Machine Learning/WhiteNoise_and_DickeyFuller.py" />
     <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/Regression/data/hour_online.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Machine Learning/Supervised/Regression/SARIMA - HoltWinters_TSCV (оптимизация не работает до конца).py" />
-    <entry file="file://$PROJECT_DIR$/ml_examples/Vowpal Wabbit/News_Wabbit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="52" lean-forward="true" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/ml_examples/Vowpal Wabbit/News_Wabbit.py" />
     <entry file="file://$PROJECT_DIR$/Machine Learning/ML_lib.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1768">
