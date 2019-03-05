@@ -1,4 +1,7 @@
+from collections import Counter
 import numpy as np
+import numpy_indexed as npi
+import operator
 
 
 class KNN:
@@ -91,7 +94,7 @@ class KNN:
            with distances between each test and each train sample
         '''
         # Using float32 to to save memory - the default is float64
-        dists = np.apply_along_axis(np.sum, 2, np.abs(X[:, None].astype('float32') - self.train_X.astype('float32')))
+        dists = np.apply_along_axis(np.sum, 2, np.abs(X[:, None] - self.train_X))
 
         return dists
 
@@ -109,12 +112,25 @@ class KNN:
         '''
         num_test = dists.shape[0]
         pred = np.zeros(num_test, np.bool)
-        print(dists.shape)
-        print(dists)
         for i in range(num_test):
             # TODO: Implement choosing best class based on k
             # nearest training samples
-            pass
+            nearest_k = sorted(dists[i])[:self.k]
+            nearest_index = np.where(np.isin(dists[i], nearest_k))[0]
+            dict_classes = dict(Counter(self.train_y[nearest_index]))
+
+            if len(dict_classes.keys()) == 2 and dict_classes[False] == dict_classes[True] and \
+                    len(nearest_index) == len(nearest_k):
+                range_and_classes = np.array([nearest_k, self.train_y[nearest_index]]).astype('int')
+                sum_classes = npi.group_by(range_and_classes[1]).sum(range_and_classes[0])
+
+                if sum_classes[1][0] < sum_classes[1][1]:
+                    pred[i] = sum_classes[0][0]
+                else:
+                    pred[i] = sum_classes[0][1]
+            else:
+                pred[i] = max(dict_classes.items(), key=operator.itemgetter(1))[0]
+
         return pred
 
     def predict_labels_multiclass(self, dists):
