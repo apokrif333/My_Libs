@@ -38,7 +38,7 @@ class KNN:
         if self.train_y.dtype == np.bool:
             return self.predict_labels_binary(dists)
         else:
-            return self.predict_labels_multiclass(dists)
+            return self.predict_labels_multiclass(X, dists)
 
     def compute_distances_two_loops(self, X):
         '''
@@ -133,7 +133,7 @@ class KNN:
 
         return pred
 
-    def predict_labels_multiclass(self, dists):
+    def predict_labels_multiclass(self, X, dists):
         '''
         Returns model predictions for multi-class classification case
         
@@ -145,11 +145,31 @@ class KNN:
         pred, np array of int (num_test_samples) - predicted class index 
            for every test sample
         '''
-        num_test = dists.shape[0]
+        train_sum = np.array([np.sum(self.train_X, axis=1), self.train_y]).astype('int')
+        sum_train_classes = npi.group_by(train_sum[1]).median(train_sum[0])
+        test_sum = np.sum(X, axis=1).astype('int')
+
         num_test = dists.shape[0]
         pred = np.zeros(num_test, np.int)
         for i in range(num_test):
             # TODO: Implement choosing best class based on k
             # nearest training samples
-            pass
+            nearest_k = sorted(dists[i])[:self.k]
+            nearest_index = np.where(np.isin(dists[i], nearest_k))[0]
+            dict_classes = dict(Counter(self.train_y[nearest_index]))
+
+            same_classes = list(dict_classes.values()).count(max(dict_classes.values()))
+            problem_classes = [key for key, value in dict_classes.items() if value == max(dict_classes.values())]
+
+            # if same_classes > 1:
+            #
+            #     distance = []
+            #     for class_y in problem_classes:
+            #         distance.append(abs(test_sum[i] - sum_train_classes[1][class_y]))
+            #
+            #     pred[i] = problem_classes[distance.index(min(distance))]
+            #
+            # else:
+            pred[i] = max(dict_classes.items(), key=operator.itemgetter(1))[0]
+
         return pred

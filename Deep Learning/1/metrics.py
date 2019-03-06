@@ -19,10 +19,10 @@ def binary_classification_metrics(prediction, ground_truth):
     false_pos = np.count_nonzero(prediction.astype('int') - ground_truth.astype('int') == 1)
     false_neg = np.count_nonzero(prediction.astype('int') - ground_truth.astype('int') == -1)
 
+    accuracy = only_true / len(ground_truth)
     precision = only_true / (only_true + false_pos)
     recall = only_true / (only_true + false_neg)
     f1 = 2 * (precision * recall) / (precision + recall)
-    accuracy = only_true / len(ground_truth)
     # Some helpful links:
     # https://en.wikipedia.org/wiki/Precision_and_recall
     # https://en.wikipedia.org/wiki/F1_score
@@ -42,4 +42,6 @@ def multiclass_accuracy(prediction, ground_truth):
     accuracy - ratio of accurate predictions to total samples
     '''
     # TODO: Implement computing accuracy
-    return 0
+    only_true = np.count_nonzero(np.isclose(prediction, ground_truth) == 1)
+
+    return only_true / len(ground_truth)
