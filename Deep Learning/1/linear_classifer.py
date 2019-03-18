@@ -34,7 +34,7 @@ def cross_entropy_loss(probs, target_index):
       loss: single value
     '''
 
-    return -np.sum(np.apply_along_axis(lambda x: target_index * np.log(x), 0, probs))
+    return -np.log(probs[target_index])
 
 
 def softmax_with_cross_entropy(predictions, target_index):
@@ -52,24 +52,51 @@ def softmax_with_cross_entropy(predictions, target_index):
       loss, single value - cross-entropy loss
       dprediction, np array same shape as predictions - gradient of predictions by loss value
     '''
-    soft = softmax(predictions)
-    loss = cross_entropy_loss(soft, target_index)
+    predictions = predictions.astype('float64')
     dprediction = np.zeros(predictions.shape)
+    loss = 0
 
-    it = np.nditer(predictions, flags=['multi_index'], op_flags=['readwrite'])
-    while not it.finished:
-        ix = it.multi_index
-        print(ix)
-        x_add = predictions.copy()
-        x_minus = predictions.copy()
-        x_add[ix] = x_add[ix] + 1e-5
-        x_minus[ix] = x_minus[ix] - 1e-5
-        dprediction[ix] = (cross_entropy_loss(softmax(x_add), target_index) - cross_entropy_loss(softmax(x_minus), target_index)) / \
-                             (2 * 1e-5)
+    print(predictions)
+    print(target_index)
+    if len(predictions.shape) == 1:
+        soft = softmax(predictions)
+        loss += cross_entropy_loss(soft, target_index)
 
-        it.iternext()
+        it = np.nditer(predictions, flags=['multi_index'], op_flags=['readwrite'])
+        while not it.finished:
+            ix = it.multi_index
 
-    return loss, dprediction
+            x_add = predictions.copy()
+            x_minus = predictions.copy()
+            x_add[ix] = x_add[ix] + 1e-5
+            x_minus[ix] = x_minus[ix] - 1e-5
+
+            dprediction[ix] = (cross_entropy_loss(softmax(x_add), target_index) -
+                               cross_entropy_loss(softmax(x_minus), target_index)) / (2 * 1e-5)
+
+            it.iternext()
+
+        return loss, dprediction
+
+    else:
+        it = np.nditer(predictions, flags=['multi_index'], op_flags=['readwrite'])
+        while not it.finished:
+            ix = it.multi_index
+
+            soft = softmax(predictions[ix[0]])
+            loss += cross_entropy_loss(soft, target_index[ix[0]])
+
+            x_add = predictions[ix[0]].copy()
+            x_minus = predictions[ix[0]].copy()
+            x_add[ix[1]] = x_add[ix[1]] + 1e-5
+            x_minus[ix[1]] = x_minus[ix[1]] - 1e-5
+
+            dprediction[ix] = (cross_entropy_loss(softmax(x_add), target_index[ix[0]]) -
+                               cross_entropy_loss(softmax(x_minus),target_index[ix[0]])) / (2 * 1e-5)
+
+            it.iternext()
+
+        return loss, dprediction
 
 
 def l2_regularization(W, reg_strength):
