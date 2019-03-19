@@ -28,45 +28,25 @@ def check_gradient(f, x, delta=1e-5, tol=1e-4):
     # We will go through every dimension of x and compute numeric
     # derivative for it
 
-    if len(x.shape) == 1:
-        it = np.nditer(x, flags=['multi_index'], op_flags=['readwrite'])
-        while not it.finished:
-            ix = it.multi_index
-            analytic_grad_at_ix = analytic_grad[ix]
+    print('Start numeric')
+    it = np.nditer(x, flags=['multi_index'], op_flags=['readwrite'])
+    while not it.finished:
+        ix = it.multi_index
+        analytic_grad_at_ix = analytic_grad[ix]
 
-            x_add = x.copy()
-            x_minus = x.copy()
-            x_add[ix] = x_add[ix] + delta
-            x_minus[ix] = x_minus[ix] - delta
-            numeric_grad_at_ix = (f(x_add)[0] - f(x_minus)[0]) / (2 * delta)
+        x_add = x.copy()
+        x_minus = x.copy()
+        x_add[ix] = x_add[ix] + delta
+        x_minus[ix] = x_minus[ix] - delta
+        numeric_grad_at_ix = (f(x_add)[0] - f(x_minus)[0]) / (2 * delta)
 
-            # TODO compute value of numeric gradient of f to idx
-            if not np.isclose(numeric_grad_at_ix, analytic_grad_at_ix, tol):
-                print("Gradients are different at %s. Analytic: %2.5f, Numeric: %2.5f" %
-                      (ix, analytic_grad_at_ix, numeric_grad_at_ix))
-                return False
+        # TODO compute value of numeric gradient of f to idx
+        if not np.isclose(numeric_grad_at_ix, analytic_grad_at_ix, tol):
+            print("Gradients are different at %s. Analytic: %2.5f, Numeric: %2.5f" %
+                  (ix, analytic_grad_at_ix, numeric_grad_at_ix))
+            return False
 
-            it.iternext()
-
-    else:
-        it = np.nditer(x, flags=['multi_index'], op_flags=['readwrite'])
-        while not it.finished:
-            ix = it.multi_index
-            analytic_grad_at_ix = analytic_grad[ix]
-
-            x_add = x[ix[0]].copy()
-            x_minus = x[ix[0]].copy()
-            x_add[ix[1]] = x_add[ix[1]] + delta
-            x_minus[ix[1]] = x_minus[ix[1]] - delta
-            numeric_grad_at_ix = (f(x_add)[0] - f(x_minus)[0]) / (2 * delta)
-
-            # TODO compute value of numeric gradient of f to idx
-            if not np.isclose(numeric_grad_at_ix, analytic_grad_at_ix, tol):
-                print("Gradients are different at %s. Analytic: %2.5f, Numeric: %2.5f" %
-                      (ix, analytic_grad_at_ix, numeric_grad_at_ix))
-                return False
-
-            it.iternext()
+        it.iternext()
 
     print("Gradient check passed!")
     return True
