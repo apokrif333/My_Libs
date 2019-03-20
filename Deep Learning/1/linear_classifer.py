@@ -63,7 +63,7 @@ def softmax_with_cross_entropy(predictions, target_index):
         loss += cross_entropy_loss(soft, target_index[index])
         loss_count += 1
 
-        f = lambda x: -np.log(np.e ** x[target_index[index]] / np.sum(np.exp(x)))
+        f = lambda x: -np.log(np.e ** x[target_index[index]] / np.sum(np.exp(x))) / len(reduced_predictions)
         dprediction[index] = approx_fprime(reduced_predictions[index], f, epsilon=1e-6)
 
     print(f"I'm loss {loss / loss_count}, I'm grad {dprediction}")
