@@ -58,15 +58,24 @@ def softmax_with_cross_entropy(predictions, target_index):
     loss_count = 0
 
     reduced_predictions = predictions - np.max(predictions)
-    for index in range(len(reduced_predictions)):
-        soft = softmax(reduced_predictions[index])
-        loss += cross_entropy_loss(soft, target_index[index])
+    if reduced_predictions.ndim > 1:
+        for index in range(len(reduced_predictions)):
+            soft = softmax(reduced_predictions[index])
+            loss += cross_entropy_loss(soft, target_index[index])
+            loss_count += 1
+
+            f = lambda x: -np.log(np.e ** x[target_index[index]] / np.sum(np.exp(x))) / len(reduced_predictions)
+            dprediction[index] = approx_fprime(reduced_predictions[index], f, epsilon=1e-6)
+
+    else:
+        soft = softmax(reduced_predictions)
+        loss += cross_entropy_loss(soft, target_index)
         loss_count += 1
 
-        f = lambda x: -np.log(np.e ** x[target_index[index]] / np.sum(np.exp(x))) / len(reduced_predictions)
-        dprediction[index] = approx_fprime(reduced_predictions[index], f, epsilon=1e-6)
+        f = lambda x: -np.log(np.e ** x[target_index] / np.sum(np.exp(x)))
+        dprediction = approx_fprime(reduced_predictions, f, epsilon=1e-6)
 
-    print(f"I'm loss {loss / loss_count}, I'm grad {dprediction}")
+    # print(f"I'm loss {loss / loss_count}, I'm grad {dprediction}")
     return loss / loss_count, dprediction
 
 
@@ -89,7 +98,7 @@ def l2_regularization(W, reg_strength):
     return loss, grad
     
 
-def linear_softmax(X, W, target_index):
+def linear_softmax(X: object, W: object, target_index: object) -> object:
     '''
     Performs linear classification and returns loss and gradient over W
 
@@ -103,12 +112,25 @@ def linear_softmax(X, W, target_index):
       gradient, np.array same shape as W - gradient of weight by loss
 
     '''
-    predictions = np.dot(X, W)
+    print(X, W)
 
-    # TODO implement prediction and gradient over W
-    raise Exception("Not implemented!")
-    
-    return loss, dW
+    predictions = np.dot(X, W)
+    loss = 0
+    loss_count = 0
+    dW = np.zeros(W.transpose().shape)
+
+    reduced_predictions = predictions - np.max(predictions)
+    if reduced_predictions.ndim > 1:
+        for index in range(len(reduced_predictions)):
+            soft = softmax(reduced_predictions[index])
+            loss += cross_entropy_loss(soft, target_index[index])
+            loss_count += 1
+
+            f = lambda x: -np.log(np.e ** x[target_index[index]] / np.sum(np.exp(x))) / len(reduced_predictions)
+            dW[index] = approx_fprime(W.transpose()[index], f, epsilon=1e-6)
+
+    print(loss / loss_count, dW.transpose())
+    return loss / loss_count, dW.transpose()
 
 
 class LinearSoftmaxClassifier():
