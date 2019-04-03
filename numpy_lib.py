@@ -43,6 +43,10 @@ def trans_lists(*list_: list):
     return np.c_[list_]
 
 
+# Объединить входящие массивы в один
+def unite_to_list(*list_: list):
+    return np.r_[list_]
+
 # Получение двух массивов x и y, и создание матрицы их положения, в стиле x[0, 20]=0, y[0, 20]=20
 def x_y_matrix(x: list, y:list):
     return np.meshgrid(x, y)

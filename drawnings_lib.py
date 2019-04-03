@@ -33,7 +33,7 @@ def two_charts(df: pd.DataFrame, kind: str):
 
 # Вывести децильные гистограммы по каждому массиву данных
 def decile_for_each(df: pd.DataFrame, columns_for_show: list, decile: int):
-    df.hist(column=columns_for_show, bins=decile)
+    df.hist(column=columns_for_show, bins=10)
 
 
 # Тепловая карта

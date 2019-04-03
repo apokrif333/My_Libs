@@ -140,6 +140,11 @@ def filter_by_column(column: pd.Series, x_1: int, x_2: int) -> pd.Series:
     return column.apply(lambda x: 1 if x >= x_1 and x < x_2 else 0)
 
 
+# Переименовать колонку
+def rename_column(df: pd.DataFrame, old_name: str, new_name: str):
+    df.rename(columns={old_name: new_name})
+
+
 # pickle
 # ---------------------------------------------------------------------------------------------------------------------
 def dumps_decode(frame):
