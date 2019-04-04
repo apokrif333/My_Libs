@@ -1,9 +1,9 @@
+from typing import Callable
+
 import pandas as pd
 import pickle
 import sqlite3
 import numpy as np
-
-from pprint import pprint as pp
 
 pd.options.display.max_rows = 7  # Отображение количества строк
 pd.set_option('display.max_columns', 100)  # Второй вариант настройки. Количесвто столбцов
@@ -15,7 +15,7 @@ def columns_data(df: pd.DataFrame):
 
 
 # Работа с .loc
-def work_loc(df: pd.DataFrame, column_for_row_check: str, any, column_for_show: str, func: function):
+def work_loc(df: pd.DataFrame, column_for_row_check: str, any, column_for_show: str, func: Callable):
     return df.loc[(df[column_for_row_check] == any), column_for_show].apply(func)
 
 
@@ -75,7 +75,7 @@ def all_column_info(df: pd.DataFrame):
 
 
 # Применение функции к каждому столбцу (или строке, если указать axis=1)
-def make_for_all(df: pd.DataFrame, func_name: function):
+def make_for_all(df: pd.DataFrame, func_name: Callable[[int], int]):
     return df.apply(func_name)
     # column.apply(lambda x: x / sum(column)) Расчёт доли для каждого элемента в столбце
 

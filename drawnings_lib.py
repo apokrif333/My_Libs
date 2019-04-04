@@ -16,7 +16,7 @@ init_notebook_mode(connected=True)
 # Matplotlib
 # Вывести график
 def chart_matplot(x: pd.Series, y: pd.Series, title: str):
-    plt.plot(x, y)
+    plt.plot(x, y, "r--")
     plt.legend()
     plt.title(title)
 
@@ -44,6 +44,21 @@ def heatmap_plt(pivot_table):
 # Выделить контур
 def contour_plt(x: list, y:list, z:list):
     plt.contour(x, y, z)
+
+
+# График со стрелочками и текстом. В данном примере, названия стран служат индексом фрейма
+def base_plot_with_arrows(df: pd.DataFrame, x: str, y: str, pos_text: dict):
+    df.plot(kind='scatter', x=x, y=y, figsize=(10, 10))
+    plt.axis([0, 60_000, 0, 10])
+    position_text = {
+        'Hungary': (5_000, 1),
+        'Korea': (18_000, 1.7)
+    }
+    for country, pos_text in position_text.items():
+        pos_data_x, pos_data_y = df.loc[country]
+        plt.annotate(country, xy=(pos_data_x, pos_data_y), xytext=pos_text,
+                     arrowprops=dict(facecolor='black', width=.5, shrink=.1, headwidth=5))
+        plt.plot(pos_data_x, pos_data_y, 'ro')
 
 
 # ----------------------------------------------------------------------------------------------------------------------

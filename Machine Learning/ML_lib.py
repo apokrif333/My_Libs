@@ -10,6 +10,7 @@ from sklearn.model_selection import train_test_split, StratifiedKFold, GridSearc
 from sklearn.metrics import accuracy_score, roc_auc_score
 from sklearn.pipeline import Pipeline, make_pipeline
 from graphviz import render
+from typing import Callable
 
 import pandas as pd
 import numpy as np
@@ -51,19 +52,9 @@ def rforest_features(train_forest):
     return train_forest.feature_importances_
 
 
-# Предсказываем данные по обученной модели
-def tree_predict(model, X_holdout):
-    return model.predict(X_holdout)
-
-
 # Создание отложенной выборки X_train, X_holdout, y_train, y_holdout
 def hold_out_create(df: pd.DataFrame, y: pd.Series, test: float, random: int):
      return train_test_split(df.values, y, test_size=test, random_state=random)
-
-
-# Скалируем признак
-def feature_scaler(column: list):
-    return StandardScaler().fit_transform(column)
 
 
 # Создаём матрицу из текстового файла, для анализа токенов-слов
@@ -71,24 +62,6 @@ def words_tokens(range: tuple, max: int, train_text):
     cv = CountVectorizer(ngram_range=range, max_features=max)
     vectorizer = make_pipeline(cv, TfidfTransformer())
     return vectorizer.fit_transform(train_text)
-
-
-# Используем последовательный тайм-срез через кросс-валидацию, чтобы найти регрессор в логист. регрессии
-def time_split_cv_for_logit(splits: int, random: int, c_start: int, c_end: int, c_step, int, X, y):
-    time_split = TimeSeriesSplit(n_splits=splits)
-    logit = LogisticRegression(C=1, random_state=random)
-    c_values = np.logspace(c_start, c_end, c_step)
-    logit_grid_searcher = GridSearchCV(estimator=logit, param_grid={'C': c_values},
-                                       scoring='roc_auc', n_jobs=4, cv=time_split, verbose=1)
-    logit_grid_searcher.fit(X, y)
-    return logit_grid_searcher.best_score_, logit_grid_searcher.best_params_
-
-
-# Оценка полученой логистичекой регрессии
-def estimate_logit(logit_grid, X_test, y_test):
-    test = logit_grid.predict_proba(X_test)[:, 1]
-    print(roc_auc_score(y_test, test))
-    return test
 
 
 # Оценка кросс-валидации по средней c созданием кросс-валидации
@@ -124,6 +97,52 @@ def dot_to_png(name: str):
     render('dot', 'png', path)
 
 
+# Features ------------------------------------------------------------------------------------------------------------
+# Скалируем признак
+def feature_scaler(column: list):
+    return StandardScaler().fit_transform(column)
+
+
 # Конвертация значений столбца в бинарные признаки
 def encoder():
     preprocessing.LabelEncoder()
+
+
+# Regression ----------------------------------------------------------------------------------------------------------
+# Используем последовательный тайм-срез через грид-сёрч, чтобы найти лучший регрессор в логист. регрессии
+def time_split_cv_for_logit(splits: int, random: int, c_start: int, c_end: int, c_step: int, X, y):
+    time_split = TimeSeriesSplit(n_splits=splits)
+    logit = LogisticRegression(C=1, random_state=random)
+    c_values = np.logspace(c_start, c_end, c_step)
+    logit_grid_searcher = GridSearchCV(estimator=logit, param_grid={'C': c_values},
+                                       scoring='roc_auc', n_jobs=4, cv=time_split, verbose=1)
+    logit_grid_searcher.fit(X, y)
+    return logit_grid_searcher.best_score_, logit_grid_searcher.best_params_
+
+
+# Получение коэффициентов формулы регрессии
+def regres_formula_values(reg_fit):
+    return reg_fit.intercept_, reg_fit.coef_
+
+
+# Оценка полученой логистичекой регрессии
+def estimate_logit(logit_grid, X_test, y_test):
+    test = logit_grid.predict_proba(X_test)[:, 1]
+    print(roc_auc_score(y_test, test))
+    return test
+
+
+# Useful for all models -----------------------------------------------------------------------------------------------
+# Пайплайн для полиномизации, скалирования и модели
+def pipe_for_poly_scal_model(poly_degree: int, any_model: Callable, X, y, X_test):
+    poly = preprocessing.PolynomialFeatures(degree=poly_degree)
+    scaler = preprocessing.StandardScaler()
+    model = any_model()
+    pipeline = Pipeline([('poly', poly), ('scal', scaler), ('model', model)])
+    pipeline.fit(X, y)
+    return pipeline.predict(X_test)
+
+
+# Предсказываем данные по обученной модели
+def model_predict(model, X_holdout):
+    return model.predict(X_holdout)
