@@ -1,14 +1,14 @@
 from __future__ import division, print_function
+from sklearn.model_selection import train_test_split, StratifiedKFold, GridSearchCV, cross_val_score, TimeSeriesSplit, StratifiedShuffleSplit
 from sklearn import preprocessing
-from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import Pipeline, make_pipeline
+from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor, export_graphviz
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split, StratifiedKFold, GridSearchCV, cross_val_score, TimeSeriesSplit
 from sklearn.metrics import accuracy_score, roc_auc_score
-from sklearn.pipeline import Pipeline, make_pipeline
 from graphviz import render
 from typing import Callable
 
@@ -52,11 +52,6 @@ def rforest_features(train_forest):
     return train_forest.feature_importances_
 
 
-# Создание отложенной выборки X_train, X_holdout, y_train, y_holdout
-def hold_out_create(df: pd.DataFrame, y: pd.Series, test: float, random: int):
-     return train_test_split(df.values, y, test_size=test, random_state=random)
-
-
 # Создаём матрицу из текстового файла, для анализа токенов-слов
 def words_tokens(range: tuple, max: int, train_text):
     cv = CountVectorizer(ngram_range=range, max_features=max)
@@ -67,11 +62,6 @@ def words_tokens(range: tuple, max: int, train_text):
 # Оценка кросс-валидации по средней c созданием кросс-валидации
 def cv_mean(trained_model, X_train, y_train, cv_samples: int):
     return np.mean(cross_val_score(trained_model, X_train, y_train, cv=cv_samples))
-
-
-# Выводим аккураси
-def print_accuracy(y_holdout, X_holdout):
-    print(accuracy_score(y_holdout, X_holdout))
 
 
 # Выводим качество кросс-валидации
@@ -133,6 +123,20 @@ def estimate_logit(logit_grid, X_test, y_test):
 
 
 # Useful for all models -----------------------------------------------------------------------------------------------
+# Создание отложенной выборки X_train, X_holdout, y_train, y_holdout
+def hold_out_create(df: pd.DataFrame, y: pd.Series, test: float, random: int):
+     return train_test_split(df.values, y, test_size=test, random_state=random)
+
+
+# Стратифицируем базу данных. Разобъём train и test так, чтобы сохранить распредление данных, как у ведущего признака
+def stratified_dataframe(df: pd.DataFrame, main_feature: str, test_size: float):
+    split = StratifiedShuffleSplit(n_splits=1, test_size=test_size, random_state=42)
+    for train_index, test_index in split.split(df, df[main_feature]):
+        strat_train_set = df.loc[train_index]
+        strat_test_set = df.loc[test_index]
+    return strat_train_set, strat_test_set
+
+
 # Пайплайн для полиномизации, скалирования и модели
 def pipe_for_poly_scal_model(poly_degree: int, any_model: Callable, X, y, X_test):
     poly = preprocessing.PolynomialFeatures(degree=poly_degree)
@@ -146,3 +150,8 @@ def pipe_for_poly_scal_model(poly_degree: int, any_model: Callable, X, y, X_test
 # Предсказываем данные по обученной модели
 def model_predict(model, X_holdout):
     return model.predict(X_holdout)
+
+
+# Выводим аккураси
+def print_accuracy(y_holdout, X_holdout):
+    print(accuracy_score(y_holdout, X_holdout))

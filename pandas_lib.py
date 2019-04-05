@@ -9,19 +9,32 @@ pd.options.display.max_rows = 7  # Отображение количества �
 pd.set_option('display.max_columns', 100)  # Второй вариант настройки. Количесвто столбцов
 
 
-# Тип данных колонок
-def columns_data(df: pd.DataFrame):
-    return df.dtypes
+# Start for dataframe research ----------------------------------------------------------------------------------------
+# Просмотр общей информации по фрейму
+def show_info(file: pd.DataFrame):
+    return file.info()
 
 
-# Работа с .loc
-def work_loc(df: pd.DataFrame, column_for_row_check: str, any, column_for_show: str, func: Callable):
-    return df.loc[(df[column_for_row_check] == any), column_for_show].apply(func)
+# Содержание колонок или колонки
+def all_column_info(df: pd.DataFrame):
+    return df.describe()
+    # df.describe().column_name
 
 
 # Посчитать количество повторений в столбце
 def v_counts(column: pd.Series):
     return column.value_counts()
+
+
+# Тип данных колонок
+def columns_data(df: pd.DataFrame):
+    return df.dtypes
+
+
+# Working with data ---------------------------------------------------------------------------------------------------
+# Работа с .loc
+def work_loc(df: pd.DataFrame, column_for_row_check: str, any, column_for_show: str, func: Callable):
+    return df.loc[(df[column_for_row_check] == any), column_for_show].apply(func)
 
 
 # Отобразить файл на графике
@@ -61,17 +74,6 @@ def change_by_symbol(columns: pd.Series, symbol: str, change: str):
 def sql_connect(directory: str, file_name: str, file_type: str, index_column: str):
     connect = sqlite3.connect(directory + '/' + file_name + file_type)
     return pd.read_sql('SELECT * from ' + file_name + ' LIMIT 3', connect, index_col=index_column)
-
-
-# Просмотр общей информации по фрейму
-def show_info(file: pd.DataFrame):
-    return file.info()
-
-
-# Содержание колонок или колонки
-def all_column_info(df: pd.DataFrame):
-    return df.describe()
-    # df.describe().column_name
 
 
 # Применение функции к каждому столбцу (или строке, если указать axis=1)
@@ -143,6 +145,11 @@ def filter_by_column(column: pd.Series, x_1: int, x_2: int) -> pd.Series:
 # Переименовать колонку
 def rename_column(df: pd.DataFrame, old_name: str, new_name: str):
     df.rename(columns={old_name: new_name})
+
+
+# Заменить заначения, которые удовлетворяют условию
+def change_values(series: pd.Series):
+    return series.where(series > 0, "yes")
 
 
 # pickle

@@ -33,7 +33,7 @@ def two_charts(df: pd.DataFrame, kind: str):
 
 # Вывести децильные гистограммы по каждому массиву данных
 def decile_for_each(df: pd.DataFrame, columns_for_show: list, decile: int):
-    df.hist(column=columns_for_show, bins=10)
+    df.hist(column=columns_for_show, bins=50, figsize=(20, 20))
 
 
 # Тепловая карта
@@ -42,7 +42,7 @@ def heatmap_plt(pivot_table):
 
 
 # Выделить контур
-def contour_plt(x: list, y:list, z:list):
+def contour_plt(x: list, y: list, z: list):
     plt.contour(x, y, z)
 
 
