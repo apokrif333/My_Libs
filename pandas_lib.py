@@ -98,13 +98,13 @@ def to_groups(column: pd.Series, groups: tuple):
 
 
 # Таблица корреляции
-def correlation(df: pd.DataFrame):
-    return df.corr()
+def correlation(df: pd.DataFrame, matrix_column: str):
+    return df.corr()[matrix_column].sort_values(ascending=False)
 
 
-# Конвертирование бинарных строк в цифру. Можно взять совпадения, а можно изменённые данные
-def bool_to_int(column: pd.Series):
-    return pd.factorize(column)[0]
+# Конвертирование класса значенний в цифру. Каждому уникальному значению присваивается своя цифра.
+def class_to_int(column: pd.Series):
+    return pd.factorize(column)
 
 
 # В скольких строках встречается данный объект

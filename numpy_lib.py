@@ -120,8 +120,9 @@ def each_element(file: np.ndarray):
         pass
 
 
-def auto_change_by_rows(file: np.ndarray, rows: int) -> np.array:
-    return file.reshape((rows, -1))
+# -1 - количество измерений не определено. Оно определяет из оставшихся, заднных измерений
+def cng_matrix_dimension(file: np.ndarray, columns: int) -> np.array:
+    return file.reshape((-1, columns))
 
 
 def massive_copy(file: np.ndarray) -> np.array:

@@ -1,8 +1,9 @@
 from __future__ import division, print_function
 from sklearn.model_selection import train_test_split, StratifiedKFold, GridSearchCV, cross_val_score, TimeSeriesSplit, StratifiedShuffleSplit
 from sklearn import preprocessing
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, Imputer, OneHotEncoder
 from sklearn.pipeline import Pipeline, make_pipeline
+from sklearn.compose import ColumnTransformer
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor, export_graphviz
 from sklearn.ensemble import RandomForestClassifier
@@ -88,6 +89,15 @@ def dot_to_png(name: str):
 
 
 # Features ------------------------------------------------------------------------------------------------------------
+# Заменить пустые значения на...
+def change_empty(df: pd.DataFrame, strata: str):
+    imputer = Imputer(strategy=strata)
+    imputer.fit(df)
+    print(imputer.statistics_)
+    X = imputer.transform(df)
+    return pd.DataFrame(X, columns=df.columns)
+
+
 # Скалируем признак
 def feature_scaler(column: list):
     return StandardScaler().fit_transform(column)
@@ -96,6 +106,23 @@ def feature_scaler(column: list):
 # Конвертация значений столбца в бинарные признаки
 def encoder():
     preprocessing.LabelEncoder()
+
+
+# OneHotEncoding. Категориальные значения в двоичные признаки (dummy)
+def OneHotEncoding(series: pd.Series):
+    encoder = OneHotEncoder()
+    series = encoder.fit_transform(series)
+    print(encoder.categories_)
+    return series.toarray()
+
+
+# Пайп-лайн который работает с определёнными колонками и может обращаться к обычным пайп-лайнам
+def columns_pipeline(df: pd.DataFrame, numeric_clms: list, categoric_clms: list, num_pipe, cat_pipe):
+    full_pipeline = ColumnTransformer([
+        ("num", num_pipe, numeric_clms),
+        ("cat", cat_pipe, categoric_clms),
+    ])
+    return full_pipeline.fit_transform(df)
 
 
 # Regression ----------------------------------------------------------------------------------------------------------
@@ -142,7 +169,11 @@ def pipe_for_poly_scal_model(poly_degree: int, any_model: Callable, X, y, X_test
     poly = preprocessing.PolynomialFeatures(degree=poly_degree)
     scaler = preprocessing.StandardScaler()
     model = any_model()
-    pipeline = Pipeline([('poly', poly), ('scal', scaler), ('model', model)])
+    pipeline = Pipeline([
+        ('poly', poly),
+        ('scal', scaler),
+        ('model', model)
+    ])
     pipeline.fit(X, y)
     return pipeline.predict(X_test)
 

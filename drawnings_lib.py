@@ -5,6 +5,7 @@ import plotly
 import plotly.graph_objs as go
 
 from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
+from pandas.plotting import scatter_matrix
 
 plt.style.use('ggplot')  # Красивые графики
 plt.rcParams['figure.figsize'] = (20, 10)  # Размер картинок
@@ -22,8 +23,12 @@ def chart_matplot(x: pd.Series, y: pd.Series, title: str):
 
 
 # Точечный график
-def scatter_plot(x, y):
-    plt.scatter(x, y, s=50, cmap='autumn', edgecolors='black', linewidths=1.5)
+def scatter_plot(df: pd.DataFrame, x: str, y: str, size_column: str, color_column: str):
+    df.plot(kind="scatter", x=x, y=y, alpha=0.4,
+            s=df[size_column] / 100, label=size_column, figsize=(10, 7),
+            c=color_column, cmap=plt.get_cmap("jet"), colorbar=True,
+            sharex=False)
+    plt.legend()
 
 
 # Вывести два графика на основе данных, в которых два столбца и единый индекс
@@ -59,6 +64,11 @@ def base_plot_with_arrows(df: pd.DataFrame, x: str, y: str, pos_text: dict):
         plt.annotate(country, xy=(pos_data_x, pos_data_y), xytext=pos_text,
                      arrowprops=dict(facecolor='black', width=.5, shrink=.1, headwidth=5))
         plt.plot(pos_data_x, pos_data_y, 'ro')
+
+
+# Матрица корреляции
+def corr_matrix(df: pd.DataFrame, features: list):
+    scatter_matrix(df[features], figsize=(20, 20))
 
 
 # ----------------------------------------------------------------------------------------------------------------------
