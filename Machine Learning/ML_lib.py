@@ -9,7 +9,7 @@ from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor, export_g
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, roc_auc_score
+from sklearn.metrics import accuracy_score, roc_auc_score, mean_squared_error
 from graphviz import render
 from typing import Callable
 
@@ -148,6 +148,11 @@ def estimate_logit(logit_grid, X_test, y_test):
     print(roc_auc_score(y_test, test))
     return test
 
+
+# Ошибка RMSE
+def rmse_error(real_labels: list, model_predictions: list):
+    return np.sqrt(mean_squared_error(real_labels, model_predictions))
+    
 
 # Useful for all models -----------------------------------------------------------------------------------------------
 # Создание отложенной выборки X_train, X_holdout, y_train, y_holdout
