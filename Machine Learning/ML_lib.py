@@ -10,6 +10,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, roc_auc_score, mean_squared_error
+from sklearn.externals import joblib
 from graphviz import render
 from typing import Callable
 
@@ -58,18 +59,6 @@ def words_tokens(range: tuple, max: int, train_text):
     cv = CountVectorizer(ngram_range=range, max_features=max)
     vectorizer = make_pipeline(cv, TfidfTransformer())
     return vectorizer.fit_transform(train_text)
-
-
-# Оценка кросс-валидации по средней c созданием кросс-валидации
-def cv_mean(trained_model, X_train, y_train, cv_samples: int):
-    return np.mean(cross_val_score(trained_model, X_train, y_train, cv=cv_samples))
-
-
-# Выводим качество кросс-валидации
-def cv_quality(model_grid, y_holdout, X_holdout):
-    print(pd.DataFrame(model_grid.cv_results_))
-    print(model_grid.best_params_, model_grid.best_score_)
-    print(accuracy_score(y_holdout, model_grid.predict(X_holdout)))
 
 
 # Выводим все значения для настройки естиматора
@@ -147,12 +136,8 @@ def estimate_logit(logit_grid, X_test, y_test):
     test = logit_grid.predict_proba(X_test)[:, 1]
     print(roc_auc_score(y_test, test))
     return test
-
-
-# Ошибка RMSE
-def rmse_error(real_labels: list, model_predictions: list):
-    return np.sqrt(mean_squared_error(real_labels, model_predictions))
     
+# Trees ---------------------------------------------------------------------------------------------------------------
 
 # Useful for all models -----------------------------------------------------------------------------------------------
 # Создание отложенной выборки X_train, X_holdout, y_train, y_holdout
@@ -183,6 +168,22 @@ def pipe_for_poly_scal_model(poly_degree: int, any_model: Callable, X, y, X_test
     return pipeline.predict(X_test)
 
 
+# Оценка кросс-валидации по средней c созданием кросс-валидации
+def cv_mean(trained_model, X_train, y_train, cv_samples: int):
+    scores = cross_val_score(trained_model, X_train, y_train, scoring="neg_mean_squared_error", cv=cv_samples)
+    rmse = np.sqrt(-scores)
+    print('Scores: ', rmse)
+    print('Mean: ', rmse.mean())
+    print('St deviation: ', rmse.std())
+
+
+# Выводим качество кросс-валидации
+def cv_quality(model_grid, y_holdout, X_holdout):
+    print(pd.DataFrame(model_grid.cv_results_))
+    print(model_grid.best_params_, model_grid.best_score_)
+    print(accuracy_score(y_holdout, model_grid.predict(X_holdout)))
+
+
 # Предсказываем данные по обученной модели
 def model_predict(model, X_holdout):
     return model.predict(X_holdout)
@@ -191,3 +192,18 @@ def model_predict(model, X_holdout):
 # Выводим аккураси
 def print_accuracy(y_holdout, X_holdout):
     print(accuracy_score(y_holdout, X_holdout))
+
+
+# Ошибка RMSE
+def rmse_error(real_labels: list, model_predictions: list):
+    return np.sqrt(mean_squared_error(real_labels, model_predictions))
+
+
+# Дамп обученной модели в файл
+def trained_model_to_file(model, path: str, name: str):
+    joblib.dump(model, path + name + '.pkl')
+
+
+# Загрузка обученной моделиju[
+def trained_model_from_file(model, path: str, name: str):
+    return joblib.load(model, path + name + '.pkl')

@@ -127,7 +127,7 @@ def linear_softmax(X: object, W: object, target_index: object) -> object:
             loss_count += 1
 
             f = lambda x: -np.log(np.e ** x[target_index[index]] / np.sum(np.exp(x))) / len(reduced_predictions)
-            dW[index] = approx_fprime(W.transpose()[index], f, epsilon=1e-6)
+            dW[index] = approx_fprime(reduced_predictions[index], f, epsilon=1e-6)
 
     print(loss / loss_count, dW.transpose())
     return loss / loss_count, dW.transpose()
