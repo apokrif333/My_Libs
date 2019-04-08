@@ -1,5 +1,5 @@
 from __future__ import division, print_function
-from sklearn.model_selection import train_test_split, StratifiedKFold, GridSearchCV, cross_val_score, TimeSeriesSplit, StratifiedShuffleSplit
+from sklearn.model_selection import train_test_split, StratifiedKFold, GridSearchCV, cross_val_score, TimeSeriesSplit, StratifiedShuffleSplit, RandomizedSearchCV
 from sklearn import preprocessing
 from sklearn.preprocessing import StandardScaler, Imputer, OneHotEncoder
 from sklearn.pipeline import Pipeline, make_pipeline
@@ -11,6 +11,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, roc_auc_score, mean_squared_error
 from sklearn.externals import joblib
+from scipy import stats
 from graphviz import render
 from typing import Callable
 
@@ -44,7 +45,10 @@ def kNN_create(nighbors: int, X_train, y_train):
 
 # Обучаем соседей по кросс-валидации
 def cross_valid_kNN(neighbors: list, cv_samples: int, X_train, y_train):
-    knn_pipe = Pipeline([('scaler', StandardScaler()), ('knn', KNeighborsClassifier(n_jobs=-1))])
+    knn_pipe = Pipeline([
+        ('scaler', StandardScaler()),
+        ('knn', KNeighborsClassifier(n_jobs=-1))
+    ])
     return GridSearchCV(knn_pipe, knn__n_neighbors=neighbors, cv=cv_samples, n_jobs=-1, verbose=True).fit(X_train,
                                                                                                           y_train)
 
@@ -111,6 +115,7 @@ def columns_pipeline(df: pd.DataFrame, numeric_clms: list, categoric_clms: list,
         ("num", num_pipe, numeric_clms),
         ("cat", cat_pipe, categoric_clms),
     ])
+    print(full_pipeline.named_transformers_['cat'].categories_[0])
     return full_pipeline.fit_transform(df)
 
 
@@ -136,7 +141,14 @@ def estimate_logit(logit_grid, X_test, y_test):
     test = logit_grid.predict_proba(X_test)[:, 1]
     print(roc_auc_score(y_test, test))
     return test
-    
+
+
+# Доверительный интервал для ошибок регрессии
+def confidence_interval_for_errors(conf: float, y_pred, y):
+    squared_errors = (y_pred - y) ** 2
+    print(stats.t.interval(conf, len(squared_errors) - 1, loc=squared_errors.mean(), scale=stats.sem(squared_errors)))
+
+
 # Trees ---------------------------------------------------------------------------------------------------------------
 
 # Useful for all models -----------------------------------------------------------------------------------------------
@@ -154,7 +166,7 @@ def stratified_dataframe(df: pd.DataFrame, main_feature: str, test_size: float):
     return strat_train_set, strat_test_set
 
 
-# Пайплайн для полиномизации, скалирования и модели
+# Пайплайн для полиномизации, скалирования, модели и теста
 def pipe_for_poly_scal_model(poly_degree: int, any_model: Callable, X, y, X_test):
     poly = preprocessing.PolynomialFeatures(degree=poly_degree)
     scaler = preprocessing.StandardScaler()
@@ -182,6 +194,40 @@ def cv_quality(model_grid, y_holdout, X_holdout):
     print(pd.DataFrame(model_grid.cv_results_))
     print(model_grid.best_params_, model_grid.best_score_)
     print(accuracy_score(y_holdout, model_grid.predict(X_holdout)))
+
+
+def grid_search(model, cross_valid: int, X, y) -> pd.DataFrame:
+    # Проведём сразу два поиска
+    param_grid = [
+        {'n_estimators': [3, 10, 32], 'max_features': [2, 4, 6, 8]},
+        {'bootstrap': [False], 'n_estimators': [3, 10], 'max_features': [2, 3, 4]}
+    ]
+    g_search = GridSearchCV(model, param_grid, cv=cross_valid,
+                            scoring='neg_mean_squared_error', return_train_score=True)
+    g_search.fit(X, y)
+
+    print(g_search.best_params_)
+    print(g_search.best_estimator_)
+    print(g_search.best_estimator_.feature_importances_)
+    for mean_score, params in zip(g_search.cv_results_['mean_test_score'], g_search.cv_results_['params']):
+        print(np.sqrt(-mean_score), params)
+
+    return pd.DataFrame(g_search.cv_results_)
+
+
+def random_search(model, cross_valid: int, iterations: int, random_state: int, X, y):
+    param_distribs = {
+        'n_estimators': stats.randint(low=1, high=200),
+        'max_features': stats.randint(low=1, high=8)
+    }
+    r_search = RandomizedSearchCV(model, param_distributions=param_distribs, n_iter=iterations, cv=cross_valid,
+                                  scoring='neg_mean_squared_error', random_state=random_state)
+    r_search.fit(X, y)
+
+    for mean_score, params in zip(r_search.cv_results_['mean_test_score'], r_search.cv_results_['params']):
+        print(np.sqrt(-mean_score), params)
+
+    return r_search.best_estimator_
 
 
 # Предсказываем данные по обученной модели
