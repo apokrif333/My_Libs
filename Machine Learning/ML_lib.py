@@ -119,6 +119,17 @@ def columns_pipeline(df: pd.DataFrame, numeric_clms: list, categoric_clms: list,
     return full_pipeline.fit_transform(df)
 
 
+# Получение нового нампи-фрейма с самыми эффективными признаками
+def df_with_best_features(X: np.array, feat_importance: np.array, count_best_feat: int, feat_names: list):
+    # Сортируем значения от меньшего к большему, распределяем значения так, чтобы все значения, которые меньше значения
+    # под индексом count_best_features, были перед ним, а большие за ниим. Возвращаем индексы значений.
+    best_features_indexes = np.sort(np.argpartition(feat_importance, -count_best_feat)[-count_best_feat:])
+    print('Best features names: ', np.array(feat_names)[best_features_indexes])
+    print(sorted(zip(feat_importance, feat_names), reverse=True)[:count_best_feat])
+
+    return X[:, best_features_indexes], np.array(feat_names)[best_features_indexes]
+
+
 # Regression ----------------------------------------------------------------------------------------------------------
 # Используем последовательный тайм-срез через грид-сёрч, чтобы найти лучший регрессор в логист. регрессии
 def time_split_cv_for_logit(splits: int, random: int, c_start: int, c_end: int, c_step: int, X, y):
@@ -218,7 +229,9 @@ def grid_search(model, cross_valid: int, X, y) -> pd.DataFrame:
 def random_search(model, cross_valid: int, iterations: int, random_state: int, X, y):
     param_distribs = {
         'n_estimators': stats.randint(low=1, high=200),
-        'max_features': stats.randint(low=1, high=8)
+        'max_features': stats.randint(low=1, high=8),
+        'C': stats.reciprocal(20, 200000),
+        'gamma': stats.expon(scale=1.0)
     }
     r_search = RandomizedSearchCV(model, param_distributions=param_distribs, n_iter=iterations, cv=cross_valid,
                                   scoring='neg_mean_squared_error', random_state=random_state)
@@ -250,6 +263,6 @@ def trained_model_to_file(model, path: str, name: str):
     joblib.dump(model, path + name + '.pkl')
 
 
-# Загрузка обученной моделиju[
+# Загрузка обученной модели
 def trained_model_from_file(model, path: str, name: str):
     return joblib.load(model, path + name + '.pkl')
