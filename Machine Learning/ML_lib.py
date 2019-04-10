@@ -119,6 +119,18 @@ def columns_pipeline(df: pd.DataFrame, numeric_clms: list, categoric_clms: list,
     return full_pipeline.fit_transform(df)
 
 
+# GridSeach для оптимизации гиперпараметров предобработки данных пайплайна
+def grid_seach_for_pipeline(prepare_select_predict_pipeline, features_names: list, X, y):
+    param_grid = [{
+        'preparation__num__imputer_strategy': ['mean', 'median', 'most_frequent'],
+        'features_selection__k': list(range(1, len(features_names) + 1))
+    }]
+    g_search = GridSearchCV(prepare_select_predict_pipeline, param_grid, cv=3,
+                            scoring='neg_mean_squared_error', verbose=2)
+    g_search.fit(X, y)
+    return g_search.best_params_
+
+
 # Получение нового нампи-фрейма с самыми эффективными признаками
 def df_with_best_features(X: np.array, feat_importance: np.array, count_best_feat: int, feat_names: list):
     # Сортируем значения от меньшего к большему, распределяем значения так, чтобы все значения, которые меньше значения
