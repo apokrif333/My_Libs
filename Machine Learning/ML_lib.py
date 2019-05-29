@@ -38,21 +38,6 @@ def cross_valid_tree(des_tree_params, depth: list, features: list, cv_samples: i
                         verbose=True).fit(X_train, y_train)
 
 
-# Классифицируем данные методом ближайших соседей
-def kNN_create(nighbors: int, X_train, y_train):
-    return KNeighborsClassifier(n_neighbors=nighbors).fit(X_train, y_train)
-
-
-# Обучаем соседей по кросс-валидации
-def cross_valid_kNN(neighbors: list, cv_samples: int, X_train, y_train):
-    knn_pipe = Pipeline([
-        ('scaler', StandardScaler()),
-        ('knn', KNeighborsClassifier(n_jobs=-1))
-    ])
-    return GridSearchCV(knn_pipe, knn__n_neighbors=neighbors, cv=cv_samples, n_jobs=-1, verbose=True).fit(X_train,
-                                                                                                          y_train)
-
-
 # Веса признаков у случайного лесаz
 def rforest_features(train_forest):
     return train_forest.feature_importances_
@@ -173,6 +158,23 @@ def confidence_interval_for_errors(conf: float, y_pred, y):
 
 
 # Trees ---------------------------------------------------------------------------------------------------------------
+
+# kNN -----------------------------------------------------------------------------------------------------------------
+# Классифицируем данные методом ближайших соседей
+def kNN_create(nighbors: int, X_train, y_train):
+    return KNeighborsClassifier(n_neighbors=nighbors).fit(X_train, y_train)
+
+
+# Обучаем соседей по кросс-валидации
+def cross_valid_kNN(neighbors: list, cv_samples: int, X_train, y_train):
+    knn_pipe = Pipeline([
+        ('scaler', StandardScaler()),
+        ('knn', KNeighborsClassifier(n_jobs=-1))
+    ])
+    return GridSearchCV(
+        knn_pipe, knn__n_neighbors=neighbors, cv=cv_samples, n_jobs=-1, verbose=True).fit(X_train,y_train)
+
+
 
 # Useful for all models -----------------------------------------------------------------------------------------------
 # Создание отложенной выборки X_train, X_holdout, y_train, y_holdout
