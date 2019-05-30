@@ -19,28 +19,11 @@ import pandas as pd
 import numpy as np
 
 
-# Создание обученного дерева (классификатора или регрессора или случаного леса)
-def des_tree(criterion: str, depth: int, random: int, X_train, y_train, tree: str):
-    if tree == 'class':
-        return DecisionTreeClassifier(criterion=criterion, max_depth=depth, random_state=random).fit(X_train, y_train)
-    elif tree == 'regress':
-        return DecisionTreeRegressor(criterion=criterion, max_depth=depth, random_state=random).fit(X_train, y_train)
-    elif tree == 'forest':
-        return RandomForestClassifier(criterion=criterion, max_depth=depth, random_state=random).fit(X_train, y_train)
-    else:
-        print(f'Передано неверное значение tree для выбора дерева: {tree}')
-
-
 # Обучаем дерево по кросс-валидации
 def cross_valid_tree(des_tree_params, depth: list, features: list, cv_samples: int, random: int, X_train, y_train):
     skf = StratifiedKFold(n_splits=cv_samples, shuffle=False, random_state=random)
     return GridSearchCV(des_tree_params, max_depth=depth, max_features=features, cv=skf, n_jobs=-1,
                         verbose=True).fit(X_train, y_train)
-
-
-# Веса признаков у случайного лесаz
-def rforest_features(train_forest):
-    return train_forest.feature_importances_
 
 
 # Создаём матрицу из текстового файла, для анализа токенов-слов
@@ -53,17 +36,6 @@ def words_tokens(range: tuple, max: int, train_text):
 # Выводим все значения для настройки естиматора
 def get_all_params(estimator):
     print(estimator.get_params().keys())
-
-
-# Создаём dot-file c обученным деревом
-def create_dot(clf_tree, feature_names: list, file_name: str, clases: list):
-    export_graphviz(clf_tree, feature_names=feature_names, out_file=file_name + '.dot', filled=True,  class_names=clases)
-
-
-# Конвертируем dot в png
-def dot_to_png(name: str):
-    path = 'img/' + name + '.dot'
-    render('dot', 'png', path)
 
 
 # Features ------------------------------------------------------------------------------------------------------------
@@ -158,6 +130,33 @@ def confidence_interval_for_errors(conf: float, y_pred, y):
 
 
 # Trees ---------------------------------------------------------------------------------------------------------------
+# Создание обученного дерева (классификатора или регрессора или случаного леса)
+def des_tree(criterion: str, depth: int, random: int, X_train, y_train, tree: str):
+    if tree == 'class':
+        return DecisionTreeClassifier(criterion=criterion, max_depth=depth, random_state=random).fit(X_train, y_train)
+    elif tree == 'regress':
+        return DecisionTreeRegressor(criterion=criterion, max_depth=depth, random_state=random).fit(X_train, y_train)
+    elif tree == 'forest':
+        return RandomForestClassifier(criterion=criterion, max_depth=depth, random_state=random).fit(X_train, y_train)
+    else:
+        print(f'Передано неверное значение tree для выбора дерева: {tree}')
+
+
+# Веса признаков у случайного лесаz
+def rforest_features(train_forest):
+    return train_forest.feature_importances_
+
+
+# Создаём dot-file c обученным деревом
+def create_dot(clf_tree, feature_names: list, file_name: str, clases: list):
+    export_graphviz(clf_tree, feature_names=feature_names, out_file=file_name + '.dot', filled=True,  class_names=clases)
+
+
+# Конвертируем dot в png
+def dot_to_png(name: str):
+    path = 'img/' + name + '.dot'
+    render('dot', 'png', path)
+
 
 # kNN -----------------------------------------------------------------------------------------------------------------
 # Классифицируем данные методом ближайших соседей
@@ -173,7 +172,6 @@ def cross_valid_kNN(neighbors: list, cv_samples: int, X_train, y_train):
     ])
     return GridSearchCV(
         knn_pipe, knn__n_neighbors=neighbors, cv=cv_samples, n_jobs=-1, verbose=True).fit(X_train,y_train)
-
 
 
 # Useful for all models -----------------------------------------------------------------------------------------------
