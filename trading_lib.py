@@ -1,16 +1,19 @@
 # Библиотека функций для трейдов
 import pandas as pd
+import numpy as np
 import statistics as stat
 import math
 import time
 import cmath
 import os
+import re
 import matplotlib.pyplot as plt
-
 
 from alpha_vantage.timeseries import TimeSeries
 from yahoofinancials import YahooFinancials
 from datetime import datetime
+from plotly.offline import plot
+from plotly import graph_objs as go
 
 
 # Constants
@@ -18,7 +21,7 @@ ALPHA_KEY = 'FE8STYV4I7XHRIAI'
 
 # Variables
 default_data_dir = 'historical_data'  # Директория
-start_date = datetime(2004, 1, 1)  # Для yahoo, alpha выкачает всю доступную историю
+start_date = datetime(1985, 1, 1)  # Для yahoo, alpha выкачает всю доступную историю
 end_date = datetime.now()
 
 # Globals
@@ -94,8 +97,7 @@ def download_alpha(ticker: str, base_dir: str = default_data_dir) -> pd.DataFram
         dic_with_prices(prices, ticker, date, secondary_dic['1. open'], secondary_dic['2. high'],
                         secondary_dic['3. low'], secondary_dic['4. close'], secondary_dic['5. volume'])
 
-    frame = pd.DataFrame.from_dict(prices, orient='index',
-                                   columns=['Open', 'High', 'Low', 'Close', 'Volume', 'Dividend'])
+    frame = pd.DataFrame.from_dict(prices, orient='index', columns=['Open', 'High', 'Low', 'Close', 'Volume'])
     save_csv(base_dir, ticker, frame, 'alpha')
     time.sleep(15 if alpha_count != 0 else 0)
     alpha_count += 1
@@ -141,11 +143,11 @@ def dic_with_prices(prices: dict, ticker: str, date: datetime, open, high, low, 
         print(f'Найден выходной в {ticker} на {date}')
         return
 
-    open = number_to_float(float(open))
-    high = number_to_float(float(high))
-    low = number_to_float(float(low))
-    close = number_to_float(float(close))
-    volume = number_to_int(float(volume))
+    open = number_to_float(open)
+    high = number_to_float(high)
+    low = number_to_float(low)
+    close = number_to_float(close)
+    volume = number_to_int(volume)
 
     error_price = (not empty_check(open)) or (not empty_check(high)) or (not empty_check(low)) or (
         not empty_check(close))
@@ -219,19 +221,21 @@ def correct_file_by_dates(file: pd.DataFrame, start: datetime, end: datetime) ->
 # Блок финансовых метрик -----------------------------------------------------------------------------------------------
 # Считаем CAGR
 def cagr(date: list, capital: list) -> float:
+    capital = np.around(capital, decimals=-2)
     years = (date[-1].year + date[-1].month / 12) - (date[0].year + date[0].month / 12)
-    return ((capital[-1] / capital[0]) ** (1 / years) - 1) * 100
+    cagr = ((capital[-1] / capital[0]) ** (1 / years) - 1) * 100
+    return round(cagr, 2)
 
 
 # Считаем годовое отклонение
-def st_dev(capital: list) -> float:
+def st_dev(capital: list, period: int = 252) -> float:
     day_cng = []
     for i in range(len(capital)):
         if i == 0:
             day_cng.append(0)
         else:
             day_cng.append(capital[i] / capital[i - 1] - 1)
-    return stat.stdev(day_cng) * math.sqrt(252) if stat.stdev(day_cng) != 0 else 999
+    return stat.stdev(day_cng) * math.sqrt(period) if stat.stdev(day_cng) != 0 else 999
 
 
 # Считаем предельную просадку
@@ -267,6 +271,8 @@ def oldest_date_search(f_date: datetime, *args: datetime) -> datetime:
 # Рисовалка ------------------------------------------------------------------------------------------------------------
 # Выводим график капитала с таблицей
 def plot_capital(date: list, capital: list):
+    capital = [abs(x) for x in capital]
+
     high = 0
     down = []
     for i in range(len(capital)):
@@ -278,7 +284,7 @@ def plot_capital(date: list, capital: list):
     values = []
     values.append(capital[0])
     values.append(round(capital[-1], 0))
-    values.append(round(cagr(date, capital), 2))
+    values.append(cagr(date, capital))
     values.append(round(draw_down(capital), 2))
     values.append(round(st_dev(capital) * 100, 2))
     values.append(round(values[2] / values[4], 2))
@@ -314,3 +320,243 @@ def plot_capital(date: list, capital: list):
     tx1.table(cellText=table_metric.values, loc='lower center')
 
     plt.show()
+
+
+# Выводим тотал-график капитала с таблицами в плотли
+def plot_capital_plotly(chart_name: str, date: list, capital: list, show_table: pd.DataFrame, ports: dict):
+    high = 0
+    down = []
+    for i in range(len(capital)):
+        if capital[i] > high:
+            high = capital[i]
+        down.append((capital[i] / high - 1) * -100)
+
+    names1, names2 = ['Start Balance', 'End Balance', 'CAGR', 'DrawDown'], ['StDev', 'Sharpe', 'MaR', 'SM']
+    values1, values2 = [], []
+    values1.append(capital[0])
+    values1.append(round(capital[-1], 0))
+    values1.append(cagr(date, capital))
+    values1.append(round(draw_down(capital), 2))
+    values2.append(round(st_dev(capital) * 100, 2))
+    values2.append(round(values1[2] / values2[0], 2))
+    values2.append(round(abs(values1[2] / values1[3]), 2))
+    values2.append(round(values2[1] * values2[2], 2))
+
+    ports_values = []
+    for i in list(ports.values()):
+        ports_values.append(str(i))
+
+    trace1 = go.Scatter(
+        x=date,
+        y=capital,
+        mode='lines',
+        line=dict(color='#1f77b4'),
+        name='Port Capital'
+    )
+    trace2 = go.Scatter(
+        x=date,
+        y=down,
+        mode='lines',
+        line=dict(color='wheat', dash='dash'),
+        name='DrawDown',
+        yaxis='y2'
+    )
+    trace3 = go.Table(
+        domain=dict(x=[0, 0.3],
+                    y=[0, 0.2]),
+        header=dict(
+            values=[['<b>NAMES</b>'], ['<b>VALUES</b>'],
+                    ['<b>NAMES</b>'], ['<b>VALUES</b>']],
+            fill=dict(color='gray'),
+            font=dict(color='white', size=12)
+        ),
+        cells=dict(
+            values=[names1, values1,
+                    names2, values2],
+            line=dict(color='#7D7F80'),
+            fill=dict(color=['wheat', 'white',
+                             'wheat', 'white']),
+            align=['left', 'center',
+                   'left', 'center']
+        )
+    )
+    trace4 = go.Table(
+        domain=dict(x=[0.35, 0.65],
+                    y=[0, 0.2]),
+        header=dict(
+            values=show_table.columns,
+            font=dict(color='white', size=12),
+            fill=dict(color='gray'),
+        ),
+        cells=dict(
+            values=[show_table[c].tolist() for c in show_table.columns],
+            fill=dict(color=['palegreen', 'wheat', 'white',
+                             'wheat', 'white']),
+        )
+    )
+    trace5 = go.Table(
+        domain=dict(x=[0.7, 1.0],
+                    y=[0, 0.2]),
+        header=dict(
+            values=[['Ports names'], ['Ports contents']],
+            fill=dict(color='gray'),
+            font=dict(color='white', size=12)
+        ),
+        cells=dict(
+            values=[[*ports], ports_values],
+            line=dict(color='#7D7F80'),
+            fill=dict(color=['wheat', 'white']),
+            # align=['left', 'center']
+        )
+    )
+
+    plt_data = [trace1, trace2, trace3, trace4, trace5]
+
+    plt_layout = go.Layout(
+        title=chart_name.split('/')[-1],
+        yaxis=dict(
+            title='Port Capital',
+            titlefont=dict(color='#1f77b4'),
+            tickfont=dict(color='#1f77b4'),
+            type='log',
+            autorange=True,
+            domain=[0.25, 1.0]
+        ),
+        yaxis2=dict(
+            range=[0, 50],
+            title='DrawDown',
+            titlefont=dict(color='wheat'),
+            tickfont=dict(color='wheat'),
+            overlaying='y',
+            side='right'
+        ),
+    )
+
+    fig = go.Figure(
+        data=plt_data,
+        layout=plt_layout
+    )
+    plot(fig, show_link=False, filename=chart_name + '.html')
+
+
+# Выводим динамику эквити в плотли
+def capital_chart_plotly(chart_name: str, date: list, capital: list):
+    trace1 = go.Scatter(
+        x=date,
+        y=capital,
+        mode='lines',
+        line=dict(color='#1f77b4'),
+        name='Port Capital'
+    )
+
+    plt_layout = go.Layout(
+        title=chart_name,
+        yaxis=dict(
+            title='Port Capital',
+            titlefont=dict(color='#1f77b4'),
+            tickfont=dict(color='#1f77b4'),
+            type='log',
+            autorange=True,
+        ),
+    )
+
+    fig = go.Figure(
+        data=[trace1],
+        layout=plt_layout
+    )
+    plot(fig, show_link=False, filename=chart_name + '_capital' + '.html')
+
+
+# Выводим динамику просадок в плотли
+def drawdown_chart_plotly(chart_name: str, date: list, capital: list):
+    high = 0
+    down = []
+    for i in range(len(capital)):
+        if capital[i] > high:
+            high = capital[i]
+        down.append((capital[i] / high - 1) * -100)
+
+    trace1 = go.Scatter(
+        x=date,
+        y=down,
+        mode='lines',
+        line=dict(color='#1f77b4'),
+        name='Port DrawDown'
+    )
+
+    plt_layout = go.Layout(
+        title=chart_name,
+        yaxis=dict(
+            range=[0, 50],
+            title='DrawDown',
+            titlefont=dict(color='#1f77b4'),
+            tickfont=dict(color='#1f77b4'),
+        ),
+    )
+
+    fig = go.Figure(
+        data=[trace1],
+        layout=plt_layout
+    )
+    plot(fig, show_link=False, filename=chart_name + '_drawdown' + '.html')
+
+
+# Выводим таблицу с показателями в плотли
+def portfolio_perform_table_plotly(chart_name: str, date: list, capital: list):
+    high = 0
+    down = []
+    for i in range(len(capital)):
+        if capital[i] > high:
+            high = capital[i]
+        down.append((capital[i] / high - 1) * -100)
+
+    names1, names2 = ['Start Balance', 'End Balance', 'CAGR', 'DrawDown'], ['StDev', 'Sharpe', 'MaR', 'SM']
+    values1, values2 = [], []
+    values1.append(capital[0])
+    values1.append(round(capital[-1], 0))
+    values1.append(cagr(date, capital))
+    values1.append(round(draw_down(capital), 2))
+    values2.append(round(st_dev(capital) * 100, 2))
+    values2.append(round(values1[2] / values2[0], 2))
+    values2.append(round(abs(values1[2] / values1[3]), 2))
+    values2.append(round(values2[1] * values2[2], 2))
+
+    trace1 = go.Table(
+        header=dict(
+            values=[['<b>NAMES</b>'], ['<b>VALUES</b>'],
+                    ['<b>NAMES</b>'], ['<b>VALUES</b>']],
+            fill=dict(color='gray'),
+            font=dict(color='white', size=12)
+        ),
+        cells=dict(
+            values=[names1, values1,
+                    names2, values2],
+            line=dict(color='#7D7F80'),
+            fill=dict(color=['wheat', 'white',
+                             'wheat', 'white']),
+            align=['left', 'center',
+                   'left', 'center']
+        )
+    )
+
+    fig = go.Figure(data=[trace1])
+    plot(fig, show_link=False, filename=chart_name + '_perform_table' + '.html')
+
+
+# Выводим таблицу с показателями по годам, по сравнению с бенчем в плотли
+def portfolio_by_years_table_plotly(chart_name: str, show_table: pd.DataFrame,):
+        trace = go.Table(
+            header=dict(
+                values=show_table.columns,
+                font=dict(color='white', size=12),
+                fill=dict(color='gray'),
+            ),
+            cells=dict(
+                values=[show_table[c].tolist() for c in show_table.columns],
+                fill=dict(color=['palegreen', 'wheat', 'white',
+                                 'wheat', 'white']),
+            )
+        )
+
+        fig = go.Figure(data=[trace])
+        plot(fig, show_link=False, filename=chart_name + '_by_year' + '.html')
