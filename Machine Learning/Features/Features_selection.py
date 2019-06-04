@@ -21,10 +21,10 @@ x_data_varth = VarianceThreshold(.9).fit_transform(x_data_generated)
 x_data_kbest = SelectKBest(f_classif, k=5).fit_transform(x_data_generated, y_data_generated)
 kb_var = SelectKBest(f_classif, k=5).fit_transform(x_data_varth, y_data_generated)
 
-print("LR: ", cross_val_score(LogisticRegression(), x_data_generated, y_data_generated,scoring='neg_log_loss').mean())
-print("LR+var: ", cross_val_score(LogisticRegression(), x_data_varth, y_data_generated,scoring='neg_log_loss').mean())
-print("LR+kbest", cross_val_score(LogisticRegression(), x_data_kbest, y_data_generated,scoring='neg_log_loss').mean())
-print("LR+kbest+var", cross_val_score(LogisticRegression(), kb_var, y_data_generated,scoring='neg_log_loss').mean())
+print("LR: ", cross_val_score(LogisticRegression(), x_data_generated, y_data_generated, scoring='neg_log_loss').mean())
+print("LR+var: ", cross_val_score(LogisticRegression(), x_data_varth, y_data_generated, scoring='neg_log_loss').mean())
+print("LR+kbest", cross_val_score(LogisticRegression(), x_data_kbest, y_data_generated, scoring='neg_log_loss').mean())
+print("LR+kbest+var", cross_val_score(LogisticRegression(), kb_var, y_data_generated, scoring='neg_log_loss').mean())
 
 # Используем baseline-модель (Forest или линейная с лассо-регуляризацией) для оценки признаков, чтобы после неё
 # передавать отобранные признаки в более сложную модель
@@ -34,9 +34,9 @@ lr = LogisticRegression()
 rf = RandomForestClassifier()
 pipe = make_pipeline(SelectFromModel(estimator=rf), lr)
 
-print(cross_val_score(lr, x_data_generated, y_data_generated,scoring='neg_log_loss').mean())
-print(cross_val_score(rf, x_data_generated, y_data_generated,scoring='neg_log_loss').mean())
-print(cross_val_score(pipe, x_data_generated, y_data_generated,scoring='neg_log_loss').mean())
+print(cross_val_score(lr, x_data_generated, y_data_generated, scoring='neg_log_loss').mean())
+print(cross_val_score(rf, x_data_generated, y_data_generated, scoring='neg_log_loss').mean())
+print(cross_val_score(pipe, x_data_generated, y_data_generated, scoring='neg_log_loss').mean())
 
 # Применим baseline на реальных данных. Не всегда байзлайн - это хорошая точка отправки
 with open('data/train.json', 'r') as raw_data:
