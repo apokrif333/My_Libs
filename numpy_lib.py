@@ -33,11 +33,6 @@ def one_list_for_many_lists(*list_: list):
     return np.r_[list_]
 
 
-# Собрать лист с листами в один лист
-def one_list_for_list(list_: list):
-    return list.ravel()
-
-
 # Транспонировать входящие массивы
 def trans_lists(*list_: list):
     return np.c_[list_]
@@ -46,6 +41,7 @@ def trans_lists(*list_: list):
 # Объединить входящие массивы в один
 def unite_to_list(*list_: list):
     return np.r_[list_]
+
 
 # Получение двух массивов x и y, и создание матрицы их положения, в стиле x[0, 20]=0, y[0, 20]=20
 def x_y_matrix(x: list, y:list):
@@ -60,6 +56,7 @@ def np_sign(x):
 # Вычислить значение истины по условию
 def try_or_false(list_) -> list:
     return np.logical_xor(list_[:, 0] > 0, list_[:, 1] > 0)
+
 
 # Случаный массив и заданных чисел
 def random_from_list(data: list, size, probability: list):

@@ -5,6 +5,7 @@ from sklearn.preprocessing import StandardScaler, Imputer, OneHotEncoder
 from sklearn.pipeline import Pipeline, make_pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
+from sklearn.feature_selection import RFE
 from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor, export_graphviz
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
@@ -97,6 +98,13 @@ def df_with_best_features(X: np.array, feat_importance: np.array, count_best_fea
     print(sorted(zip(feat_importance, feat_names), reverse=True)[:count_best_feat])
 
     return X[:, best_features_indexes], np.array(feat_names)[best_features_indexes]
+
+
+def take_best_features(model, X, y):
+    selector = RFE(model, 5, step=1)
+    selector = selector.fit(X, y)
+    print(selector.support_,
+          selector.ranking_)
 
 
 # Regression ----------------------------------------------------------------------------------------------------------
