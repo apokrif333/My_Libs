@@ -6,11 +6,12 @@ from sklearn.pipeline import Pipeline, make_pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.feature_selection import RFE
+from sklearn.naive_bayes import GaussianNB
 from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor, export_graphviz
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, roc_auc_score, mean_squared_error
+from sklearn.metrics import accuracy_score, roc_auc_score, mean_squared_error, classification_report, confusion_matrix
 from sklearn.externals import joblib
 from scipy import stats
 from graphviz import render
@@ -20,23 +21,11 @@ import pandas as pd
 import numpy as np
 
 
-# Обучаем дерево по кросс-валидации
-def cross_valid_tree(des_tree_params, depth: list, features: list, cv_samples: int, random: int, X_train, y_train):
-    skf = StratifiedKFold(n_splits=cv_samples, shuffle=False, random_state=random)
-    return GridSearchCV(des_tree_params, max_depth=depth, max_features=features, cv=skf, n_jobs=-1,
-                        verbose=True).fit(X_train, y_train)
-
-
 # Создаём матрицу из текстового файла, для анализа токенов-слов
 def words_tokens(range: tuple, max: int, train_text):
     cv = CountVectorizer(ngram_range=range, max_features=max)
     vectorizer = make_pipeline(cv, TfidfTransformer())
     return vectorizer.fit_transform(train_text)
-
-
-# Выводим все значения для настройки естиматора
-def get_all_params(estimator):
-    print(estimator.get_params().keys())
 
 
 # Features ------------------------------------------------------------------------------------------------------------
@@ -107,6 +96,15 @@ def take_best_features(model, X, y):
           selector.ranking_)
 
 
+# Naive Bayes ---------------------------------------------------------------------------------------------------------
+def naive_b(X_train, y_train, X_test, y_test):
+    model = GaussianNB(X_train, y_train)
+    model.fit(X_train, y_train)
+    predict = model.predict(X_test)
+    print(classification_report(y_test, predict))
+    print(confusion_matrix(y_test, predict))
+
+
 # Regression ----------------------------------------------------------------------------------------------------------
 # Используем последовательный тайм-срез через грид-сёрч, чтобы найти лучший регрессор в логист. регрессии
 def time_split_cv_for_logit(splits: int, random: int, c_start: int, c_end: int, c_step: int, X, y):
@@ -116,7 +114,7 @@ def time_split_cv_for_logit(splits: int, random: int, c_start: int, c_end: int, 
     logit_grid_searcher = GridSearchCV(estimator=logit, param_grid={'C': c_values},
                                        scoring='roc_auc', n_jobs=4, cv=time_split, verbose=1)
     logit_grid_searcher.fit(X, y)
-    return logit_grid_searcher.best_score_, logit_grid_searcher.best_params_
+    return logit_grid_searcher.best_score_, logit_grid_searcher.best_params_, logit_grid_searcher.best_estimator_.C
 
 
 # Получение коэффициентов формулы регрессии
@@ -129,6 +127,15 @@ def estimate_logit(logit_grid, X_test, y_test):
     test = logit_grid.predict_proba(X_test)[:, 1]
     print(roc_auc_score(y_test, test))
     return test
+
+
+# Оценка мульти-классификации, регрессия
+def multiclass_regression(X_train, y_train, X_test, y_test):
+    model = LogisticRegression()
+    model.fit(X_train, y_train)
+    predict = model.predict(X_test)
+    print(classification_report(y_test, predict))
+    print(confusion_matrix(y_test, predict))
 
 
 # Доверительный интервал для ошибок регрессии
@@ -148,6 +155,13 @@ def des_tree(criterion: str, depth: int, random: int, X_train, y_train, tree: st
         return RandomForestClassifier(criterion=criterion, max_depth=depth, random_state=random).fit(X_train, y_train)
     else:
         print(f'Передано неверное значение tree для выбора дерева: {tree}')
+
+
+# Обучаем дерево по стратифицированной кросс-валидации
+def cross_valid_tree(des_tree, depth: list, features: list, cv_samples: int, random: int, X_train, y_train):
+    parameters = {'max_depth': depth, 'max_features': features}
+    skf = StratifiedKFold(n_splits=cv_samples, shuffle=True, random_state=random)
+    return GridSearchCV(des_tree, parameters, cv=skf, n_jobs=-1, verbose=True).fit(X_train, y_train)
 
 
 # Веса признаков у случайного лесаz
@@ -174,12 +188,12 @@ def kNN_create(nighbors: int, X_train, y_train):
 
 # Обучаем соседей по кросс-валидации
 def cross_valid_kNN(neighbors: list, cv_samples: int, X_train, y_train):
+    params = {'knn__n_neighbors': neighbors}
     knn_pipe = Pipeline([
         ('scaler', StandardScaler()),
         ('knn', KNeighborsClassifier(n_jobs=-1))
     ])
-    return GridSearchCV(
-        knn_pipe, knn__n_neighbors=neighbors, cv=cv_samples, n_jobs=-1, verbose=True).fit(X_train,y_train)
+    return GridSearchCV(knn_pipe, params, cv=cv_samples, n_jobs=-1, verbose=True).fit(X_train,y_train)
 
 
 # Useful for all models -----------------------------------------------------------------------------------------------
@@ -251,7 +265,8 @@ def random_search(model, cross_valid: int, iterations: int, random_state: int, X
         'n_estimators': stats.randint(low=1, high=200),
         'max_features': stats.randint(low=1, high=8),
         'C': stats.reciprocal(20, 200000),
-        'gamma': stats.expon(scale=1.0)
+        'gamma': stats.expon(scale=1.0),
+        'alpha': stats.uniform()
     }
     r_search = RandomizedSearchCV(model, param_distributions=param_distribs, n_iter=iterations, cv=cross_valid,
                                   scoring='neg_mean_squared_error', random_state=random_state)
@@ -271,6 +286,11 @@ def model_predict(model, X_holdout):
 # Выводим аккураси
 def print_accuracy(y_holdout, X_holdout):
     print(accuracy_score(y_holdout, X_holdout))
+
+
+# Выводим все значения для настройки естиматора
+def get_all_params(estimator):
+    print(estimator.get_params().keys())
 
 
 # Ошибка RMSE
