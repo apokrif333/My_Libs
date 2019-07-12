@@ -89,6 +89,7 @@ def df_with_best_features(X: np.array, feat_importance: np.array, count_best_fea
     return X[:, best_features_indexes], np.array(feat_names)[best_features_indexes]
 
 
+# Рекурсивное исключение признаков
 def take_best_features(model, X, y):
     selector = RFE(model, 5, step=1)
     selector = selector.fit(X, y)
