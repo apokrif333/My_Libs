@@ -1,11 +1,11 @@
 from typing import Callable
 
 import pandas as pd
+import pandas_profiling
 import pickle
 import sqlite3
-import numpy as np
 
-pd.options.display.max_rows = 7  # Отображение количества строк
+pd.options.display.max_rows = 10  # Отображение количества строк
 pd.set_option('display.max_columns', 100)  # Второй вариант настройки. Количесвто столбцов
 
 
@@ -21,6 +21,13 @@ def all_column_info(df: pd.DataFrame):
     # df.describe().column_name
 
 
+# Вывести мега-html файл с анализом дата-сета. Некоторые параметры можно корректировать, смотри git-hub проекта
+def data_frame_report(df: pd.DataFrame, path: str, name):
+    profile = df.profile_report(title='Pandas Profiling Report')
+    profile.to_file(output_file=path + '/' + name + '.html')
+    # Для Jupyter Notebook: pandas_profiling.ProfileReport(df)
+
+
 # Посчитать количество повторений в столбце
 def v_counts(column: pd.Series):
     return column.value_counts()
@@ -31,15 +38,40 @@ def columns_data(df: pd.DataFrame):
     return df.dtypes
 
 
-# Working with data ---------------------------------------------------------------------------------------------------
-# Работа с .loc
-def work_loc(df: pd.DataFrame, column_for_row_check: str, any, column_for_show: str, func: Callable):
-    return df.loc[(df[column_for_row_check] == any), column_for_show].apply(func)
+# В скольких строках встречается данный объект
+def count_by_row(df: pd.DataFrame):
+    return df.size()
+
+
+# Отобразить случайные семплы из сета
+def random_samples(df: pd.DataFrame, perc_from_set: float):
+    print(df.sample(frac=perc_from_set, replace=True))
 
 
 # Отобразить файл на графике
 def chart(file: pd.DataFrame, kind: str):
     file.plot(kind=kind)
+
+
+# Таблица сопряжённости, для поиска взаимосвязей
+def conjugation_table(column1: pd.Series, column2:pd.Series):
+    return pd.crosstab(column1, column2, normalize=True, margins=True)
+
+
+# Сводная таблица
+def piv_table(file: pd.DataFrame, index: list, columns_name: list, column_val: str, func: str):
+    return file.pivot_table(index=index, columns=columns_name, values=column_val, aggfunc=func)
+
+
+# Таблица корреляции
+def correlation(df: pd.DataFrame, matrix_column: str):
+    return df.corr()[matrix_column].sort_values(ascending=False)
+
+
+# Working with data ---------------------------------------------------------------------------------------------------
+# Работа с .loc
+def work_loc(df: pd.DataFrame, column_for_row_check: str, any, column_for_show: str, func: Callable):
+    return df.loc[(df[column_for_row_check] == any), column_for_show].apply(func)
 
 
 # Для работы с фреймом или сериями, чтобы не возникала ошибка копирования, вызывается copy
@@ -82,34 +114,14 @@ def make_for_all(df: pd.DataFrame, func_name: Callable[[int], int]):
     # column.apply(lambda x: x / sum(column)) Расчёт доли для каждого элемента в столбце
 
 
-# Таблица сопряжённости, для поиска взаимосвязей
-def conjugation_table(column1: pd.Series, column2:pd.Series):
-    return pd.crosstab(column1, column2, normalize=True, margins=True)
-
-
-# Сводная таблица
-def piv_table(file: pd.DataFrame, index: list, columns_name: list, column_val: str, func: str):
-    return file.pivot_table(index=index, columns=columns_name, values=column_val, aggfunc=func)
-
-
 # Разбивка на подходящие числовые группы
 def to_groups(column: pd.Series, groups: tuple):
     return pd.cut(column, groups, include_lowest=True, right=False)
 
 
-# Таблица корреляции
-def correlation(df: pd.DataFrame, matrix_column: str):
-    return df.corr()[matrix_column].sort_values(ascending=False)
-
-
 # Конвертирование класса значенний в цифру. Каждому уникальному значению присваивается своя цифра.
 def class_to_int(column: pd.Series):
     return pd.factorize(column)
-
-
-# В скольких строках встречается данный объект
-def count_by_row(df: pd.DataFrame):
-    return df.size()
 
 
 # Скользящее окно
