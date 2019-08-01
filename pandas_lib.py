@@ -68,6 +68,16 @@ def correlation(df: pd.DataFrame, matrix_column: str):
     return df.corr()[matrix_column].sort_values(ascending=False)
 
 
+# Интерактивные графики в две строчки. !Только в Jupyter!
+def interactive_charts(df: pd.DataFrame, x: str, y:str, kind: str):
+    # https://github.com/santosjorge/cufflinks/blob/master/Cufflinks%20Tutorial%20-%20Pandas%20Like.ipynb
+    import plotly.offline
+    import cufflinks as cf
+    cf.go_offline()
+    cf.set_config_file(offline=False, world_readable=True)
+    df.iplot(x=x, y=y, kind=kind)
+
+
 # Working with data ---------------------------------------------------------------------------------------------------
 # Работа с .loc
 def work_loc(df: pd.DataFrame, column_for_row_check: str, any, column_for_show: str, func: Callable):
@@ -112,6 +122,11 @@ def sql_connect(directory: str, file_name: str, file_type: str, index_column: st
 def make_for_all(df: pd.DataFrame, func_name: Callable[[int], int]):
     return df.apply(func_name)
     # column.apply(lambda x: x / sum(column)) Расчёт доли для каждого элемента в столбце
+
+
+# Чтобы на несколько порядков ускорить работу панды всё запустить в векторах - нужно отключить поиск str
+def ultra_fast_pandas(df: pd.DataFrame):
+    return df.mean(numeric_only=True)
 
 
 # Разбивка на подходящие числовые группы
@@ -181,3 +196,7 @@ def frame_to_bite(name: str, frame):
 def bite_to_frame(name: str, frame):
     with open(name + '.pickle', 'rb') as f:
         return pickle.load(f)
+
+
+df = pd.read_csv('crimes-in-boston/crime.csv', engine='python')
+df[:10_000].iplot()
